@@ -1,0 +1,850 @@
+============================================================
+path : __var__www__ninth.com__public_html__js
+============================================================
+full_path: __var__www__ninth.com__public_html__js__ajax-script.js
+============================================================
+id: 2
+============================================================
+file: ajax-script.js
+============================================================
+content:     $(document).on('submit', '#userForm', function(e) {
+
+        e.preventDefault();
+        e.stopImmediatePropagation();
+
+        $.ajax({
+            method: "POST",
+            url: "php-script.php",
+            data: $(this).serialize(),
+            dataType: 'json',
+            success: function(data) {
+
+                var nb_keys = Object.keys(data).length;
+                var those_keys = Object.keys(data);
+
+                if (data.nb_similair_1 > 1) {
+                    var simila = $("#msg");
+                    simila.css("background-color", "black");
+                    simila.css("color", "white");
+                    simila.append("Similarity! You have some similar records to  " + data.candidate_1 + ".");
+                    for (var i = 1; i < Object.keys(data).length; i++) {
+                        if (data.hasOwnProperty("nb_similair_" + i)) {
+                            var link = data["compared_ref_" + i];
+
+                            simila.append(" Check for : " + link + ".");
+                        }
+
+                    }
+                } else {
+                    $('#msg').html("no Similarity");
+                }
+
+
+                $('#userForm').find('textarea').val('');
+                $('#userForm').find('input').val('');
+            }
+        });
+    });
+
+    function divide() {
+        //alert("divide");
+        var txt;
+        txt = document.getElementById('a').value;
+        //console.log("txt");
+        //console.log(txt);
+        var text = txt.split("\n");
+        //console.log("text");
+        //console.log(text);
+
+        var str = text.join('.</br>');
+        //console.log("str");
+        //console.log(str);
+        //alert(str);
+        document.getElementById('a').value = str;
+        //document.write(str);
+
+    }
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html__js
+============================================================
+full_path: __var__www__ninth.com__public_html__js__autocomplete.js
+============================================================
+id: 3
+============================================================
+file: autocomplete.js
+============================================================
+content: var displayData = function(id) {
+    //$('#table-container').load('update-form.php');
+    $('#msg').load('display-form.php');
+
+    $.ajax({
+        type: "POST",
+        url: "update-data.php",
+        data: {
+            displayId: id
+        },
+        dataType: "html",
+        success: function(data) {
+            let PREFIX = '<br> \"database.php\" Connection to database established successfully <br> <br>';
+            let correct_data = data;
+            correct_data = correct_data.replace(PREFIX, '');
+
+            var userData = JSON.parse(correct_data);
+
+            $("input[name='id']").val(userData.id);
+            $("textarea[name='title']").val(userData.title);
+            $("textarea[name='description']").val(userData.description);
+            $('html, body').animate({
+                scrollTop: $("#displayForm").offset().top
+            }, 2000);
+
+        }
+
+    });
+};
+
+$(document).ready(function() {
+
+    // Multiple select
+    //$( "#search_term" ).autocomplete({ 
+    $(".auto").autocomplete({
+        source: function(request, response) {
+
+            var searchText = extractLast(request.term);
+            $.ajax({
+                url: "test_fetch_data.php",
+                type: 'post',
+                dataType: "json",
+                data: {
+                    search: searchText
+                },
+                success: function(data) {
+                    //alert("data");
+                    //alert(data);
+                    response(data);
+                }
+            });
+        },
+        select: function(event, ui) {
+            //var terms = split( $('#search_term').val() );
+            var terms = split($('.auto').val());
+
+            terms.pop();
+
+            terms.push(ui.item.label);
+
+            terms.push("");
+            //$('#search_term').val(terms.join( ", " ));
+            $('.auto').val(terms.join(", "));
+
+            // Id
+            terms = split($('#selectuser_ids').val());
+
+            terms.pop();
+
+            terms.push(ui.item.value);
+
+            terms.push("");
+            $('#selectuser_ids').val(terms.join(", "));
+
+            return false;
+        }
+
+    });
+
+    $(document).on('submit', '#displayForm', function(e) {
+        e.preventDefault();
+
+        var id = $("input[name='id']").val();
+        var title = $("textarea[name='title']").val();
+        var description = $("textarea[name='description']").val();
+        //var fullName= $("input[name='fullName']").val();
+        //var emailAddress= $("input[name='emailAddress']").val();
+        //var city= $("input[name='city']").val();
+        //var country= $("input[name='country']").val();
+        $.ajax({
+            method: "POST",
+            url: "update-data.php",
+            data: {
+                Search: 'Search',
+                displayId: id
+            },
+            success: function(data) {
+
+                var search_term = $("input[name='search_term']").val();
+                $.ajax({
+                    type: 'post',
+                    url: 'get_search_results.php',
+                    data: {
+                        search: "search",
+                        search_term: search_term
+                    },
+                    success: function(response) {
+                        document.getElementById("result_div").innerHTML = response;
+
+                        // create a data table
+                        //create a data table
+                        var search_key = "";
+                        var search_key = $("#search_keyword").val();
+                        var search_terms = search_key.split(/,\s*/);
+                        //remove repeated values
+                        uniq_search_terms = [...new Set(search_terms)];
+                        //convert array to string  replace commas by spaces  
+                        uniq_search_terms = uniq_search_terms.join(" ");
+
+                        var search_default = [search_term, uniq_search_terms].join(" ");
+
+                        var table = $('#my_table_sek').DataTable({
+                            "oSearch": {
+                                "sSearch": search_default
+                            },
+                            scrollX: true,
+                            colResize: {
+                                isEnabled: true,
+                                hoverClass: 'dt-colresizable-hover',
+                                hasBoundCheck: true,
+                                minBoundClass: 'dt-colresizable-bound-min',
+                                maxBoundClass: 'dt-colresizable-bound-max',
+                                isResizable: function(column) {
+                                    return column.idx !== 2;
+                                },
+                                onResize: function(column) {
+                                    //console.log('...resizing...');
+                                },
+                                onResizeEnd: function(column, columns) {
+                                    console.log('I have been resized!');
+                                }
+                            }
+                        });
+
+
+                        // add custom listener to draw event on the table
+                        table.on("draw", function() {
+                            // get the search keyword
+                            var keyword = $('#my_table_sek_filter > label:eq(0) > input').val();
+
+                            if (typeof keyword !== 'undefined' && keyword !== "" && keyword !== null) {
+                                // clear all the previous highlighting
+
+                                $('#my_table_sek').find("span").each(function() {
+                                    var text = $(this).text(); //get span content
+                                    $(this).replaceWith(text); //replace all span with just content
+                                });
+
+                                $('#my_table_sek').unmark();
+
+                                // highlight the searched word
+                                $('#my_table_sek').mark(keyword, {});
+                            }
+                        });
+
+                        $('input.global_filter').on('keyup click', function() {
+                            filterGlobal();
+                        });
+
+                        $('input.column_filter').on('keyup click', function() {
+
+                            var i = $(this).parents('tr').attr('data-column');
+
+                            filterColumn(i);
+
+                            var keyword = $('#col' + i + '_filter').val();
+
+                            if (typeof keyword !== 'undefined' && keyword !== "" && keyword !== null) {
+                                // clear all the previous highlighting
+
+                                $('#my_table_sek').find("span").each(function() {
+                                    var text = $(this).text(); //get span content
+                                    $(this).replaceWith(text); //replace all span with just content
+                                });
+
+                                $('#my_table_sek').unmark();
+
+                                // highlight the searched word
+                                $('#my_table_sek').mark(keyword, {});
+                            }
+
+                        });
+                    }
+                });
+                $('#msg').html(data);
+
+            }
+        });
+        $('html, body').animate({
+            scrollTop: $("#result_div").offset().top
+        }, 2000);
+    });
+
+    // Add more
+    $('#addmore').click(function() {
+
+        // Get last id 
+        var lastname_id = $('.tr_input input[type=text]:nth-child(1)').last().attr('id');
+        var split_id = lastname_id.split('_');
+
+        // New index
+        var index = Number(split_id[1]) + 1;
+
+        // Make row with HTML input elements
+        var html = "<tr class='tr_input'><td><input type='text' class='productname' id='productname_" + index + "' placeholder='Enter productname'></td><td><input type='text' class='name' id='name_" + index + "' ></td><td><input type='text' class='sku' id='sku_" + index + "' ></td><td><input type='text' class='pcode' id='pcode_" + index + "' ></td><td><input type='text' class='price' id='price_" + index + "' ></td></tr>";
+
+        // Append data
+        $('tbody').append(html);
+
+    });
+});
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html__js
+============================================================
+full_path: __var__www__ninth.com__public_html__js__main.js
+============================================================
+id: 12
+============================================================
+file: main.js
+============================================================
+content: function copyToClipboard(element) {
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).text()).select();
+    document.execCommand("copy");
+    $temp.remove();
+}
+
+function format(html) {
+    var tab = '\t';
+    var result = '';
+    var indent = '';
+
+    html.split(/>\s*</).forEach(function(element) {
+        if (element.match(/^\/\w/)) {
+            indent = indent.substring(tab.length);
+        }
+
+        result += indent + '<' + element + '>\r\n';
+
+        if (element.match(/^<?\w[^>]*[^\/]$/) && !element.startsWith("input")) {
+            indent += tab;
+        }
+    });
+
+    return result.substring(1, result.length - 3);
+}
+
+
+function pop_up(url) {
+    window.open(url, 'win2', 'status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=1076,height=768,directories=no,location=no')
+}
+
+function split(val) {
+    return val.split(/,\s*/);
+}
+
+function extractLast(term) {
+    return split(term).pop();
+}
+
+function filterGlobal() {
+    $('#my_table_sek').DataTable().search(
+        $('#global_filter').val(),
+        $('#global_regex').prop('checked'),
+        $('#global_smart').prop('checked')
+    ).draw();
+}
+
+function filterColumn(i) {
+    $('#my_table_sek').DataTable().column(i).search(
+        $('#col' + i + '_filter').val(),
+        $('#col' + i + '_regex').prop('checked'),
+        $('#col' + i + '_smart').prop('checked')
+    ).draw();
+
+}
+
+$(document).ready(function() {
+    console.log("ready!");
+
+    /*test places*/
+    /*
+    var str_test = "code-examples  javascript  javascript regex wrap string  ?";
+    str_test= str_test.replace(/(code-examples  javascript  javascript)/ig, "");
+    console.log("str_test = code-examples  javascript  javascript regex wrap string  ?");
+    console.log("str_test.replace(/(code-examples  javascript  javascript )/ig, \"\") ");
+    console.dir(str_test);
+    */
+    //    //autocomplete
+    // $(".auto").autocomplete({
+    //  source: "keyword_search.php",
+    //  minLength: 0
+    // });    
+
+    $(document).tooltip({
+        track: true
+    });
+
+    //pour datatables
+    var lastIdx = null;
+
+    $('#my_table_sek tbody')
+        .on('mouseover', 'td', function() {
+            var colIdx = table.cell(this).index().column;
+
+            if (colIdx !== lastIdx) {
+                $(table.cells().nodes()).removeClass('highlight');
+                $(table.column(colIdx).nodes()).addClass('highlight');
+            }
+        })
+        .on('mouseleave', function() {
+            $(table.cells().nodes()).removeClass('highlight');
+        });
+
+
+    $('input.global_filter').on('keyup click', function() {
+        filterGlobal();
+    });
+
+    $('input.column_filter').on('keyup click', function() {
+        filterColumn($(this).parents('tr').attr('data-column'));
+    });
+
+    $("#draggable").draggable();
+    $("#date").datepicker();
+    $("#table-container").resizable();
+
+
+
+    // Multiple select
+    $("#searchterm").autocomplete({
+        source: function(request, response) {
+
+            var searchText = extractLast(request.term);
+            $.ajax({
+                url: "test_fetch_data.php",
+                type: 'post',
+                dataType: "json",
+                data: {
+                    search: searchText
+                },
+                success: function(data) {
+                    //alert("data");
+                    //alert(data);
+                    response(data);
+                }
+            });
+        },
+        select: function(event, ui) {
+            var terms = split($('#multi_autocomplete').val());
+
+            terms.pop();
+
+            terms.push(ui.item.label);
+
+            terms.push("");
+            $('#multi_autocomplete').val(terms.join(", "));
+
+            // Id
+            terms = split($('#selectuser_ids').val());
+
+            terms.pop();
+
+            terms.push(ui.item.value);
+
+            terms.push("");
+            $('#selectuser_ids').val(terms.join(", "));
+
+            return false;
+        }
+
+    }); //fin de lautocomplete multiple
+
+    //$( "#date" ).datepicker();  
+}); //fin de la fonction document ready
+
+//$( "#date" ).datepicker(); 
+function myFunction() {
+    var element = document.body;
+    element.classList.toggle("dark-mode");
+}
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html__js
+============================================================
+full_path: __var__www__ninth.com__public_html__js__test_script.js
+============================================================
+id: 15
+============================================================
+file: test_script.js
+============================================================
+content: $(document).ready(function() {
+    console.log("ready!");
+
+    let data = "<br> \"database.php\" Connection to database established successfully <br> <br>{\"id\":\"3\",\"firstname\":null,\"lastname\":null,\"email\":null,\"title\":\"difference between  PDO::exec() and PDO::query()\",\"description\":\"\\r\\n    PDO::exec() - \\\"Execute an SQL statement and return the number of affected rows\\\"\\r\\n    PDO::query() - \\\"Executes an SQL statement, returning a result set as a PDOStatement object\\\"\\r\\n\",\"link\":null,\"reg_date\":\"2021-09-15 10:22:13\"}";
+    alert("data");
+    alert(typeof data);
+    let prefix = "<br> \"database.php\" Connection to database established successfully <br> <br>";
+    data = data.replace(prefix, "");
+    alert(data);
+    var person = {
+        "first_name": "Tony",
+        "last_name": "Hawk",
+        "age": 31
+    };
+    var personJSONString = JSON.stringify(person);
+    var jsonPerson = '{"first_name":"billy", "age":23}';
+    var personObject = JSON.parse(jsonPerson); //parse json string into JS object
+
+
+});
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html__js
+============================================================
+full_path: __var__www__ninth.com__public_html__js__update-ajax.js
+============================================================
+id: 16
+============================================================
+file: update-ajax.js
+============================================================
+content: var editData = function(id) {
+    //$('#table-container').load('update-form.php');
+    $('#msg').load('update-form.php');
+
+    $.ajax({
+        type: "GET",
+        url: "update-data.php",
+        data: {
+            editId: id
+        },
+        dataType: "html",
+        success: function(data) {
+
+            let PREFIX = '<br> \"database.php\" Connection to database established successfully <br> <br>';
+            let correct_data = data;
+            correct_data = correct_data.replace(PREFIX, '');
+            //alert("correct_data");
+            //alert(typeof correct_data);
+            //alert(correct_data);
+
+            var userData = JSON.parse(correct_data);
+
+            //alert("userData id = ");		
+            //alert(userData.id);
+
+            //alert("userData title = ");   
+            //alert(userData.title);
+
+            //alert("userData description = ");   
+            //alert(userData.description);
+
+            $("input[name='id']").val(userData.id);
+            $("textarea[name='title']").val(userData.title);
+            $("textarea[name='description']").val(userData.description);
+
+            $('html, body').animate({
+                scrollTop: $("#updateForm").offset().top
+            }, 2000);
+
+            //$("input[name='fullName']").val(userData.fullName);
+            //$("input[name='emailAddress']").val(userData.emailAddress);
+            //$("input[name='city']").val(userData.city);
+            //$("input[name='country']").val(userData.country);
+
+        }
+
+    });
+};
+
+var deleteData = function(id, search_term) {
+    let transmitted_search_term = JSON.stringify(search_term);
+
+    var confirmation_1 = confirm("Want to delete?");
+    if (confirmation_1) {
+
+        var confirmation_2 = confirm("are you sure Want to delete?");
+
+        if (confirmation_2) {
+
+            $.ajax({
+                type: "GET",
+                url: "update-data.php",
+                data: {
+                    deleteData: id
+                },
+                dataType: "html",
+                success: function(response) {
+
+                    var search_term_val = $("#search_term").val();
+
+                    $.ajax({
+                        type: 'post',
+                        url: 'get_update_search_results.php',
+                        data: {
+                            search: "search",
+                            search_term: search_term_val,
+                            delete_flag: "delete_func"
+                        },
+                        success: function(response) {
+
+                            document.getElementById("result_div").innerHTML = response;
+
+                            // create a data table
+                            var table = $('#my_table_sek').DataTable({
+                                scrollX: true,
+                                colResize: {
+                                    isEnabled: true,
+                                    hoverClass: 'dt-colresizable-hover',
+                                    hasBoundCheck: true,
+                                    minBoundClass: 'dt-colresizable-bound-min',
+                                    maxBoundClass: 'dt-colresizable-bound-max',
+                                    isResizable: function(column) {
+                                        return column.idx !== 2;
+                                    },
+                                    onResize: function(column) {
+                                        //console.log('...resizing...');
+                                    },
+                                    onResizeEnd: function(column, columns) {
+                                        console.log('I have been resized!');
+                                    }
+                                }
+                            });
+
+
+                            // add custom listener to draw event on the table
+                            table.on("draw", function() {
+                                // get the search keyword
+                                var keyword = $('#my_table_sek_filter > label:eq(0) > input').val();
+                                //alert("keyword");
+                                //alert(keyword);
+
+                                if (typeof keyword !== 'undefined' && keyword !== "" && keyword !== null) {
+                                    // clear all the previous highlighting
+
+                                    $('#my_table_sek').find("span").each(function() {
+                                        var text = $(this).text(); //get span content
+                                        $(this).replaceWith(text); //replace all span with just content
+                                    });
+
+                                    $('#my_table_sek').unmark();
+
+                                    // highlight the searched word
+                                    $('#my_table_sek').mark(keyword, {});
+                                }
+                            });
+
+
+
+
+                            $('input.global_filter').on('keyup click', function() {
+                                filterGlobal();
+                            });
+
+
+
+                            $('input.column_filter').on('keyup click', function() {
+
+                                var i = $(this).parents('tr').attr('data-column');
+
+                                filterColumn(i);
+
+                                var keyword = $('#col' + i + '_filter').val();
+
+                                if (typeof keyword !== 'undefined' && keyword !== "" && keyword !== null) {
+                                    // clear all the previous highlighting
+
+                                    $('#my_table_sek').find("span").each(function() {
+                                        var text = $(this).text(); //get span content
+                                        $(this).replaceWith(text); //replace all span with just content
+                                    });
+
+                                    $('#my_table_sek').unmark();
+
+                                    // highlight the searched word
+                                    $('#my_table_sek').mark(keyword, {});
+                                }
+
+                            });
+
+
+                            var maxLength = 100;
+                            $(".show-read-more").each(function() {
+                                //dabord on enleve les span et les mark js
+                                $('#my_table_sek').find("span").each(function() {
+                                    var text = $(this).text(); //get span content
+                                    $(this).replaceWith(text); //replace all span with just content
+                                });
+
+                                $('#my_table_sek').unmark();
+
+                                var myStr = $(this).text();
+
+                                if ($.trim(myStr).length > maxLength) {
+                                    var newStr = myStr.substring(0, maxLength);
+                                    var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
+                                    $(this).empty().html(newStr);
+                                    $(this).append(' <a href="javascript:void(0);" class="read-more">read more...</a>');
+                                    $(this).append('<span class="more-text">' + removedStr + '</span>');
+                                }
+                            });
+                            $(".read-more").click(function() {
+                                $(this).siblings(".more-text").contents().unwrap();
+                                $(this).remove();
+                            });
+
+
+                        } //success get_update_searc..
+                    }); //ajax get update search results
+
+
+                } //success delete in update data file..
+            }); //ajax de delete  
+        } //deuxieme confirm
+    } //premiere confirm
+
+
+}; //fin de la var delete data
+var displayData = function(id) {
+    //$('#table-container').load('update-form.php');
+    $('#msg').load('display-form.php');
+
+    $.ajax({
+        type: "POST",
+        url: "update-data.php",
+        data: {
+            displayId: id
+        },
+        dataType: "html",
+        success: function(data) {
+            let PREFIX = '<br> \"database.php\" Connection to database established successfully <br> <br>';
+            let correct_data = data;
+            correct_data = correct_data.replace(PREFIX, '');
+
+            var userData = JSON.parse(correct_data);
+
+            $("input[name='id']").val(userData.id);
+            $("textarea[name='title']").val(userData.title);
+            $("textarea[name='description']").val(userData.description);
+            $('html, body').animate({
+                scrollTop: $("#displayForm").offset().top
+            }, 2000);
+
+        }
+
+    });
+};
+
+
+$(document).on('submit', '#updateForm', function(e) {
+    e.preventDefault();
+
+    var id = $("input[name='id']").val();
+    var title = $("textarea[name='title']").val();
+    var description = $("textarea[name='description']").val();
+    //var fullName= $("input[name='fullName']").val();
+    //var emailAddress= $("input[name='emailAddress']").val();
+    //var city= $("input[name='city']").val();
+    //var country= $("input[name='country']").val();
+    $.ajax({
+        method: "POST",
+        url: "update-data.php",
+        data: {
+            Search: 'Search',
+            updateId: id,
+            title: title,
+            description: description
+            //fullName:fullName,
+            //emailAddress:emailAddress,
+            //city:city,
+            //country:country
+
+        },
+        success: function(data) {
+            //alert("data");
+            //alert(data);
+            var search_term = $("input[name='search_term']").val();
+            //alert("search_term");
+            //alert(search_term);
+            $.ajax({
+                type: 'post',
+                url: 'get_update_search_results.php',
+                data: {
+                    search: "search",
+                    search_term: search_term
+                },
+                success: function(response) {
+                    //alert("response");
+                    //alert(response);
+                    console.log(response);
+                    document.getElementById("result_div").innerHTML = response;
+
+                    // create a data table
+                    var table = $('#my_table_sek').DataTable();
+
+                    // add custom listener to draw event on the table
+                    table.on("draw", function() {
+                        // get the search keyword
+                        var keyword = $('#my_table_sek_filter > label:eq(0) > input').val();
+                        //alert("keyword");
+                        //alert(keyword);
+
+                        if (typeof keyword !== 'undefined' && keyword !== "" && keyword !== null) {
+                            // clear all the previous highlighting
+
+                            $('#my_table_sek').find("span").each(function() {
+                                var text = $(this).text(); //get span content
+                                $(this).replaceWith(text); //replace all span with just content
+                            });
+
+                            $('#my_table_sek').unmark();
+
+                            // highlight the searched word
+                            $('#my_table_sek').mark(keyword, {});
+                        }
+                    });
+
+                    $('input.global_filter').on('keyup click', function() {
+                        filterGlobal();
+                    });
+
+                    $('input.column_filter').on('keyup click', function() {
+
+                        var i = $(this).parents('tr').attr('data-column');
+
+                        filterColumn(i);
+
+                        var keyword = $('#col' + i + '_filter').val();
+
+                        if (typeof keyword !== 'undefined' && keyword !== "" && keyword !== null) {
+                            // clear all the previous highlighting
+
+                            $('#my_table_sek').find("span").each(function() {
+                                var text = $(this).text(); //get span content
+                                $(this).replaceWith(text); //replace all span with just content
+                            });
+
+                            $('#my_table_sek').unmark();
+
+                            // highlight the searched word
+                            $('#my_table_sek').mark(keyword, {});
+                        }
+
+                    });
+                }
+            });
+            $('#msg').html(data);
+
+        }
+    });
+});
+============================================================
+
+

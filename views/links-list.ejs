@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="/javascripts/js/jquery-ui-1.12.1/external/jquery/jquery.js"></script>
+        <script src="/javascripts/js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+
+        <script type="text/javascript" src="/javascripts/js/highlight.min.js"></script>
+
+        <script type="text/javascript" src="/javascripts/js/jquery.mark.min.js"></script>
+        <script type="text/javascript" src="/javascripts/js/typeahead.min.js"></script>
+        <script type="text/javascript" src="/javascripts/js/hogan-3.0.2.min.js"></script>
+        <!-- <script>
+        </script>
+        <script type="text/javascript" src="/javascripts/js/ajax-script.js"></script>
+        <script type="text/javascript" src="/javascripts/js/autocomplete.js"></script>
+        --> 
+
+        <script>hljs.initHighlightingOnLoad();</script>
+
+        <script src="/links_list.js"></script>
+        <link rel="stylesheet" href="/javascripts/js/jquery-ui-1.12.1/jquery-ui.min.css">
+        <link rel="stylesheet" href="/javascripts/js/jquery-ui-1.12.1/jquery-ui.theme.css">
+        <link rel="stylesheet" href="/javascripts/js/jquery-ui-1.12.1/jquery-ui.theme.min.css">
+        <link rel="stylesheet" href="/javascripts/js/jquery-ui-1.12.1/jquery-ui.structure.css">
+        <link rel="stylesheet" href="/javascripts/js/jquery-ui-1.12.1/jquery-ui.structure.min.css">
+        <!--adding highlight all dark stryle-->
+
+        <link rel="stylesheet" href="/stylesheets/css/a11y-dark.css" />
+
+        <link rel="stylesheet" href="/stylesheets/agate.min.css" />
+        
+        <!--adding bootstrap vapòr-->
+        <link rel="stylesheet" href="/stylesheets/css/bootstrap.css" />
+        <link rel="stylesheet" href="/stylesheets/css/bootstrap.4.4.0.min.css" />
+        <link rel="stylesheet" href="/stylesheets/css/main.css" />
+    
+<style>
+        body {
+                background-color : #000000;
+                color: #ffffff; 
+
+            } 
+    .table-wrapper {
+        margin-top: 50px;
+    }
+
+    .player-img {
+        width: 40px;
+        height: 40px;
+    }
+    textarea {
+      height: 500px;
+    }
+    input, textarea {
+
+                width: 100%;
+                background-color : #000000;
+                color: #ffffff; 
+
+            }       
+    .add-player-form {
+        margin-top: 50px;
+    }
+</style>
+<script type="text/javascript">
+
+$(function() {
+$("#search-google").autocomplete({
+        name: 'search-google',
+        source: 'http://localhost:3000/search?key=%QUERY',
+        limit: 4
+    });
+});
+$('#search-google').on( 'keyup click', function () {
+    
+  } );
+
+</script>
+</head>
+
+    <body>
+<nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header"> <a class="navbar-brand" href="/">Ref Search</a>
+
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="/form/" target="_parent"  class="btn btn-sm btn-success float-right">Add a new record</a> 
+                    </li>
+                </ul>
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active">
+                        <a href="/links/links-list/" target="_parent"  class="btn btn-sm btn-warning float-right">Links list</a>
+                    </li>
+                    <li>
+                        <a href="/file/checkData/" target="_parent"  class="btn btn-sm btn-dark float-right">Check files registred data</a>
+                    </li>
+                    <li>
+                        <a href="/file/files/" target="_parent"  class="btn btn-sm btn-info float-right">Show available files list</a>
+                    </li>
+                    <li>
+                        <a href="/read/" target="_parent"  class="btn btn-sm btn-danger float-right">Datatable listing</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="">
+                        <a href="/register"><span class="glyphicon glyphicon-user "></span> Sign Up</a>
+                    </li>
+                    <li class="">
+                        <a href="/login"><span class="glyphicon glyphicon-log-in "></span> Login</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+<% include partials/address_port_value.ejs %>
+
+        <div class="row dsp">
+        <div id="result_div"></div>    
+        <h2> Search Area </h2>
+            <!--<form method="post" action="/links/search_link_ajax" onsubmit="return do_search();">-->
+            <form method="post" action="" onsubmit="return do_search();">    
+                <div class="ui-widget">
+                    <label for="search_link_term">Search in titles and descriptions:</label>
+                    <input type="text" id="search_link_term" name="search_link_term" class='' placeholder="Enter Search">
+                    <input type='hidden' id='selected_link_ids' />
+                    <input type='hidden' id='keywords_link_vals' />
+                    <div class="form-group" >
+                        <label for="pwd">Nombre de rendus maximal:</label>
+                        <select name="limit_link_sql" id="limit_link_sql" class="">
+                            <option value=100>100</option>
+                            <option value=1000>1000</option>
+                            <option value=10000>10000</option>
+                        </select>
+                    </div>
+                </div>
+                <label for="search_link_keyword">Search in titles:</label>
+                    <input type="text" id="search_link_keyword" name="search_link_keyword" class='' placeholder="Enter Keyword">
+                    
+                <input type="submit" name="search" value="SEARCH">
+            </form>
+        </div>
+        <!--
+        <div class="bs-example">
+        <input type="text" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Type your Query">
+        </div>-->
+        <div id = 'main_div_bobnamespringsummer' class="table-data">
+            <h2>
+                Displaying Data
+                <%= %>
+            </h2>
+            <table border="1">
+                <tr>
+                    <th>Number</th>
+                    <th>Show</th>
+                    <th>Link</th>
+                    <th>Title</th>
+                    <th>Dialog</th>
+                    
+                </tr>
+                <% if(linkData.length!=0){ var i=1; linkData.forEach(function(data){ %>
+                
+                <tr id=link_div_<%=data.id%> class="link_div_bobnamespringsummer">
+                <td>
+                <%=i; %>
+                </td>
+                <td>
+                    <a href="/links/show/<%=data.id %>" target="_blank" rel="noopener" class="btn btn-sm btn-success float-right">Show</a>
+                </td>
+                <td>
+                    <%=data.link %>
+                </td>
+
+                <td>
+                    <%=data.title %>
+                </td>
+                <td>
+                    <% 
+                    if(data.description.length >= 1 && data.description.length <= 250)
+                    { %>
+                        <p>
+                            <button id="dialog-link" class="dialog_div ui-button ui-corner-all ui-widget">
+                                <span id =<%=data.id%>  class=""></span>Open Dialog
+                            </button>
+                        </p>
+                        <!-- ui-dialog -->
+                        <div id=dialog_div_<%=data.id%> class = 'dialog_div_links' title=<%=data.title %> >
+                            <p><%=data.description %></p>
+                        </div>
+                    <%}%>
+                </td>
+                </tr>
+                    <% i++; }) %>
+                        <% } else{ %>
+                            <tr>
+                                <td colspan="7">No Data Found</td>
+                </tr>
+                            <% } %>
+                            </table>
+                        </div>
+                    </body>
+                </html>

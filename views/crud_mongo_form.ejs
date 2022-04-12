@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+<% include partials/header.ejs %>
+    <body>
+<% include partials/address_port_value.ejs %>    
+        <!--====form section start====-->
+        <div class="user-detail">
+            <div class="form-title">
+                <h2>
+                    CRUD Form
+                </h2>
+                <a href="/crud_mongo/data-list_mongo">CRUD List</a> 
+            </div>
+            <hr>
+            <form action="<%=(typeof userData!='undefined')? '/crud_mongo/edit_mongo/'+userData.id:'crud_mongo/create_mongo'%>
+                "> 
+                <label>Full Name</label>
+                <input type="text" placeholder="Enter Full Name" name="fullName" required value="<%=(typeof userData!='undefined')? userData.fullName:''%>
+                "> 
+                <label>Email Address</label>
+                <input type="email" placeholder="Enter Email Address" name="emailAddress" required value="<%=(typeof userData!='undefined')? userData.emailAddress:''%>
+                "> 
+                <label>City</label>
+                <input type="city" placeholder="Enter Full City" name="city" required value="<%=(typeof userData!='undefined')? userData.city:''%>
+                "> 
+                <label>Country</label>
+                <input type="text" placeholder="Enter Full Country" name="country" required value="<%=(typeof userData!='undefined')? userData.country:''%>
+                "> 
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <!--====form section start====-->
+</body>
+</html>

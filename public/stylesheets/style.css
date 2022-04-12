@@ -1,0 +1,29 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+    .table-wrapper {
+        margin-top: 50px;
+    }
+
+    .player-img {
+        width: 40px;
+        height: 40px;
+    }
+    textarea {
+      height: 500px;
+    }
+    input, textarea {
+
+                width: 100%;
+                background-color : #000000;
+                color: #ffffff; 
+
+            }       
+    .add-player-form {
+        margin-top: 50px;
+    }

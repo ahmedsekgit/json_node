@@ -1,0 +1,2533 @@
+============================================================
+path : __home__sea__Bash_Files__
+============================================================
+============================================================
+id: 1
+============================================================
+file: USE
+============================================================
+content: 
+============================================================
+
+
+============================================================
+path : __home__sea__Bash_Files__
+============================================================
+============================================================
+id: 2
+============================================================
+file: bkp_mysql-db-create.sh
+============================================================
+content: #!/bin/bash
+
+#Shell script to create MySQL database and user
+#Filed under: Server— Tagged with: MySQL, shell, snippets
+#Simple bash script to quickly create a MySQL database and a user.
+#This can come pretty handy if you need to make a lot of databases, while doing a server migration, or something like that.
+#Usage instructions
+#The script takes three parameters:
+    #Database name
+    #Database username
+    #And a password
+#Name it something like mysql-db-create.sh, then make it executable:
+#$ sudo chmod 755 mysql-db-create.sh
+#And run it:
+#$ sudo ./mysql-db-create.sh my-database my-user c00lp45w0rd
+
+
+green() {
+  echo -e '\e[32m'$1'\e[m';
+}
+
+readonly EXPECTED_ARGS=3
+readonly E_BADARGS=65
+readonly MYSQL=`which mysql`
+
+# Construct the MySQL query
+readonly Q1="CREATE DATABASE IF NOT EXISTS $1;"
+readonly Q2="GRANT ALL ON *.* TO '$2'@'localhost' IDENTIFIED BY '$3';"
+readonly Q3="FLUSH PRIVILEGES;"
+readonly SQL="${Q1}${Q2}${Q3}"
+
+# Do some parameter checking and bail if bad
+if [ $# -ne $EXPECTED_ARGS ]
+then
+  echo "Usage: $0 dbname dbuser dbpass"
+  exit $E_BADARGS
+fi
+
+# Run the actual command
+$MYSQL -uroot -p -e "$SQL"
+
+# Let the user know the database was created
+green "Database $1 and user $2 created with a password you chose"
+============================================================
+
+
+============================================================
+path : __home__sea__Bash_Files__
+============================================================
+============================================================
+id: 3
+============================================================
+file: mysql-db-create.sh
+============================================================
+content: #!/bin/bash
+#$ sudo chmod 755 mysql-db-create.sh
+#And run it:
+#$ sudo ./mysql-db-create.sh my-database
+
+
+green() {
+  echo -e '\e[32m'$1'\e[m';
+}
+
+readonly EXPECTED_ARGS=1
+readonly E_BADARGS=65
+readonly MYSQL=`which mysql`
+
+# Construct the MySQL query
+readonly Q1="CREATE DATABASE IF NOT EXISTS $1;"
+readonly Q2=""
+readonly Q3="FLUSH PRIVILEGES;"
+readonly SQL="${Q1}${Q2}${Q3}"
+
+# Do some parameter checking and bail if bad
+if [ $# -ne $EXPECTED_ARGS ]
+then
+  echo "Usage: $0 dbname"
+  exit $E_BADARGS
+fi
+
+# Run the actual command
+$MYSQL -uroot -p -e "$SQL"
+
+# Let the user know the database was created
+green "Database $1 created"
+============================================================
+
+
+============================================================
+path : __home__sea__Bash_Files__
+============================================================
+============================================================
+id: 4
+============================================================
+file: mysql-db-source-all.sh
+============================================================
+content: #!/bin/bash
+sh ./mysql-db-source.sh db_test 		/home/sea/nodeapp_test/db_bkps/bkp_db_test_general_test.sql 		
+sh ./mysql-db-source.sh db_javascript 	/home/sea/BKP_node/the_database_backup/bkpjs_1.sql 
+sh ./mysql-db-source.sh db_node  		/home/sea/BKP_node/the_database_backup/bkp_node_1.sql		
+sh ./mysql-db-source.sh db_tryit  		/home/sea/BKP_node/the_database_backup/bkp_tryit_1.sql		
+sh ./mysql-db-source.sh db_express  	/home/sea/BKP_node/the_database_backup/bkp_express_1.sql	
+sh ./mysql-db-source.sh db_react  		/home/sea/BKP_node/the_database_backup/bkp_react_1.sql		
+sh ./mysql-db-source.sh db_jquery  		/home/sea/BKP_node/the_database_backup/bkp_jquery_1.sql	
+sh ./mysql-db-source.sh db_shell  		/home/sea/BKP_node/the_database_backup/bkpshell_1.sql		
+sh ./mysql-db-source.sh db_css  		/home/sea/BKP_node/the_database_backup/bkpcss_1.sql		
+sh ./mysql-db-source.sh db_sql  		/home/sea/BKP_node/the_database_backup/bkpsql_1.sql		
+sh ./mysql-db-source.sh db_php  		/home/sea/BKP_node/the_database_backup/bkpphp_1.sql		
+sh ./mysql-db-source.sh db_html 	 	/home/sea/BKP_node/the_database_backup/bkphtml_1.sql		
+sh ./mysql-db-source.sh db_cpp  		/home/sea/BKP_node/the_database_backup/bkpcpp_1.sql		
+sh ./mysql-db-source.sh db_python 	 	/home/sea/BKP_node/the_database_backup/bkppython_1.sql	
+sh ./mysql-db-source.sh db_java 		/home/sea/BKP_node/the_database_backup/bkpjava_1.sql	
+============================================================
+
+
+============================================================
+path : __home__sea__Bash_Files__
+============================================================
+============================================================
+id: 5
+============================================================
+file: mysql-db-source.sh
+============================================================
+content: #!/bin/bash
+
+#$ sudo chmod 755 mysql-db-create.sh
+#And run it:
+#$ sudo ./mysql-db-create.sh my-database source_file
+
+
+green() {
+  echo -e '\e[32m'$1'\e[m';
+}
+
+readonly EXPECTED_ARGS=2
+readonly E_BADARGS=65
+readonly MYSQL=`which mysql`
+
+# Construct the MySQL query
+readonly Q1="USE $1;"
+readonly Q2="source $2;"
+readonly Q3=""
+readonly SQL="${Q1}${Q2}${Q3}"
+
+# Do some parameter checking and bail if bad
+if [ $# -ne $EXPECTED_ARGS ]
+then
+  echo "Usage: $0 dbname source_file"
+  exit $E_BADARGS
+fi
+
+# Run the actual command
+$MYSQL -uroot -p -e "$SQL"
+
+# Let the user know the database was created
+green "Database $1 source from $2 done"
+============================================================
+
+
+============================================================
+path : __home__sea__Bash_Files__
+============================================================
+============================================================
+id: 6
+============================================================
+file: mysql-user-create.sh
+============================================================
+content: #!/bin/bash
+
+#$ sudo chmod 755 mysql-db-create.sh
+#And run it:
+#$ sudo ./mysql-db-create.sh my-user c00lp45w0rd
+
+
+green() {
+  echo -e '\e[32m'$1'\e[m';
+}
+
+readonly EXPECTED_ARGS=2
+readonly E_BADARGS=65
+readonly MYSQL=`which mysql`
+
+# Construct the MySQL query
+readonly Q1="CREATE USER '$1'@'localhost' IDENTIFIED BY '$2';"
+readonly Q2="GRANT ALL PRIVILEGES ON *.* TO '$1'@'localhost';"
+readonly Q3="FLUSH PRIVILEGES;"
+readonly SQL="${Q1}${Q2}${Q3}"
+
+# Do some parameter checking and bail if bad
+if [ $# -ne $EXPECTED_ARGS ]
+then
+  echo "Usage: $0 dbuser dbpass"
+  exit $E_BADARGS
+fi
+
+#check the users and their privilleges 
+readonly Q4="SELECT CONCAT('SHOW GRANTS FOR ''',user,'''@''',host,''';') FROM mysql.user;"
+
+# Run the actual command
+$MYSQL -uroot -p -e "$SQL"
+$MYSQL -uroot -p -e "$Q4"
+
+# Let the user know the database was created
+green "user $1 with password $2 created"
+============================================================
+
+
+============================================================
+path : __home__sea__Bash_Files__
+============================================================
+============================================================
+id: 7
+============================================================
+file: mysql-user-remove.sh
+============================================================
+content: #!/bin/bash
+
+#$ sudo chmod 755 mysql-db-create.sh
+#And run it:
+#$ sudo ./mysql-db-create.sh my-user c00lp45w0rd
+
+
+green() {
+  echo -e '\e[32m'$1'\e[m';
+}
+
+readonly EXPECTED_ARGS=1
+readonly E_BADARGS=65
+readonly MYSQL=`which mysql`
+
+# Construct the MySQL query
+readonly Q1="DROP USER '$1'@'localhost';"
+readonly Q2=""
+readonly Q3="FLUSH PRIVILEGES;"
+readonly SQL="${Q1}${Q2}${Q3}"
+
+# Do some parameter checking and bail if bad
+if [ $# -ne $EXPECTED_ARGS ]
+then
+  echo "Usage: $0 dbuser"
+  exit $E_BADARGS
+fi
+
+# Run the actual command
+$MYSQL -uroot -p -e "$SQL"
+
+# Let the user know the database was created
+green "user $1 removed"
+============================================================
+
+
+============================================================
+path : __home__sea__Bash_Files__
+============================================================
+============================================================
+id: 8
+============================================================
+file: snap_clean.sh
+============================================================
+content: #!/bin/bash
+# Removes old revisions of snaps
+# CLOSE ALL SNAPS BEFORE RUNNING THIS
+#!/bin/bash
+###############################################################################
+# This script removes unneeded files and libraries, including log files and snaps.
+# I originally created it to combat the /var directory filling up (when on a
+# seperate partition). I know there is redundency with apt vs apt-get commands,
+# but I alsways seem to have more drive space after running both!
+#
+# I created this for Ubuntu 18.04 (Desktop), but it should run on other distros
+# based on Ubuntu without issue.
+#
+# To run this script from anywhere, place it in your /usr/local/bin directory
+#
+# To list your partition sizes run: df -Th | sort
+###############################################################################
+
+# Remove apt / apt-get files
+sudo apt clean
+sudo apt -s clean
+sudo apt clean all
+sudo apt autoremove
+sudo apt-get clean
+sudo apt-get -s clean
+sudo apt-get clean all
+sudo apt-get autoclean
+
+#Remove Old Log Files
+sudo rm -f /var/log/*gz
+
+# Remove Thumbnail Cache
+rm -rf ~/.cache/thumbnails/*
+
+# Remove old snaps
+set -eu
+snap list --all | awk '/disabled/{print $1, $3}' |
+    while read snapname revision; do
+        sudo snap remove "$snapname" --revision="$revision"
+    done
+set -eu
+snap list --all | awk '/disabled/{print $1, $3}' |
+    while read snapname revision; do
+        snap remove "$snapname" --revision="$revision"
+    done
+============================================================
+
+
+============================================================
+path : __home__sea__Bash_Files__
+============================================================
+============================================================
+id: 9
+============================================================
+file: source
+============================================================
+content: 
+============================================================
+
+
+============================================================
+path : __home__sea__Bash_Files__
+============================================================
+============================================================
+id: 10
+============================================================
+file: tmp_bash_aliases_22_10_2021
+============================================================
+content: alias s="sudo"
+alias cls="clear"
+alias cls='clear' 
+alias cks='clear' 
+alias cjs='clear' 
+alias cñs='clear' 
+alias la='ls -lart'
+alias rm='trash'
+
+alias st='st3' 
+alias update='sudo apt-get update' 
+alias install='sudo apt-get install' 
+alias autoremove='sudo apt-get autoremove' 
+alias autoclean='sudo apt-get autoclean' 
+alias upgrade='sudo apt-get upgrade' 
+alias distup='sudo apt-get dist-upgrade' 
+alias net='sudo netplan apply' 
+alias removepurge='sudo apt-get sudo remove --purge' 
+alias sysup='update && upgrade && distup'
+
+alias apacheres='sudo service apache2 restart' 
+alias apachesta='sudo service apache2 start' 
+alias apachesto='sudo service apache2 stop' 
+alias mysqlres='sudo service mysql restart' 
+alias mysqlstart='sudo service mysql start' 
+alias mysqlstop='sudo service mysql stop'
+
+alias sut='sudo udevadm trigger'
+
+alias nps='npm start'
+alias atest='cd /home/sea/nodeapp_test'
+alias ashell='cd /home/sea/nodeapp_shell'
+alias ajs='cd /home/sea/nodeapp_js'
+alias aphp='cd /home/sea/nodeapp_php'
+alias ahtml='cd /home/sea/nodeapp_html'
+alias ajava='cd /home/sea/nodeapp_java'
+alias acss='cd /home/sea/nodeapp_css'
+alias acpp='cd /home/sea/nodeapp_cpp'
+alias apython='cd /home/sea/nodeapp_python'
+alias asql='cd /home/sea/nodeapp_sql'
+alias aprog='cd /home/sea/programs/javascript/nodejs/'
+============================================================
+
+
+============================================================
+path : __home__sea__Bash_Files__
+============================================================
+============================================================
+id: 11
+============================================================
+file: tmp_bashrc_22_10_2021
+============================================================
+content: # ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color|*-256color) color_prompt=yes;;
+esac
+
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+#force_color_prompt=yes
+
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
+    else
+	color_prompt=
+    fi
+fi
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+============================================================
+
+
+============================================================
+path : __home__sea__Bash_Files__
+============================================================
+============================================================
+id: 12
+============================================================
+file: tmp_history_22_10_2021.sh
+============================================================
+content: cls
+node ex3.js 
+ls
+cat result.txt 
+cls
+rm result.txt 
+ls
+node ex3.js 
+cls
+ls
+cat hrefs.txt 
+st3 hrefs.txt 
+ls
+rm hrefs.txt 
+ls
+node ex3.js 
+cls
+node ex3.js 
+cls
+cat result.txt 
+rm result.txt 
+node ex3.js 
+cls
+node ex3.js 
+cls
+js-beautify *
+cls
+js-beautify *.js
+cls
+node ex3.js 
+cls
+node ex3.js 
+cls
+ls
+st3 ../Example3 &
+ls
+node ex3.js 
+cls
+node ex4.js 
+cls
+node ex4.js 
+cls
+node ex1_extension.js 
+cls
+node ex4.js 
+cls
+node ex4.js 
+cls
+node ex4.js 
+cls
+node ex4.js 
+cls
+cat ../../Global_Objects/ex1.js 
+cls
+node ex4.js 
+cls
+node ex4.js 
+cd node_q_r/
+cls
+ls
+cd ..
+node ex4.js 
+cd node_q_r/
+ls
+cd ..
+cls
+node ex4.js 
+cd node_q_r/
+ls
+sudo reboot
+sudo chown -R $USER:$USER /home/sea/programs/*
+sudo chown -R $USER:$USER *
+sudo shutdown 
+cd Bashes/
+./music_launch.sh 
+cd programs/javascript/nodejs/
+cls
+ls
+cd Crawling/
+ls
+cd Example3
+ls
+sudo cp -r node_q_r/ ½
+sudo cp -r node_q_r/ ~
+cd
+ls
+cd node_q_r/ 
+find . -type f | wc -l
+cls
+cd 
+sudo cp -r nodeapp_js nodeapp_nodejs
+cd nodeapp_nodejs/
+cd work_on_files/
+ls
+rm -rf *
+s rm -rf *
+ls
+s mv -r /home/sea/node_q_r/ .
+s mv  /home/sea/node_q_r/ .
+ls
+cd node_q_r/
+find . -type f | wc -l
+st3 /home/sea/nodeapp_nodejs/ &
+sudo chown -R $USER:$USER /home/sea/nodeapp_nodejs/*
+sudo chown -R $USER:$USER /home/sea/nodeapp_nodejs/
+cd programs/javascript/nodejs/Crawling/
+ls
+cd Example3
+st3 ../Example3 &
+cd node_q_r/
+ls
+find . -type f | wc -l
+rm -rf *
+find . -type f | wc -l
+dc ..
+cd ..
+node ex4.js 
+cls
+node ex4.js 
+st3 &
+cd nodeapp_nodejs/
+nps
+st3 &
+cls
+nps
+cls
+nps
+st3 &
+nps
+s kill -9  $(lsof -t -i :3000)
+s kill -9  $(lsof -t -i :3010)
+nps
+cd atest
+cks
+atest
+ls
+git --version
+git config --global user.name 'ahmedsekgit'
+git config --global user.email 'ahmed.sek@yahoo.com'
+git init
+git remote -v
+git add .
+git commit -m "eighth commit message"
+s git commit -m "eighth commit message"
+sudo git push -u origin master
+cls
+anode
+
+ls
+nps
+s kill -9  $(lsof -t -i :3007)
+nps
+cd the_database_backup/
+ls
+sudo su
+cls
+s git commit -m "eighth commit message"
+cls
+cd 
+atest
+cls
+git add .
+git init
+git add .
+git config --global user.name 'ahmedsekgit'
+git add .
+git config --global user.email 'ahmed.sek@yahoo.com'
+git remote -v
+git add .
+s git commit -m "nineth commit message"
+git init
+git config --global user.name 'ahmedsekgit'
+git config --global user.email 'ahmed.sek@yahoo.com'
+git add .
+s git commit -m "nineth commit message"
+cd base
+ls
+cd ../work_on_files/
+ls
+s cp -r /home/sea/nodeapp_nodejs/work_on_files/node_q_r/ .
+ls
+cd node_q_r/
+find . -type f | wc -l
+cls
+cd 
+atest
+git --version
+git config --global user.name 'ahmedsekgit'
+git config --global user.email 'ahmed.sek@yahoo.com'
+git init
+git remote -v
+git add .
+s git add .
+sudo chown -R $USER:$USER /home/sea/nodeapp_test/*
+s git add .
+s git commit -m "nineth commit message"
+git commit -m "nineth commit message"
+s git commit -m "nineth commit message"
+sudo su
+st3 .bash_aliases  &
+cd /home/sea/programs/javascript/nodejs/
+cd
+source .bashrc
+aprog
+ls
+cd Crawling/
+ls
+cd Example
+ls
+cd Example3
+cls
+sudo cp -r ex3.js ex4.js ../Example4
+cd ../Example4
+cls
+ls
+s npm install fs -g
+s npm install axios -g
+s npm install axios
+s npm install fs
+s npm install crawler -g
+s npm install crawler
+npm install cheerio
+sudo chown -R $USER:$USER /home/sea/programs/*
+node ex3.js 
+cls
+ls
+node ex3.js 
+cls
+ls
+node ex3.js 
+cls
+s mkdir js_tryit_w3s_q_r
+ls
+node ex4.js 
+sudo chown -R $USER:$USER /home/sea/programs/*
+node ex4.js 
+cd js_tryit_w3s_q_r/
+ls
+node ex4.js 
+rm -rf *
+ls
+cd ..
+node ex4.js 
+cd js_tryit_w3s_q_r/
+ls
+rm -rf *
+cls
+cd ..
+node ex4.js 
+cls
+cd
+atest
+cls
+git config --global user.name 'ahmedsekgit'
+git config --global user.email 'ahmed.sek@yahoo.com'
+git init
+git remote -v
+git status
+git add .
+git commit -m "nineth Commit message"
+sudo git push -u origin master
+cls
+ls
+aprog
+ls
+cd Crawling/
+ls
+cd Example
+cd Example4
+cls
+ls
+s cp -r * ../Example5
+cd ../Example5
+ls
+rm *.txt
+ks
+ls
+s mv js_w3s_q_r/ php_w3s_q_r/
+s mv js_tryit_w3s_q_r/ php_tryit_w3s_q_r/
+cd php_w3s_q_r/
+ls
+cd ..
+cd php_tryit_w3s_q_r/
+ls
+s rm -rf *
+cls
+ls
+cd ..
+ls
+st3 ../Example5 &
+sudo chown -R $USER:$USER /home/sea/programs/*
+node ex3.js 
+cls
+ls
+rm -rf *.txt
+node ex3.js 
+cls
+ls
+node ex4.js 
+cd php_w3s_q_r/
+ls
+cat php_statements.asp.txt 
+cd ..
+cd php_w3s_q_r/
+s rm -rf *
+cd ..
+ls
+node ex4.js 
+cls
+ls
+cd php_w3s_q_r/
+l
+sls
+cat php_statements.asp.txt 
+rm -rf *
+ls
+cd ..
+node ex4.js 
+cd php_w3s_q_r/
+ls
+cat phptryit.asp\?filename\=tryphp_static_method.txt 
+cd ..
+cd php_w3s_q_r/
+ls
+rm -rf *
+cls
+ls
+cd ..
+node ex4.js 
+cls
+ls
+cd php_w3s_q_r/
+ls
+cat php_xml_simplexml_get.asp.txt 
+rm -rf *
+cls
+ls
+cd ..
+node ex4.js 
+aprog
+cd Crawling/
+ls
+sudo cp -r Example4/* Example6/*
+sudo cp -r Example4/* Example6/
+cd Example6
+cls
+ls
+rm *.txt
+cl
+cls
+ls
+s mv js_w3s_q_r/ jquery_w3s_q_r/
+s mv js_tryit_w3s_q_r/ jquery_tryit_w3s_q_r/
+cd jquery_w3s_q_r/
+ls
+cd ..
+cd jquery_tryit_w3s_q_r/
+ls
+rm -rf *
+s rm -rf *
+cls
+ls
+cd ..
+cls
+ls
+st3 ../Example6
+sudo chown -R $USER:$USER /home/sea/nodeapp_test/*
+sudo chown -R $USER:$USER /home/sea/programs/*
+node ex3.js 
+cls
+node ex4.js 
+cls
+ls
+cd jquery_w3s_q_r/
+find . -type f | wc -l
+cd ..
+ls
+cd Example4
+ls
+cd js_w3s_q_r/
+find . -type f | wc -l
+ls
+cd ..
+cd js_tryit_w3s_q_r/
+find . -type f | wc -l
+s mv * ../js_w3s_q_r/
+ls
+cd ..
+cd js_w3s_q_r/
+ls
+cls
+find . -type f | wc -l
+cd ..
+cd ../Example5
+ls
+cd php_w3s_q_r/
+find . -type f | wc -l
+cd
+sudo cp -r nodeapp_nodejs/ nodeapp_tryit
+cd nodeapp_tryit/
+cls
+ls
+cd work_on_files/
+ls
+rm -rf node_q_r/
+s rm -rf node_q_r/
+cls
+ls
+s mkdir tryit_q_r
+cd tryit_q_r/
+s cp -r /home/sea/programs/javascript/nodejs/Crawling/Example4/js_w3s_q_r/* .
+s cp -r /home/sea/programs/javascript/nodejs/Crawling/Example5/php_w3s_q_r/* .
+s cp -r /home/sea/programs/javascript/nodejs/Crawling/Example6/pjquery_w3s_q_r/* .
+s cp -r /home/sea/programs/javascript/nodejs/Crawling/Example6/jquery_w3s_q_r/* .
+ls
+find . -type f | wc -l
+cls
+cd ..
+st3 nodeapp_tryit/ &
+cd nodeapp_tryit/
+sudo chown -R $USER:$USER /home/sea/nodeapp_tryit/*
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+cls
+cd 
+cd the_database_backup/
+sudo su
+cd ../nodeapp_test/
+git --version
+git config --global user.name "ahmedsekgit"
+git config --global user.email "ahmed.sek@yahoo.com"
+git init
+git status
+git add .
+git commit -m "tenth Commit message"
+s git commit -m "tenth Commit message"
+atest
+s git config --global user.name "ahmedsekgit"
+s git config --global user.email "ahmed.sek@yahoo.com"
+s git init
+s git status
+s git add .
+s git commit -m "tenth Commit message"
+sudo git push -u origin master
+st3 /var/www/ninth.com/ &
+aprog
+ls
+cd Crawling/
+ls
+s mkdir Example7
+s mkdir Example8
+s mkdir Example9
+s mkdir Example10
+s mkdir Example11
+s mkdir Example12
+cls
+sudo cp -r Example6/* Example7
+cd Example7
+ls
+s rm *.txt
+ls
+s mv jquery_w3s_q_r/ sql_w3s_q_r/
+s mv jquery_tryit_w3s_q_r/ sql_tryit_w3s_q_r/
+ls
+st3 ../Example7
+sudo chown -R $USER:$USER /home/sea/nodeapp_tryit/*
+sudo chown -R $USER:$USER /home/sea/programs/*
+node ex3.js 
+cls
+node ex3.js 
+cls
+node ex4.js 
+cd sql_w3s_q_r/
+ls
+rm -rf *
+ls
+cd ..
+ls
+node ex4.js 
+cd sql_w3s_q_r/
+ls
+cat trysql.asp\?filename\=trysql_select_all.txt 
+cd ..
+node ex3.js 
+rn *.txt
+rm *.txt
+cls
+ls
+node ex3.js 
+node ex4.js 
+cd sql_w3s_q_r/
+ls
+cat trysql.asp\?filename\=trysql_select_all.txt 
+rm trysql.asp\?filename\=trysql_select_all.txt 
+ls
+cd ..
+cls
+node ex4.js 
+cd sql_w3s_q_r/
+ls
+rm trysql.asp\?filename\=trysql_select_all.txt 
+cd ..
+node ex4.js 
+cd sql_w3s_q_r/
+cat trysql.asp\?filename\=trysql_select_all.txt 
+cd ..
+cls
+cd sql_w3s_q_r/
+ls
+rm *
+ls
+cd ..
+cls
+node ex4.js 
+cls
+cd sql_w3s_q_r/
+find . -type f | wc -l
+cd ..
+s cp -r Example7/* Example8
+sudo chown -R $USER:$USER /home/sea/programs/*
+cd Example8
+ls
+rm *.txt
+cls
+ls
+cd sql_w3s_q_r/
+ls
+rm *
+cls
+ls
+cd ..
+ls
+st3 ../Example8
+ls
+node ex3.js 
+cls
+node ex4.js 
+cd bootstrap_w3s_q_r/
+cls
+cat tryit.asp\?filename\=trybs_form_textarea\&stacked\=h.txt 
+rm *
+cd ..
+node ex4.js 
+cd bootstrap_
+cd bootstrap_w3s_q_r/
+cls
+find . -type f | wc -l
+cd ..
+s cp -r Example8/* Example9
+sudo chown -R $USER:$USER /home/sea/programs/*
+cd Example9/
+ls
+rm *.txt
+ls
+rmdir bootstrap_tryit_w3s_q_r/
+ls
+s mv bootstrap_w3s_q_r/ css_w3s_q_r/
+ls
+st3 ../Example9
+node ex3.js 
+cls
+ls
+cd css_w3s_q_r/
+ls
+rm *
+cls
+ls
+cd ..
+ls
+node ex4.js 
+cd css_w3s_q_r/
+cat tryit.asp\?filename\=trycss_border.txt 
+rm *
+cls
+ls
+cd ..
+node ex4.js 
+cls
+cd ..
+ls
+s cp -r Example9/* Example10
+cd Example10
+ls
+rm *.txt
+sudo chown -R $USER:$USER /home/sea/programs/*
+ls
+cd css_w3s_q_r/
+ls
+rm *
+cls
+ls
+cd ..
+ls
+s mv css_w3s_q_r/ java_w3s_q_r/
+st3 ../Example10
+node ex3.js 
+cls
+node ex4.js 
+cd java_w3s_q_r/
+rm *
+cls
+cd ..
+node ex4.js 
+cl
+scls
+cñs
+cd java_w3s_q_r/
+find . -type f | wc -l
+cls
+cd ..
+s cp -r Example10/* Example11
+ls
+cd Example
+cd Example11
+cls
+ls
+rm *txt
+sudo chown -R $USER:$USER /home/sea/programs/*
+cls
+ls
+s mv java_w3s_q_r/ python_w3s_q_r/
+ls
+cd python_w3s_q_r/
+ls
+rm *
+cls
+ls
+cd ..
+ls
+st3 ../Example11
+node ex3.js 
+cls
+ls
+node ex4.js 
+cd python_w3s_q_r/
+ls
+rm *
+cls
+ls
+cd ..
+node ex4.js 
+cd python_w3s_q_r/
+cat trypython.asp\?filename\=demo_default.txt 
+cd ..
+node ex4.js 
+cd python_w3s_q_r/
+find . -type f | wc -l
+cd ..
+ls
+cd..
+ls
+cd ..
+cd Example12
+ls
+cls
+cd ..
+ls
+cd Example6
+ls
+cd ..
+cd Example7
+cd sql_w3s_q_r/
+find . -type f | wc -l
+s cp -r * /home/sea/nodeapp_tryit/work_on_files/tryit_q_r/
+cd ..
+cd Example8/bootstrap_w3s_q_r/
+find . -type f | wc -l
+s cp -r * /home/sea/nodeapp_tryit/work_on_files/tryit_q_r/
+cd ..
+cd Example9/
+ls
+cd css_w3s_q_r/
+s cp -r * /home/sea/nodeapp_tryit/work_on_files/tryit_q_r/
+cd ..
+cd Example10 
+cd java_w3s_q_r/
+s cp -r * /home/sea/nodeapp_tryit/work_on_files/tryit_q_r/
+cd ../../Example11/python_w3s_q_r/
+s cp -r * /home/sea/nodeapp_tryit/work_on_files/tryit_q_r/
+cd /home/sea/nodeapp_tryit/work_on_files/
+cls
+ls
+cd tryit_q_r/
+ls
+find . -type f | wc -l
+cls
+cd ..
+st3 nodeapp_tryit/ &
+cd nodeapp_tryit/
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+cd nodeapp_tryit/
+nps
+cd nodeapp_tryit/
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+cls
+s kill -9  $(lsof -t -i :3014)
+cls
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+cls
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+cd the_database_backup/
+ls
+sudo su
+cla
+cls
+ls
+cd
+cls
+ls
+cd nodeapp_tryit/
+nps
+cd nodeapp_js/
+nps
+cd nodeapp_tryit/
+npm install sql-formatter
+nps
+cls
+npm install sql-formatter
+npm install sql-formatter -g
+npm audit fix
+cls
+nps
+cls
+s npm install sql-formatter -g
+s npm install sql-formatter
+s npm audit fix
+cls
+nps
+s npm install sql-formatter
+cls
+nps
+cd the_database_backup/
+ls
+sudo su
+sudo chown -R $USER:$USER /home/sea/*
+
+find . -mmin +7 -ls
+cls
+cd controllers/
+find . -mmin +7 -ls
+find . -mmin -7 -ls
+find . -mmin -14 -ls
+find . -mmin -60 -ls
+sudo cp -r file-controller.js link-controller.js /home/sea/nodeapp_test/base/bkp
+atest
+ls
+cd base/
+cd bkp/
+s mkdir -p bkp1/controllers
+ls
+s mv *.js bkp1/controllers/
+ls
+cd
+ls
+cls
+ls
+atest
+git --version
+git config --global user.name 'ahmedsekgit'
+s git config --global user.name 'ahmedsekgit'
+git config --global user.email 'ahmed.sek@yahoo.com'
+s git config --global user.email 'ahmed.sek@yahoo.com'
+s git init
+s git remote -v
+s git add .
+s git status
+sudo git push -u origin master
+s git commit -m "eleventh Commit message"
+sudo git push -u origin master
+st3 
+cd ..
+sudo cp -r nodeapp_tryit/ nodeapp_test/
+cd Bashes/
+./music_launch.sh 
+atest
+cd
+ls
+history > tmp.java
+ls
+st3 tmp.java &
+atest
+cls
+git --version
+s git config --global user.name 'ahmedsekgit'
+s git config --global user.email 'ahmed.sek@yahoo.com'
+s git init
+s git remote -v
+s git status
+s git add .
+cd nodeapp_tryit/ 
+ls
+s cp -r * ../.
+s rm -rf *
+cd ..
+s rm -rf nodeapp_tryit/
+cls
+ls
+st3 kill_port_3000_listner.sh 
+ls
+cat kill_port_3000_listner.sh 
+cd ..
+cls
+ls
+atest
+ls
+cat kill_port_3000_listner.sh 
+cd ..
+atest
+cls
+ls
+cd base/
+ls
+cd bkp/
+ls
+cd bkp1/controllers/
+ls
+atest
+cls
+st3 ../tmp.java &
+git --version
+s git config --global user.name 'ahmedsekgit'
+s git config --global user.email 'ahmed.sek@yahoo.com'
+s git init
+s git remote -v
+s git add .
+s git status
+s git commit -m "twelveth Commit message"
+sudo git push -u origin master
+cd Desktop/
+ls
+cat tmp_modif.js 
+cls
+rm tmp_modif.js 
+ls
+cd ../B
+cd
+cd Bashes/
+./music_launch.sh 
+sut
+cd nodeapp_tryit/
+nps
+ajs
+sut
+nps
+atest
+git config user.name
+git config --list
+git branch - a
+git branch -a
+git config--get remote.origin.url
+git config --get remote.origin.url
+git clean -fdx
+git rm -r --cached.
+git rm -r --cached .
+cls
+ls
+
+ls
+find . -mmin -60 -ls
+find . | wc -ls
+st3 /home/sea/Bashes/files_counter.sh 
+find -type f | wc -l
+find . -type f | wc -l
+cd tryit_q_r/
+find . -type f | wc -l
+sudo reboot
+ajs
+nps
+st3 ../nodeapp_js/
+nps
+s kill -9  $(lsof -t -i :3014)
+s kill -9  $(lsof -t -i :3006)
+s kill -9  $(lsof -t -i :3002)
+nps
+ashell
+st3 ../nodeapp_shell/
+nps
+cd Bashes/
+./music_launch.sh 
+sut
+cls
+st3 /var/www/ninth.com/ &
+cd Bashes/
+./music_launch.sh 
+cls
+cd nodeapp_tryit/
+ls
+nps
+cd testing/
+git clone https://github.com/ahmedsekgit/solar_neon.git
+ls
+cd solar_neon/
+ls
+cd ..
+s mv solar_neon/ nodeapp_test
+s mv nodeapp_test/ ../.
+ls
+cd ..
+rmdir testing/
+ls
+cd nodeapp_test/
+cls
+nps
+./kill_port_3000_listner.sh 
+st3 kill_port_3000_listner.sh 
+./kill_port_3000_listner.sh 
+nps
+st3 kill_port_3000_listner.sh 
+./kill_port_3000_listner.sh 
+nps
+express --v
+express --version
+st3 ../nodeapp_test/
+nps
+cls
+cd ..
+ls
+rm tmp.java 
+ls
+s mv Templates/ testing
+ls
+cd testing/
+ls
+cd
+cd Github/
+ls
+cd Manual/
+ls
+cd
+cd testing/
+cls
+ls
+s cp -r ../nodeapp_test/ .
+ls
+cd nodeapp_test/
+ls
+sudo npm cache clean -f
+sudo npm install -g n
+sudo n stable
+cd
+atest 
+nps
+sudo npm install -g n
+sudo n 10.16.0
+nps
+sudo n 10.19
+nps
+npm install semver -g
+sudo rm -rf /usr/local/bin/npm /usr/local/share/man/man1/node* ~/.npm
+sudo rm -rf /usr/local/lib/node*
+sudo rm -rf /usr/local/bin/node*
+sudo rm -rf /usr/local/include/node*
+sudo apt-get purge nodejs npm
+sudo npm cache clean -f
+sudo npm install -g n
+sudo n 10.19
+sudo apt-get install node
+sudo apt-get install nodejs
+sudo apt-get install npm
+cd Github/
+ls
+s mkdir apps
+cls
+sudo chown -R $USER:$USER /home/sea/*
+sudo chown -R $USER:$USER /home/sea/Github/*
+sut
+cd nodeapp_tryit/
+nps
+st3 ../nodeapp_tryit/ &
+
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+cd ..
+cd frontend/
+ng serve
+sudo apt install ng-common
+sudo dpkg --configure -a
+sudo apt install ng-common
+ng serve
+ps
+nps
+ls
+cls
+nps
+cd ..
+cls
+st3 nodejs-mysql-crud-master/ &
+cd nodejs-mysql-crud-master/
+nps
+npm install
+npm audit fix
+nps
+ls
+npm install
+nps
+node app.js 
+s kill -9  $(lsof -t -i :3014)
+s kill -9  $(lsof -t -i :3000)
+nps
+node app.js 
+apachres
+apacheres
+mysqlres
+sudo apt install openjdk-8-jdk
+sudo apt update
+sudo apt install openjdk-14-jre
+java --version
+sudo apt install openjdk-14-jdk
+sudo apt install openjdk-8-jdk
+sudo apt install openjdk-14-jdk
+sudo apt install default-jre
+sudo apt-get install atom
+sudo apt update
+sudo apt install software-properties-common apt-transport-https wget
+sudo add-apt-repository "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main"
+sudo apt install atom
+wget -q https://packagecloud.io/AtomEditor/atom/gpgkey -O- | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main"
+sudo apt install atom
+sudo apt-get clean
+sudo apt-get autoclean
+sudo apt-get clean
+sudo apt-get autoremove --purge
+atom &
+sync;
+sync
+sync; echo 3 > /proc/sys/vm/drop_caches 
+s sync; echo 3 > /proc/sys/vm/drop_caches 
+sudo sync; echo 3 > /proc/sys/vm/drop_caches 
+atom &
+apm install rzx-dark-ui
+atom &
+apm install rzx-dark-ui
+sudo apt-get autoclean
+sudo apt install atom
+atom &
+sudo apt-get remove atom
+sudo apt-get purge atom
+sudo rm /usr/local/bin/atom
+sudo rm /usr/local/bin/apm
+rm -rf ~/atom
+rm -rf ~/.atom
+rm -rf ~/.config/Atom-Shell
+sudo rm -rf /usr/local/share/atom/
+st3 /var/www/ninth.com/&
+st3 ../nodeapp_test/ &
+cd ../Github/
+ls
+cd apps/
+ls
+cd mysql/
+ls
+cd node-mysql-crud-app-master-----\*\*\*\*\*/
+ls
+node app.js 
+st3 ../node-mysql-crud-app-master-----\*\*\*\*\*/ &
+sut
+cd nodeapp_tryit/
+ls
+cd 
+cd nodeapp_test/
+ls
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+cls
+s kill -9  $(lsof -t -i :3014)
+npa
+nps
+st3 nodeapp_test/ &
+atest
+nps
+cls
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+cls
+s kill -9  $(lsof -t -i :3014)
+nps
+cls
+nps
+atest
+nps
+st3 
+nps
+cls
+nps
+cls
+nps
+cls
+nps
+cd nodeapp_test/
+ls
+nps
+st3 ../nodeapp_test/ &
+cls
+nps
+cls
+nps
+cls
+nps
+cls
+nps
+cls
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+cls
+nps
+cls
+nps
+cls
+nps
+cls
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+st3 ../nodeapp_test/&
+ls
+st3 ex1.js &
+node ex1.js 
+cls
+node ex1.js 
+cls
+node ex1.js 
+git --version
+s git config --global user.name 'ahmedsekgit'
+s git config --global user.email 'ahmed.sek@yahoo.com'
+s git init
+s git remote -v
+s git status
+s git add .
+s git commit -m "Fourteenth Commit message add config"
+sudo git push -u origin master
+sut
+atest
+nps
+st3 ../nodeapp_test/ &
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+$(lsof -t -i :3014)
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+st3 
+atest
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+cd ../Bashes
+ñs
+./music_launch.sh 
+st3 ../nodeapp_test/
+s js-beautify controllers/*.js
+s npm install js-beautify -g
+s js-beautify controllers/*.js
+s js-beautify models/*.js
+s js-beautify public/*.js
+s js-beautify routes/*.js
+cls
+s js-beautify controllers/*.js
+cd
+cd programs/
+ls
+cd javascript/
+ls
+cd nodejs/
+ls
+cd general_tests/
+ls
+st3 ex1.js &
+node ex1.js 
+cls
+atest
+nps
+cls
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+cls
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+s js-beautify controllers/*
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+cls
+s git --version
+s git config --global user.name 'ahmedsekgit'
+s git config --global user.email 'ahmed.sek@yahoo.com'
+s git init
+s git remote -v
+s git status
+
+s git commit -m "fifteenth Commit message login for some"
+sudo git push -u origin master
+s js-beautify controllers/*
+s git commit -m "fifteenth Commit message login for some"
+sudo git push -u origin master
+nps
+cd ..
+cd nodeapp_tryit/
+ls
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+cd 
+atest
+nps
+s js-beautify controllers/*
+nps
+s kill -9  $(lsof -t -i :3014)
+np
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+cls
+s kill -9  $(lsof -t -i :3014)
+nps
+cls
+s kill -9  $(lsof -t -i :3014)
+nps
+st3 ../nodeapp_test/&
+nps
+atest
+nps
+cls
+s kill -9  $(lsof -t -i :3014)
+nps
+cls
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+cd Bashes/
+ls
+./music_launch.sh 
+cd atest
+atest
+nps
+st3 ../nodeapp_test/&
+nps
+npm install table -g
+npm install table
+npm install table -g
+npm install table
+npm audit fix
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+cls
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+cd Bashes/
+./music_launch.sh 
+atest
+node app.js 
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+cls
+node app.js 
+cat app.js 
+st3 app.js 
+node app.js 
+s kill -9  $(lsof -t -i :3014)
+cls
+node inspect app.js 
+cd
+cd Bashes/
+cd min
+ls
+cd 
+cd Bashes/
+ls
+cd 
+cd Music/
+ls
+cd minchaoui/
+cls
+ls
+/usr/bin/vlc minchaoui1.mp3 &
+cd
+cd Bashes/
+./music_launch.sh 
+ls
+st3 nodeapp_test/
+cd programs/
+cd javascript/
+ls
+cd nodejs/
+ls
+cd general_tests/
+ls
+touch ex3.js
+st3 ex3.js &
+node ex3.js 
+node inspect ex3.js 
+cls
+node inspect ex3.js 
+st3 sentences.txt
+st3 Whale shark Rhincodon typus gigantic but harmless shark family Rhincodontidae that is the largest living fish
+Whale sharks are found in marine environments worldwide but mainly in tropical oceans
+They make up the only species of the genus Rhincodon and are classified within the order Orectolobiformes a group containing the carpet sharks
+The whale shark is enormous and reportedly capable of reaching a maximum length of about 18 metres 59 feet
+Most specimens that have been studied however weighed about 15 tons about 14 metric tons and averaged about 12 metres 39 feet in length
+The body coloration is distinctive
+cls
+st3 textHelper.js&
+st3 ex3.js 
+node inspect ex3.js 
+cñs
+st3 server.js&
+ls
+cls
+ls
+node server.js 
+node --inspect server.js 
+atest
+st3 ../nodeapp_test/&
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+cd programs/javascript/nodejs/general_tests/
+cls
+ls
+node --inspect server.js 
+node inspect ex3.js 
+cls
+node --inspect server.js 
+s kill -9  $(lsof -t -i :3014)
+atest
+nps
+node app.js 
+cd Bashes/
+./music_launch.sh 
+st3 token_git.txt 
+cd 
+cd programs/javascript/nodejs/Crawling/
+cd Example6
+ls
+st3 ../Example6
+node ex3.js 
+cls
+node ex4.js 
+cls
+cd react_q_r/
+ls
+car __code-examples__javascript__frameworks__react__write__
+rm -rf *
+cls
+cd ..
+node ex4.js 
+cd react_q_r/
+find . -type f | wc -l
+rm -rf __*
+find . -type f | wc -l
+cls
+ls
+cd ..
+cd react_q_r/
+ls
+cd ..
+node ex4.js 
+cd react_q_r/
+rm -rf *
+cd ..
+node ex4.js 
+s node ex4.js 
+s node ex4.js 
+s node ex4.js
+s node ex4.js 
+s node ex4.js
+cd nodeapp_test/controllers/
+pwd
+cls
+cd
+cd programs/javascript/nodejs/Crawling/Example6
+cls
+node ex4.js 
+cd Bashes/
+./music_launch.sh 
+cls
+atest
+node app.js 
+cls
+node app.js 
+s kill -9  $(lsof -t -i :3014)
+cls
+s git --version
+s git config --global user.name 'ahmedsekgit'
+s git config --global user.email 'ahmed.sek@yahoo.com'
+s  git init
+s git remote -v
+s git status
+s git add .
+s git commit -m "sixteenth Commit message add pretty error to the app"
+
+l
+ls
+cls
+ls
+l
+cls
+ls
+cls
+sudo git push -u origin master
+cls
+ls
+cd
+cls
+st3 /var/www/ninth.com/ &
+node app.js 
+cls
+node app.js 
+cls
+cd 
+cd programs/javascript/nodejs/Crawling/
+cls
+ls
+cd Example
+cd Example7
+cls
+st3 ../Example7
+s node ex3.js 
+cls
+ls
+s node ex3.js 
+cls
+ls
+s node ex4.js 
+s node ex4.js 
+node ex4.js 
+s node ex4.js 
+st3&
+ls
+cd ..
+cd Example4
+ls
+cd ../Example8
+ls
+cd ../Example10
+ls
+cd ../Example11
+ls
+cd ../Example12
+ls
+cd ..
+cls
+ls
+cd programs/javascript/nodejs/Crawling/Example5
+st3 
+node ex5.js 
+cls
+node ex5.js 
+cx
+cd
+cls
+atest
+st3 ../nodeapp_test/
+node app.js 
+st3
+cls
+node app.js 
+CLS
+Scls
+cls
+node app.js 
+cls
+node app.js 
+cls
+node app.js 
+cls
+node app.js 
+cls
+node app.js 
+cd
+cd nodeapp_nodejs/
+nps
+s kill -9  $(lsof -t -i :3010)
+nps
+cd 
+cd programs/javascript/nodejs/general_tests/
+cls
+ls
+node ex4.js 
+cls
+cd 
+cd programs/javascript/nodejs/general_tests/
+ls
+s cp -r ../Crawling/Example12/node_modules/ .
+ls
+node ex4.js 
+s cp -r ../Crawling/Example5/node_modules/ .
+cls
+node ex4.js 
+ls
+s cp -r ../Crawling/Example4/node_modules/ .
+node ex4.js 
+cls
+du -h | sort -h
+cls
+du -h | sort -h ../general_tests/
+du -h | sort -h .
+cd ..
+du -h | sort -h general_tests/
+du -h | sort -h
+cd general_tests/
+ls
+cd ../Crawling/
+cd 
+cd programs/javascript/nodejs/Crawling/Example12
+cls
+ls
+st3 ../example12
+cd ../Example6
+cls
+node ex5.js 
+cls
+node ex5.js 
+cls
+node ex5.js 
+cls
+node ex5.js 
+cls
+node ex5.js 
+cls
+node ex5.js 
+cls
+node ex5.js 
+cls
+node ex5.js 
+node READ.JS 
+sudo npm install -g find-process 
+sudo npm install -g axios
+sudo npm install -g cheerio
+sudo npm install -g exec-sync
+sudo npm install  exec-sync
+sudo npm install -g browsify
+cls
+node main.js 
+sudo npm install -g uniq
+cls
+node main.js 
+sudo npm install -g uniq
+sudo npm install uniq
+cls
+ls
+node main.js 
+browserify main.js -o bundle.js
+sudo npm install browsify
+cls
+browserify main.js -o bundle.js
+sudo npm install -g browserify
+browserify main.js -o bundle.js
+ls
+cd programs/javascript/nodejs/Crawling/Example7
+ls
+cd jquery_q_r/
+cls
+find . -type f | wc -l
+cd programs/javascript/nodejs/Crawling/Example6
+ls
+cd react_q_r/
+find . -type f | wc -l
+cls
+find . -type f | wc -l
+cd programs/javascript/nodejs/Crawling/Example5
+ls
+cd node_express_q_r/
+find . -type f | wc -l
+cls
+find . -type f | wc -l
+cd ../Example5
+ls
+st3 ../Example5
+s node ex4.js 
+cl
+scls
+cls
+s node ex4.js 
+s node ex5.js 
+cd programs/javascript/nodejs/Crawling/Example5
+cls
+ls
+cd
+cd Bashes/
+./music_launch.sh 
+ç
+cd nodeapp_test/
+nps
+st3 ../
+st3 ../nodeapp_test/ &
+cls
+nps
+cls
+nps
+cls
+nps
+cls
+nps
+cls
+nps
+cls
+nps
+npm i -g npm
+s npm i -g npm
+npm i --save -g lodash
+st3 ../nodeapp_test/&
+cls
+npm install -g chalk
+s npm install -g commander
+s npm i -g commander
+s apt-get install testdisk
+st3 nodeapp_test/&
+cd Bashes/
+cls
+ls
+./music_launch.sh &
+cd programs/javascript/nodejs/Crawling/Example5
+node ex4.js 
+cd programs/javascript/nodejs/Crawling/Example12
+cd ../Example5
+ls
+cd node_express_q_r/
+pwd
+cd ../../Example12
+cls
+ls
+node ex12.1.js 
+cls
+node ex12.1.js 
+cd
+cd nodeapp_tryit/
+ls
+nps
+cls
+nps
+sut
+cls
+cd Bashes/
+./music_launch.sh 
+st3 nodeapp_test/
+cd nodeapp_test/
+node --inspect app.js 
+locate debug
+cls
+node --inspect app.js 
+cks
+node --inspect app.js 
+cls
+node --inspect app.js 
+cls
+node --inspect app.js 
+cd
+cd nodeapp_nodejs/
+nps
+cd ../nodeapp_nodejs/
+nps
+cls
+ls
+s cp favicon.ico ../nodeapp_test/
+find "$(pwd -P)" -name "favicon*"
+cd Bashes/
+./music_launch.sh 
+cd nodeapp_test/
+nps
+s kill -9  $(lsof -t -i :3014)
+cls
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+cls
+s kill -9  $(lsof -t -i :3014)
+cls
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+cd
+st3 nodeapp_test/&
+cls
+ls
+cd
+cls
+ls
+cd BKP_node/
+ls
+s cp -r ../nodeapp_test/ nodeapp_test_bkp_1/
+cd
+cd BKP_node/
+ls
+cd nodeapp_test_bkp_1/
+ls
+nps
+cls
+cd
+cd nodeapp_test/
+s git branch -a
+cls
+s git log --full-history 
+cls
+s git log --full-history --link-controller.js
+s git log --full-history -- link-controller.js
+s git log --full-history --link-controller.js
+s git log --full-history --'link-controller.js'
+s git log --full-history -- 'link-controller.js'
+s git log --full-history link-controller.js
+s git log --full-history
+s git log --full-history --file
+s git log --full-history /controllers/link-controller.js
+s git log --full-history --/controllers/link-controller.js
+s git log --help
+s git log --full-history --/controllers/link-controller.js
+s git log --full-history --/controllers/
+s git log --full-history --/controllers
+s git log --full-history --controllers/link-controller.js
+s git log --full-history --link-controller.js
+s git log --full-history --mvc/controllers/link-controller.js
+s git log --full-history --mvc /controllers/link-controller.js
+cls
+cd
+cd programs/javascript/nodejs/ls
+cd programs/javascript/nodejs/ &&ls
+cd general_tests/
+ls
+st3 ../general_tests/
+node ex5.js 
+cls
+node ex5.js 
+cls
+node ex5.js 
+cls
+node ex5.js 
+cls
+node ex5.js 
+cls
+node ex5.js 
+cd testing/
+ls
+s mkdir git_checkout
+cd 
+cd Bashes/
+./music_launch.sh 
+cls
+ls
+cd ..
+ls
+cd nodeapp_test/
+ls
+cd checkout/
+ls
+cd ..
+rmdir checkout/
+cls
+ls
+nps
+cls
+nps
+s kill -9  $(lsof -t -i :3014)
+nps
+cls
+cd
+cd nodeapp_test/
+nps
+s kill -9  $(lsof -t -i :3014)
+cls
+nps
+cls
+s kill -9  $(lsof -t -i :3014)
+nps
+nodemon app.js 
+cls
+nodemon --ignore 'work_on_files/*'
+nodemon app.js --ignore 'work_on_files/*'
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+nodemon app.js
+cls
+nodemon app.js
+s kill -9  $(lsof -t -i :3014)
+nps
+node app.js 
+nodemon app.js 
+st3 nodeapp_test/
+cd nodeapp_test/
+nodemon app.js 
+cd nodeapp_test/
+nodemon app.js 
+s kill -9  $(lsof -t -i :3014)
+cls
+nodemon app.js 
+s kill -9  $(lsof -t -i :3014)
+nodemon app.js 
+s kill -9  $(lsof -t -i :3014)
+nodemon app.js 
+s kill -9  $(lsof -t -i :3014)
+nodemon app.js 
+s kill -9  $(lsof -t -i :3014)
+nodemon app.js 
+s kill -9  $(lsof -t -i :3014)
+nodemon app.js 
+cd
+cd programs/javascript/nodejs/general_tests/
+ls
+st3 ex5.js 
+node ex5.js 
+cd nodeapp_
+cd nodeapp_test
+nodemon app.js 
+s kill -9  $(lsof -t -i :3014)
+nodemon app.js 
+s kill -9  $(lsof -t -i :3014)
+nodemon app.js 
+s kill -9  $(lsof -t -i :3014)
+nodemon app.js 
+cd ../testing/
+st3 git_checkout/&
+cd
+cd nodeapp_tryit/
+nps
+cd nodeapp_test/
+nodemon app.js 
+s kill -9  $(lsof -t -i :3014)
+s nodemon app.js 
+s kill -9  $(lsof -t -i :3014)
+nps
+s kill -9  $(lsof -t -i :3014)
+node app.js 
+cd
+cd nodeapp_nodejs/
+nps
+cd 
+cd Bashes/
+cls
+./music_launch.sh 
+st3
+st3 nodeapp_test/&
+cls
+cd nodeapp_test/
+ls
+nodemon app.js 
+s kill -9  $(lsof -t -i :3014)
+cls
+s kill -9  $(lsof -t -i :3014)
+nodemon app.js 
+s kill -9  $(lsof -t -i :3014)
+nodemon app.js 
+cd nodeapp_test/
+s npm install -g colors 
+s npm install -g fatest
+cls
+s npm install -g fatest
+s npm install  fatest
+s npm install -g cors
+s npm install -g promise
+s npm install  promise
+cd
+cd Bashes/
+./music_launch.sh 
+sut
+cd nodeapp_test/
+s npm install fastest
+s npm install promise
+cd programs/javascript/nodejs/Crawling/
+cd Example5
+st3 ex5.js &
+cd ../Example6
+st3 ex5.js &
+cd ../Example7
+st3 ex5.js &
+s node ex5.js 
+cls
+s node ex5.js 
+cls
+s node ex5.js 
+cd ../Example6
+s node ex5.js 
+cls
+s node ex5.js 
+cls
+s node ex5.js 
+sut
+st3 ../nodeapp_test/
+
+============================================================
+
+

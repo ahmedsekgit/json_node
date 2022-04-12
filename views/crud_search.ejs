@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <script src="/javascripts/js/jquery-ui-1.12.1/external/jquery/jquery.js"></script>
+        <script src="/javascripts/js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="/javascripts/js/DataTables/datatables.min.js"></script>
+        <script type="text/javascript" src="/javascripts/js/jquery.mark.min.js"></script>
+        <!-- Plugin -->
+        <script src="/javascripts/js/DataTables/jquery.dataTables.colResize.js"></script>
+        <!-- <script>
+        6
+    </script>
+    <script type="text/javascript" src="/javascripts/js/ajax-script.js"></script>
+    <script type="text/javascript" src="/javascripts/js/autocomplete.js"></script>
+    --> 
+    <script src="/crud_search.js"></script>
+    <link rel="stylesheet" href="/javascripts/js/jquery-ui-1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet" href="/javascripts/js/jquery-ui-1.12.1/jquery-ui.theme.css">
+    <link rel="stylesheet" href="/javascripts/js/jquery-ui-1.12.1/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="/javascripts/js/jquery-ui-1.12.1/jquery-ui.structure.css">
+    <link rel="stylesheet" href="/javascripts/js/jquery-ui-1.12.1/jquery-ui.structure.min.css">
+    <link rel="stylesheet" type="text/css" href="/javascripts/js/DataTables/datatables.min.css"/>
+    <link rel="stylesheet" href="/javascripts/js/DataTables/jquery.dataTables.colResize.css">
+
+    <!--adding bootstrap vapòr-->
+    <link rel="stylesheet" href="/stylesheets/css/bootstrap.css" />
+    <link rel="stylesheet" href="/stylesheets/css/bootstrap.4.4.0.min.css" />
+    <link rel="stylesheet" href="/stylesheets/css/main.css" />
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header"> <a class="navbar-brand" href="/">Ref Search</a>
+
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="/form/" target="_parent"  class="btn btn-sm btn-success float-right">Add a new record</a> 
+                    </li>
+                </ul>
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active">
+                        <a href="/links/links-list/" target="_parent"  class="btn btn-sm btn-warning float-right">Links list</a>
+                    </li>
+                    <li>
+                        <a href="/file/checkData/" target="_parent"  class="btn btn-sm btn-dark float-right">Check files registred data</a>
+                    </li>
+                    <li>
+                        <a href="/file/files/" target="_parent"  class="btn btn-sm btn-info float-right">Show available files list</a>
+                    </li>
+                    <li>
+                        <a href="/read/" target="_parent"  class="btn btn-sm btn-danger float-right">Datatable listing</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="">
+                        <a href="/register"><span class="glyphicon glyphicon-user "></span> Sign Up</a>
+                    </li>
+                    <li class="">
+                        <a href="/login"><span class="glyphicon glyphicon-log-in "></span> Login</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>  
+<% include partials/address_port_value.ejs %>
+    <div id="wrapper">
+        <div id="search_box">
+            <form method="post"action="search_term_key">
+                <div class="ui-widget">
+        <label for="search_keyword">Enter a keyword:</label>
+<input type="text" id="search_keyword" name="search_keyword" class='' placeholder="Enter Keyword">
+        <br>
+        <label for="search_term">Enter searched terms:</label>
+<input type="text" id="search_term" name="search_term" class=' form-control' placeholder="Enter Search">
+        <input type='hidden' id='selectuser_ids' />
+        <div class="form-group" >
+            <label for="pwd">Nombre de rendus maximal:</label>
+            <select name="limit_sql" id="limit_sql" class="">
+                <option value=25>25</option>
+                <option value=50>50</option>
+                <option value=100>100</option>
+                <option value=1000>1000</option>
+                <option value=10000>10000</option>
+            </select>
+            <label for="display">what to display ? :</label>
+            <select name="limit_display" id="limit_display" class="">
+                <option value="titles">titles</option>
+                <option value="titles_descriptions">titles and descriptions</option>
+                <option value="titles_links">titles and links</option>
+                <option value="all">all</option>
+            </select>
+                    </div>
+                </div>
+                <input type="submit" name="search" value="SEARCH">
+            </form>
+        </div>
+        <div id="result_div"></div>
+    </div>
+</body>
+</html>

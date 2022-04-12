@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <% include partials/header.ejs %>
+    <body>
+    <% include partials/address_port_value.ejs %>
+        <!--====form section start====-->
+        <div class="table-data">
+            <div class="list-title">
+                <h2>
+                    CRUD List
+                </h2>
+                <a href="/crud_mongo">CRUD From</a> 
+            </div>
+            <br>
+            <br>
+            <table border="1" >
+                <tr>
+                    <th>S.N</th>
+                    <th>Full Name</th>
+                    <th>Email Address</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                <% if(userData.length!=0){ var i=1; userData.forEach(function(data){ %>
+                    <tr>
+                        <td>
+                            <%=i; %>
+                            </td>
+                            <td>
+                                <%=data.fullName %>
+                                </td>
+                                <td>
+                                    <%=data.emailAddress %>
+                                    </td>
+                                    <td>
+                                        <%=data.city %>
+                                        </td>
+                                        <td>
+                                            <%=data.country %>
+                                            </td>
+                                            <td><a href="/crud_mongo/edit_mongo/<%=data.id%>">Edit</a></td>
+                                            <td><a href="/crud_mongo/delete_mongo/<%=data.id%>">Delete</a></td>
+                                        </tr>
+                                        <% i++; }) %>
+                                            <% } else{ %>
+                                                <tr>
+                                                    <td colspan="7">No Data Found</td>
+                                                </tr>
+                                                <% } %>
+                                                </table>
+                                            </div>
+                                        </body>
+                                    </html>

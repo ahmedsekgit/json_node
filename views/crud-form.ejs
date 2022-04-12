@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <script src="/javascripts/js/jquery-ui-1.12.1/external/jquery/jquery.js"></script>
+        <script src="/javascripts/js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="/javascripts/js/highlight.min.js"></script>
+        <script type="text/javascript" src="/javascripts/js/prettier_standalone.js"></script>
+        <script type="text/javascript" src="/javascripts/js/prettier_plugin_standalone.js"></script>
+        <script type="text/javascript" src="/javascripts/js/jquery.mark.min.js"></script>
+
+    <script src="/crud_form.js"></script>
+
+    <link rel="stylesheet" href="/javascripts/js/jquery-ui-1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet" href="/javascripts/js/jquery-ui-1.12.1/jquery-ui.theme.css">
+    <link rel="stylesheet" href="/javascripts/js/jquery-ui-1.12.1/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="/javascripts/js/jquery-ui-1.12.1/jquery-ui.structure.css">
+    <link rel="stylesheet" href="/javascripts/js/jquery-ui-1.12.1/jquery-ui.structure.min.css">
+    <!--adding bootstrap vapòr-->
+    <!--adding bootstrap vapòr-->
+    <link rel="stylesheet" href="/stylesheets/css/bootstrap.css" />
+    <link rel="stylesheet" href="/stylesheets/css/bootstrap.4.4.0.min.css" />
+    <link rel="stylesheet" href="/stylesheets/css/main.css" />
+
+</head>
+
+<script>
+$(document).ready(function() 
+{   if(typeof($('#show_div').val()) !== undefined)
+    {
+        format();
+    }
+});
+
+
+function copyToClipboard(element) 
+{
+    var $temp = $("<textarea>");
+    $("body").append($temp);
+    $temp.val($(element).text().trim()).select();
+    document.execCommand("copy");
+    $temp.remove();
+}
+
+function format() 
+{
+
+    if(typeof($('#show_div').val()) !== undefined)
+    {
+        var htmlstr = $('#show_div').val();
+        
+        htmlstr = htmlstr.split(/\>[ ]?\</).join(">\n<");
+
+        //htmlstr = htmlstr.split(/([*]?\{|\}[*]?\{|\}[*]?)/).join("\n");
+
+        htmlstr = htmlstr.split(/[*]?\;/).join("\;\n    ");
+        $('#show_div').val(htmlstr);
+    }
+
+}
+
+hljs.initHighlightingOnLoad();
+</script>
+<body>
+<nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header"> <a class="navbar-brand" href="/">Ref Search</a>
+
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="/form/" target="_parent"  class="btn btn-sm btn-success float-right">Add a new record</a> 
+                    </li>
+                </ul>
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active">
+                        <a href="/links/links-list/" target="_parent"  class="btn btn-sm btn-warning float-right">Links list</a>
+                    </li>
+                    <li>
+                        <a href="/file/checkData/" target="_parent"  class="btn btn-sm btn-dark float-right">Check files registred data</a>
+                    </li>
+                    <li>
+                        <a href="/file/files/" target="_parent"  class="btn btn-sm btn-info float-right">Show available files list</a>
+                    </li>
+                    <li>
+                        <a href="/read/" target="_parent"  class="btn btn-sm btn-danger float-right">Datatable listing</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="">
+                        <a href="/register"><span class="glyphicon glyphicon-user "></span> Sign Up</a>
+                    </li>
+                    <li class="">
+                        <a href="/login"><span class="glyphicon glyphicon-log-in "></span> Login</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+<% include partials/address_port_value.ejs %>
+<div class="container crud-form">
+
+<form class="add-player-form" action="<%=(typeof editData!='undefined')?'/update/'+editData.id:'/create'%>
+                " method="POST"> 
+<% if(typeof editData!='undefined') { %>                
+<a href="/links/show/<%=editData.id %>" target="_blank" rel="noopener" class="btn btn-sm btn-success float-right">Show</a>
+<% } %>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="link">link</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" placeholder="link" name="link" class=".auto-resize" value="<%=(typeof editData!='undefined')? editData.link:''%>
+                        "> 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="title">Title</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" placeholder="title" name="title" class=".auto-resize" value="<%=(typeof editData!='undefined')? editData.title:''%>
+                        "> 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="description">Description</label>
+                    </div>
+
+                    <div class="col-75">
+<textarea id='show_div' type="description" placeholder="description" name="description" class=".auto-resize">
+<%=(typeof editData!='undefined')? editData.description:''%>
+                    </textarea>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <input type="submit" class = 'btn btn-primary' value="Submit" onclick="return confirm('Are you sure you want to proceed')">
+                </div>
+                <% if(typeof editData!='undefined') { %>  
+             <a href="/delete/<%=editData.id %>" class="btn btn-primary btn-sm btn-danger float-right" onclick="return confirm('Are you sure you want to delete')">Delete</a>
+             <% } %>     
+            </form>
+        </div>
+    </body>
+</html>

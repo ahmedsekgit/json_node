@@ -1,0 +1,512 @@
+============================================================
+path : __home__sea__programs__javascript__nodejs__Crawling__Example5
+============================================================
+full_path: __home__sea__programs__javascript__nodejs__Crawling__Example5__ex3.js
+============================================================
+id: 1
+============================================================
+file: ex3.js
+============================================================
+content: const axios = require('axios');
+const cheerio = require('cheerio');
+const fs = require('fs');
+
+
+const url1 = "https://www.iban.com/exchange-rates";
+const url2 = `https://www.codegrepper.com/code-examples/javascript/frameworks/express`;
+
+fetchData(url1).then((res) => {
+    const html = res.data;
+    const $ = cheerio.load(html);
+    const statsTable = $('.table.table-bordered.table-hover.downloads > tbody > tr');
+    statsTable.each(function() {
+        let title = $(this).find('td').text();
+        console.log(title);
+    });
+})
+
+fetchData(url2).then((res) => {
+    var obselete = [];
+    const html = res.data;
+    const $ = cheerio.load(html);
+    try {
+        let urls = $("a");
+        Object.keys(urls).forEach((item) => {
+
+            if (urls[item].type === 'tag') {
+                let href = urls[item].attribs.href;
+
+                if (href && !obselete.includes(href)) {
+                    href = href.trim();
+                    obselete.push(href);
+
+                    // Slow down the
+                    /*
+                    setTimeout(function() {
+                        href.startsWith('http') ? crawlAllUrls(href) : crawlAllUrls(`${url}${href}`) // The latter might need extra code to test if its the same site and it is a full domain with no URI
+                    }, 5000)
+                    */
+                }
+            }
+        });
+        for (var i = 0; i < obselete.length; i++) 
+        {
+            var index_js = obselete[i].indexOf('express');
+            var index_tryit = obselete[i].indexOf('tryit');
+            
+            if (index_js !== -1) {
+                console.log('obselete[%d]', i);
+                console.dir(obselete[i]);
+                fs.appendFileSync('node_express.txt', obselete[i] + '\n');
+            }
+            if (index_tryit !== -1) {
+                console.log('obselete[%d]', i);
+                console.dir(obselete[i]);
+                fs.appendFileSync('php_tryit_w3_links.txt', obselete[i] + '\n');
+            }
+
+        }
+
+    } catch (e) {
+        console.error(`Encountered an error crawling ${url2}. Aborting crawl.`);
+    }
+    return obselete;
+})
+
+
+
+async function fetchData(url) {
+    console.log("Crawling data...")
+    // make http call to url
+    let response = await axios(url).catch((err) => console.log(err));
+
+    if (response.status !== 200) {
+        console.log("Error occurred while fetching data");
+        return;
+    }
+    return response;
+}
+============================================================
+
+
+============================================================
+path : __home__sea__programs__javascript__nodejs__Crawling__Example5
+============================================================
+full_path: __home__sea__programs__javascript__nodejs__Crawling__Example5__ex4.js
+============================================================
+id: 2
+============================================================
+file: ex4.js
+============================================================
+content: const axios = require('axios');
+const cheerio = require('cheerio');
+const fs = require('fs');
+const readline = require('readline');
+
+var filename = 'recheck_express__LOG__ERR__.txt';
+
+async function processLineByLine(filename) {
+    const fileStream = fs.createReadStream(filename);
+
+    const rl = readline.createInterface({
+        input: fileStream,
+        crlfDelay: Infinity
+    });
+    // Note: we use the crlfDelay option to recognize all instances of CR LF
+    // ('\r\n') in input.txt as a single line break.
+
+    for await (const line of rl) {
+        // Each line` in input.txt will be successively available here as `line`.
+     
+        Glob_links(line);
+
+        //console.log(`Line from file: ${line}`);
+    }
+
+}
+
+processLineByLine(filename);
+
+//url ="js_statements.asp";
+//Glob_links(url);
+
+function Glob_links(url) {
+
+    var href = 'https://www.codegrepper.com' + url;
+
+    var value = url;
+
+    var new_value = value.replace(/\//gi, "__");
+    new_value = new_value.replace(/\+/gi, '_');
+
+    var txt = new_value + '__?';
+    var dir = '/node_express_q_r/';
+    var new_filename = new_value + '.txt';
+  
+    
+    try {
+        if (fs.existsSync(__dirname + dir + new_filename)) {
+            const data = fs.readFileSync(__dirname + dir + new_filename).toString();
+            var Nb_line = data.split('\n').length;
+            console.log('__dirname + dir + new_filename');
+            console.dir(__dirname + dir + new_filename);
+            console.log('Nb_line');
+            console.dir(Nb_line);
+            }
+            else
+            {
+                console.log('file does not exist');
+                try {
+                        console.log('trying fetchData(href).then((res)....');
+                    fetchData(href).then((res) => {
+                        
+                        console.log('fetchData is responding ....');
+
+                        const html = res.data;
+                        const $ = cheerio.load(html);
+                        const statsTable_old = $('textarea#textareaCode');
+                        const statsTable = $('textarea.code_mirror_code');
+
+
+                        statsTable.each(function() {
+                            let textarea = $(this).text();
+                            console.log('textarea');
+                            console.log(textarea);
+                            if (textarea.length>0)
+                            {
+                                try {
+                                        fs.appendFileSync(__dirname + dir + new_filename, txt);
+                                    } 
+                                catch (err) 
+                                    {
+                                        if (err.code === 'ENOENT') 
+                                        {
+                                            console.log('File not found!');
+                                        } 
+                                    else 
+                                        {
+                                        fs.appendFileSync(__dirname + dir + '__LOG__ERR__.txt', err);
+                                        return true;
+                                        }
+                                    }
+
+                                    fs.appendFileSync(__dirname + dir + new_filename, '\n');
+
+                                try {
+                                    fs.appendFileSync(__dirname + dir + new_filename, textarea);
+                                    } 
+                                catch (err) 
+                                    {
+                                    if (err.code === 'ENOENT') 
+                                    {
+                                        console.log('File not found!');
+                                    } 
+                                    else 
+                                    {
+                                        fs.appendFileSync(__dirname + dir + '__LOG__ERR__.txt', err);
+                                        return true;
+                                    }
+                                }
+                            }
+                                
+                        }); /*fin statsTable*/
+
+                    }) /*fin fetchData treatement*/
+
+                } 
+                catch 
+                {
+                    textarea = '_no_response_';
+
+                    fs.writeFileSync(__dirname + dir + new_filename, textarea);
+
+                }
+            }
+
+        }
+        catch (err) 
+            {
+                console.error(err)
+            }
+
+} /* fin Glob_links*/
+
+
+async function fetchData(url) {
+    console.log("Crawling data...")
+    // make http call to url
+    let response = await axios(url).catch((err) => console.log(err));
+
+    if (response.status !== 200) {
+        console.log("Error occurred while fetching data");
+        return;
+    }
+    return response;
+}
+============================================================
+
+
+============================================================
+path : __home__sea__programs__javascript__nodejs__Crawling__Example5
+============================================================
+full_path: __home__sea__programs__javascript__nodejs__Crawling__Example5__ex5.js
+============================================================
+id: 3
+============================================================
+file: ex5.js
+============================================================
+content: const util = require('util');
+const exec = util.promisify(require('child_process').exec);
+
+async function lsWithGrep() {
+  try {
+      await exec('node ex4.js');
+
+  }catch (err){
+     console.error(err);
+  };
+};
+
+/*lsWithGrep();*/
+
+function myFunc_console()
+{
+  i++;
+  console.log('myFunc_console  every 2 seconds %d',i);
+}
+
+//var intervalID = setInterval(myFunc_console, 3000); // Will alert every second.
+// clearInterval(intervalID); // Will clear the timer.
+
+//setTimeout(myFunc_console, 3000); // Will alert once, after a second.
+var i = 0;
+var intervalID = setInterval(function(){ 
+  lsWithGrep();
+  console.log("setInterval this every 120 seconds!");
+}, 180000);//run this thang every 2 seconds
+
+setTimeout(function() {
+     clearInterval(intervalID); 
+}, 1200000);
+
+
+/*
+function myFunc(arg) {
+  console.log(`arg was => ${arg}`);
+}
+
+setTimeout(myFunc, 1500, 'funky');
+*/
+============================================================
+
+
+============================================================
+path : __home__sea__programs__javascript__nodejs__Crawling__Example5
+============================================================
+full_path: __home__sea__programs__javascript__nodejs__Crawling__Example5__ex6.js
+============================================================
+id: 4
+============================================================
+file: ex6.js
+============================================================
+content: const axios = require('axios');
+const cheerio = require('cheerio');
+const fs = require('fs');
+const readline = require('readline');
+
+var filename = 'recheck_express__LOG__ERR__.txt';
+
+async function processLineByLine(filename) {
+    const fileStream = fs.createReadStream(filename);
+
+    const rl = readline.createInterface({
+        input: fileStream,
+        crlfDelay: Infinity
+    });
+    // Note: we use the crlfDelay option to recognize all instances of CR LF
+    // ('\r\n') in input.txt as a single line break.
+
+    for await (const line of rl) {
+        // Each line` in input.txt will be successively available here as `line`.
+     
+        Glob_links(line);
+
+        //console.log(`Line from file: ${line}`);
+    }
+
+}
+
+processLineByLine(filename);
+
+//url ="js_statements.asp";
+//Glob_links(url);
+
+function Glob_links(url) {
+
+    var href = 'https://www.codegrepper.com' + url;
+
+    var value = url;
+
+    var new_value = value.replace(/\//gi, "__");
+    new_value = new_value.replace(/\+/gi, '_');
+    new_value = new_value.replace(/\.[^.]+$/, '');
+
+    var txt = new_value + '__?';
+    var dir = '/node_express_q_r/';
+    var new_filename = value;
+  
+    
+    try {
+        if (fs.existsSync(__dirname + dir + new_filename)) {
+            const data = fs.readFileSync(__dirname + dir + new_filename).toString();
+            var Nb_line = data.split('\n').length;
+            console.log('__dirname + dir + new_filename');
+            console.dir(__dirname + dir + new_filename);
+            console.log('Nb_line');
+            console.dir(Nb_line);
+            }
+            else
+            {
+                console.log('file does not exist');
+                try {
+                        console.log('trying fetchData(href).then((res)....');
+                    fetchData(href).then((res) => {
+                        
+                        console.log('fetchData is responding ....');
+
+                        const html = res.data;
+                        const $ = cheerio.load(html);
+                        const statsTable_old = $('textarea#textareaCode');
+                        const statsTable = $('textarea.code_mirror_code');
+
+
+                        statsTable.each(function() {
+                            let textarea = $(this).text();
+                            console.log('textarea');
+                            console.log(textarea);
+                            if (textarea.length>0)
+                            {
+                                try {
+                                        fs.appendFileSync(__dirname + dir + new_filename, txt);
+                                    } 
+                                catch (err) 
+                                    {
+                                        if (err.code === 'ENOENT') 
+                                        {
+                                            console.log('File not found!');
+                                        } 
+                                    else 
+                                        {
+                                        fs.appendFileSync(__dirname + dir + '__LOG__ERR__.txt', err);
+                                        return true;
+                                        }
+                                    }
+
+                                    fs.appendFileSync(__dirname + dir + new_filename, '\n');
+
+                                try {
+                                    fs.appendFileSync(__dirname + dir + new_filename, textarea);
+                                    } 
+                                catch (err) 
+                                    {
+                                    if (err.code === 'ENOENT') 
+                                    {
+                                        console.log('File not found!');
+                                    } 
+                                    else 
+                                    {
+                                        fs.appendFileSync(__dirname + dir + '__LOG__ERR__.txt', err);
+                                        return true;
+                                    }
+                                }
+                            }
+                                
+                        }); /*fin statsTable*/
+
+                    }) /*fin fetchData treatement*/
+
+                } 
+                catch 
+                {
+                    textarea = '_no_response_';
+
+                    fs.writeFileSync(__dirname + dir + new_filename, textarea);
+
+                }
+            }
+
+        }
+        catch (err) 
+            {
+                console.error(err)
+            }
+
+} /* fin Glob_links*/
+
+
+async function fetchData(url) {
+    console.log("Crawling data...")
+    // make http call to url
+    let response = await axios(url).catch((err) => console.log(err));
+
+    if (response.status !== 200) {
+        console.log("Error occurred while fetching data");
+        return;
+    }
+    return response;
+}
+============================================================
+
+
+============================================================
+path : __home__sea__programs__javascript__nodejs__Crawling__Example5
+============================================================
+full_path: __home__sea__programs__javascript__nodejs__Crawling__Example5__ex7.js
+============================================================
+id: 5
+============================================================
+file: ex7.js
+============================================================
+content: const fs = require('fs')
+const readline = require('readline');
+
+var filename = 'recheck_express__LOG__ERR__.txt';
+
+processLineByLine(filename);
+
+async function processLineByLine(filename) {
+    const fileStream = fs.createReadStream(filename);
+
+    const rl = readline.createInterface({
+        input: fileStream,
+        crlfDelay: Infinity
+    });
+    // Note: we use the crlfDelay option to recognize all instances of CR LF
+    // ('\r\n') in input.txt as a single line break.
+
+    for await (const line of rl) {
+        // Each line` in input.txt will be successively available here as `line`.
+     	path = __dirname+'/node_express_q_r/'+line;
+        deleteFileSync(path);
+
+        //console.log(`Line from file: ${line}`);
+    }
+
+}
+
+
+function deleteFileSync(path)
+{
+	try {
+			console.log('file');
+			console.dir(path);
+  			fs.unlinkSync(path)
+  			console.log('file removed');
+		} catch(err) {
+  			console.error(err)
+		}
+}
+
+============================================================
+
+

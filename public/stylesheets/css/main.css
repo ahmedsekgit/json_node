@@ -1,0 +1,66 @@
+a {
+  color: #00B7FF;
+}
+.table-wrapper {
+    margin-top: 50px;
+}
+
+.player-img {
+    width: 40px;
+    height: 40px;
+}
+textarea {
+  height: 500px;
+}
+input, textarea {
+
+            width: 100%;
+            background-color : #000000;
+            color: #ffffff; 
+
+        }       
+.add-player-form {
+    margin-top: 50px;
+}
+
+body {
+  padding: 25px;
+  background-color: black;
+  color: white;
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+}
+
+.dark-mode {
+  background-color: black;
+  color: white;
+}
+   
+.hlw {
+  background-color: yellow;
+  color: black;
+}
+
+ 
+mark {
+    padding: 0px;
+    background-color: rgb(255, 201, 14);
+}
+
+.hideme {
+  display: none;  
+}
+
+label {
+  display: inline-block;
+  width: 5em;
+}
+  
+.show-read-more .more-text{
+        display: none;
+    }
+
+#draggable { width: 100px; height: 100px; padding: 0.5em; background:#7fffd4;}  
+.table-container 
+{ resize: both; overflow: auto; width: 100%; height: 100%; }

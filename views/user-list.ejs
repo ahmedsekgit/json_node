@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="/javascripts/js/jquery-ui-1.12.1/external/jquery/jquery.js"></script>
+        <script src="/javascripts/js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="/javascripts/js/DataTables/datatables.min.js"></script>
+        <script type="text/javascript" src="/javascripts/js/jquery.mark.min.js"></script>
+        <!-- Plugin -->
+        <script src="/javascripts/js/DataTables/jquery.dataTables.colResize.js"></script>
+        <!-- <script>
+        6
+    </script>
+    <script type="text/javascript" src="/javascripts/js/ajax-script.js"></script>
+    <script type="text/javascript" src="/javascripts/js/autocomplete.js"></script>
+    --> 
+    <script src="/crud_table.js"></script>
+    <script src="/main.js"></script>
+    <link rel="stylesheet" href="/javascripts/js/jquery-ui-1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet" href="/javascripts/js/jquery-ui-1.12.1/jquery-ui.theme.css">
+    <link rel="stylesheet" href="/javascripts/js/jquery-ui-1.12.1/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="/javascripts/js/jquery-ui-1.12.1/jquery-ui.structure.css">
+    <link rel="stylesheet" href="/javascripts/js/jquery-ui-1.12.1/jquery-ui.structure.min.css">
+    <link rel="stylesheet" type="/javascripts/js/DataTables/datatables.min.css"/>
+    <link rel="stylesheet" href="/javascripts/js/DataTables/jquery.dataTables.colResize.css">
+     <!--adding bootstrap vapòr-->
+    <link rel="stylesheet" href="/stylesheets/css/bootstrap.css" />
+    <link rel="stylesheet" href="/stylesheets/css/bootstrap.4.4.0.min.css" />
+    <link rel="stylesheet" href="/stylesheets/css/main.css" />
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header"> <a class="navbar-brand" href="/">Ref Search</a>
+
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="/form/" target="_parent"  class="btn btn-sm btn-success float-right">Add a new record</a> 
+                    </li>
+                </ul>
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active">
+                        <a href="/links/links-list/" target="_parent"  class="btn btn-sm btn-warning float-right">Links list</a>
+                    </li>
+                    <li>
+                        <a href="/file/checkData/" target="_parent"  class="btn btn-sm btn-dark float-right">Check files registred data</a>
+                    </li>
+                    <li>
+                        <a href="/file/files/" target="_parent"  class="btn btn-sm btn-info float-right">Show available files list</a>
+                    </li>
+                    <li>
+                        <a href="/read/" target="_parent"  class="btn btn-sm btn-danger float-right">Datatable listing</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="">
+                        <a href="/register"><span class="glyphicon glyphicon-user "></span> Sign Up</a>
+                    </li>
+                    <li class="">
+                        <a href="/login"><span class="glyphicon glyphicon-log-in "></span> Login</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    <% include partials/address_port_value.ejs %>
+        <div class="table-data">
+            <h2>
+                Display Data using Node.js & MySQL
+            </h2>
+            <table border="1">
+                <tr>
+                    <th>Number</th>
+                    <th>Link</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Registry date</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                <% if(userData.length!=0){ var i=1; userData.forEach(function(data){ %>
+                <tr>
+                <td>
+                <%=i; %>
+                </td>
+                <td>
+                    <%=data.title %>
+                </td>
+
+                <td>
+                <%=data.link %>
+                </td>
+                
+                <td>
+                    <%=data.description %>
+                    </td>
+                    <td>
+                        <%=data.reg_date %>
+                        </td>
+                        <td><a href="/users/edit/<%=data.id%>">Edit</a></td>
+                        <td><a href="/users/delete/<%=data.id%>">Delete</a></td>
+                    </tr>
+                    <% i++; }) %>
+                        <% } else{ %>
+                            <tr>
+                                <td colspan="7">No Data Found</td>
+                            </tr>
+                            <% } %>
+                            </table>
+                        </div>
+                    </body>
+                </html>

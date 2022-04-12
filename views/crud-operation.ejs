@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CRUD Operation</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <% include partials/header.ejs %>
+<body>
+    <% include partials/address_port_value.ejs %>
+    <% if(typeof editData!='undefined'){ %>
+        <h1>
+<%= editData %>
+</h1>
+<form method="POST" action="/crudy/edit/<%=editId %>
+    "> 
+    <input type="submit" value="Update Data">
+</form>
+<% } else{ %>
+    <h1>
+        Crud Operation
+    </h1>
+    <h3>
+        This is View Page
+    </h3>
+    <h4>
+        Create Data
+    </h4>
+    <form method="POST" action="/crudy/create">
+        <input type="submit" value="Create Data">
+    </form>
+    <% } %>
+    <table border="1" >
+        <tr>
+            <th><a href="/crudy/form">Crud Form</a></th>
+            <th><a href="/crudy/fetch">Fetch Data</a></th>
+            <th><a href="/crudy/edit/5">Edit Data</a></th>
+            <th><a href="/crudy/delete/5">Delete Data</a></th>
+        </tr>
+    </table>
+    </body>
+</html>

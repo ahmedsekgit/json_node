@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header"> <a class="navbar-brand" href="/">Ref Search</a>
+
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="/form/" target="_parent"  class="btn btn-sm btn-success float-right">Add a new record</a> 
+                    </li>
+                </ul>
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active">
+                        <a href="/links/links-list/" target="_parent"  class="btn btn-sm btn-warning float-right">Links list</a>
+                    </li>
+                    <li>
+                        <a href="/file/checkData/" target="_parent"  class="btn btn-sm btn-dark float-right">Check files registred data</a>
+                    </li>
+                    <li>
+                        <a href="/file/files/" target="_parent"  class="btn btn-sm btn-info float-right">Show available files list</a>
+                    </li>
+                    <li>
+                        <a href="/read/" target="_parent"  class="btn btn-sm btn-danger float-right">Datatable listing</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="">
+                        <a href="/register"><span class="glyphicon glyphicon-user "></span> Sign Up</a>
+                    </li>
+                    <li class="">
+                        <a href="/login"><span class="glyphicon glyphicon-log-in "></span> Login</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    <% include partials/address_port_value.ejs %>
+        <!--====form section start====-->
+        <div class="user-detail">
+            <div class="form-title">
+                <h2>
+                    CRUD Form
+                </h2>
+                <a href="/user/data-list">CRUD List</a> 
+            </div>
+            <hr>
+            <form action="/user/edit/<%=userData.id %>
+                " method="POST"> 
+                <label>Full Name</label>
+                <input type="text" placeholder="Enter Full Name" name="fullName" required value="<%=(typeof userData!='undefined')? userData.fullName:''%>
+                "> 
+                <label>Email Address</label>
+                <input type="email" placeholder="Enter Email Address" name="emailAddress" required value="<%=(typeof userData!='undefined')? userData.emailAddress:''%>
+                "> 
+                <label>City</label>
+                <input type="city" placeholder="Enter Full City" name="city" required value="<%=(typeof userData!='undefined')? userData.city:''%>
+                "> 
+                <label>Country</label>
+                <input type="text" placeholder="Enter Full Country" name="country" required value="<%=(typeof userData!='undefined')? userData.country:''%>
+                "> 
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <!--====form section start====-->
+</body>
+</html>

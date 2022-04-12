@@ -1,0 +1,5358 @@
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__database.php
+============================================================
+id: 7
+============================================================
+file: database.php
+============================================================
+content: <?php
+$servername = "127.0.0.1";
+$username = "sea";
+$password = "123";
+$dbname = "db_test";
+
+
+try {
+  $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+  // set the PDO error mode to exception
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  
+} catch(PDOException $e) {
+  echo "<br>" . $e->getMessage();
+}
+?>
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__display-form.php
+============================================================
+id: 8
+============================================================
+file: display-form.php
+============================================================
+content: <!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<!--====form section start====-->
+<div class="user-detail">
+    <h2>Display  Data</h2>
+    <p id="msg"></p>
+    <form id="displayForm" method="POST">
+           <button type="submit" name="display">Return</button>
+           <input type="hidden" name="id" id="displayId">
+           <label>Title</label>     
+           <textarea style= "background-color: black; color: white;" name="title" placeholder="Enter a title" rows="1" cols="120" required></textarea> 
+           <br>
+           <br>
+           <label>Description</label>               
+           <textarea style= "background-color: black; color: white;" name="description" placeholder="Enter a description" rows="20" cols="240" required id="a"></textarea> 
+    </form>
+        </div>
+</div>
+
+</body>
+</html>
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__do_login.php
+============================================================
+id: 9
+============================================================
+file: do_login.php
+============================================================
+content: <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
+$servername = "127.0.0.1";
+$username = "sea";
+$password = "123";
+$dbname = "db_test";
+
+
+try {
+  $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+  // set the PDO error mode to exception
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  
+} catch(PDOException $e) {
+  echo "<br>" . $e->getMessage();
+}
+
+	session_start();
+	if($_POST['type']==1)
+	{
+		$name=$_POST['name'];
+		$email=$_POST['email'];
+		$phone=$_POST['phone'];
+		$city=$_POST['city'];
+		$password=$_POST['password'];
+		
+		try {
+		        $query="select * from crud where email='$email'";
+		        $exec = $conn->query($query);
+
+		        $row = $exec->fetch(PDO::FETCH_ASSOC);
+
+		        if (!empty($row))
+				{
+					echo json_encode(array("statusCode"=>201));
+				}
+				else
+				{
+					$sql = "INSERT INTO crud( name, email, phone, city, password) 
+					VALUES ('$name','$email','$phone','$city', '$password')";
+					
+					$result = $conn->prepare($sql); 
+					$result->execute();
+					$result = $conn->prepare("SELECT FOUND_ROWS()"); 
+					$result->execute();
+					$row_count =$result->fetchColumn();
+
+					if ($row_count>0) 
+					{
+						echo json_encode(array("statusCode"=>200));
+					} 
+					else 
+					{
+						echo json_encode(array("statusCode"=>201));
+					}
+	        
+	        	} 
+	        	$conn = null;
+	        }
+	    catch(PDOException $e) 
+	        {
+	          echo $sql . "<br>" . $e->getMessage();
+	        }
+	
+	}
+
+
+
+	if($_POST['type']==2)
+	{
+		$email=$_POST['email'];
+		$password=$_POST['password'];
+		$sql = "select * from crud where email='$email' and password='$password'";
+					
+		$result = $conn->prepare($sql); 
+		$result->execute();
+		$result = $conn->prepare("SELECT FOUND_ROWS()"); 
+		$result->execute();
+		$row_count =$result->fetchColumn();
+
+		if ($row_count>0)
+		{
+			$_SESSION['email']=$email;
+			echo json_encode(array("statusCode"=>200));
+		}
+		else
+		{
+			echo json_encode(array("statusCode"=>201));
+		}
+		$conn =null;
+	}
+?>
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__form_post.php
+============================================================
+id: 13
+============================================================
+file: form_post.php
+============================================================
+content: 
+<?php
+/*$output = shell_exec('cd ../dashboard && ls -lart');
+//$output = shell_exec('history');
+//echo "<pre>".print_r($output)."</pre>";
+echo "<pre>$output</pre>";*/
+
+
+
+// Request Post Variable
+$name = $_REQUEST['Name'];
+
+// Validation
+if($name == 'Adam') {
+echo json_error($_REQUEST['Name']);
+} else {
+echo json_success($_REQUEST['Name']);
+};
+
+// Return Success Function
+function json_success($msg) {
+    $return = array();
+    $return['error'] = FALSE;
+    $return['msg'] = $msg;
+	$return['exec_ls_lart'] ="<pre>".shell_exec('cd ../dashboard && ls -lart')."</pre>";
+	$return['hist'] ="<pre>".shell_exec('history')."</pre>";
+    //$return['exec'] = implode('', $return['exec']);
+    return json_encode($return, JSON_PRETTY_PRINT);
+    //return json_encode($return);
+}
+
+// Return Error Function
+function json_error($msg) {
+    $return = array();
+    $return['error'] = TRUE;
+    $return['msg'] = $msg;
+    return json_encode($return);
+}
+
+?>
+
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__from_file_to_database.php
+============================================================
+id: 14
+============================================================
+file: from_file_to_database.php
+============================================================
+content: <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+/*
+
+          case 5:$sql_javascript = "CREATE TABLE general_javascript (
+
+          case 6:$sql_shell = "CREATE TABLE general_shell (
+
+          case 7:$sql_java = "CREATE TABLE general_java (
+
+          case 8:$sql_php = "CREATE TABLE general_php (
+
+          case 9:$sql_html = "CREATE TABLE general_html (
+
+          case 10:$sql_css = "CREATE TABLE general_css (
+
+          case 11:$sql_cpp = "CREATE TABLE general_cpp (
+
+          case 12:$sql_sql = "CREATE TABLE general_sql (
+
+          case 13: $sql_python = "CREATE TABLE general_python (
+
+          case 14: $sql_node= "CREATE TABLE general_node (
+          case 15: $sql_tryit= "CREATE TABLE general_tryit (
+          case 15: $sql_express= "CREATE TABLE general_express (
+          case 15: $sql_react= "CREATE TABLE general_react (
+          case 15: $sql_jquery= "CREATE TABLE general_jquery (
+*/
+$servername = "127.0.0.1";
+$username = "sea";
+$password = "123";
+
+$arr_dbs = ["db_test","db_javascript","db_shell","db_java","db_php","db_html","db_cpp","db_css","db_sql","db_python","db_node","db_tryit", "db_express","db_react","db_jquery"];
+$dbname = "db_test";//0
+$dbname = "db_javascript";//1
+$dbname = "db_shell";//2
+$dbname = "db_java";//3
+$dbname = "db_php";//4
+$dbname = "db_html";//5
+$dbname = "db_cpp";//6
+$dbname = "db_css";//7
+$dbname = "db_sql";//8
+$dbname = "db_python";//9
+$dbname = "db_node";//10
+$dbname = "db_tryit";//11
+$dbname = "db_express";//12
+$dbname = "db_react";//13
+$dbname = "db_jquery";//14
+
+$dbname = $arr_dbs[14];
+
+$case =18;
+try 
+{
+  $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+  // set the PDO error mode to exception
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        switch ($case) {
+          case 1:
+             // sql to create table
+              $sql_keywords = "CREATE TABLE general_keywords (
+              id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+              keyword text  NULL,
+              link text NULL,
+              title  text NULL,
+              description text NULL,
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+              )";
+              $conn->exec($sql_keywords);
+              echo "Table general_keywords created successfully";
+          break;
+
+          case 2:
+                $sql_crud ="CREATE TABLE crud (
+                id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                name varchar(100)  NULL,
+                email varchar(100)  NULL,
+                phone varchar(100)  NULL,
+                city varchar(100)  NULL,
+                password varchar(100)  NULL,
+
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+              ) ENGINE=InnoDB DEFAULT CHARSET=latin1";
+                
+                // use exec() because no results are returned
+                //$conn->exec($sql);
+                $conn->exec($sql_crud);
+                echo "Table crud created successfully";
+          break;
+
+          case 3:
+           $sql_image ="CREATE TABLE images ( 
+                    id int(10) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT, 
+                    image_name varchar(255) DEFAULT NULL,
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+                                            )";
+               $conn->exec($sql_image);
+                echo "Table images created successfully";
+          break;
+
+          case 4:
+             $sql_registration ="CREATE TABLE registration (
+                      id int(10) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                      first_name varchar(30) DEFAULT NULL,
+                      last_name varchar(30) DEFAULT NULL,
+                      gender varchar(10) DEFAULT NULL,
+                      email_address varchar(50) DEFAULT NULL,
+                      password varchar(20) DEFAULT NULL,
+                      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+                    ) ENGINE=InnoDB DEFAULT CHARSET=latin1"; 
+                    $conn->exec($sql_registration);
+                echo "Table registration created successfully";
+          break;
+
+          case 5:
+              // sql to create table
+              $sql_javascript = "CREATE TABLE general_javascript (
+              id int unsigned DEFAULT NULL,
+              keyword text  NULL,
+              link text NULL,
+              title  text NULL,
+              description text NULL,
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+              UNIQUE KEY id (id)
+              )";
+              $conn->exec($sql_javascript);
+              echo "Table general_javascript created successfully";
+          break;
+
+          case 6:
+           // sql to create table
+              $sql_shell = "CREATE TABLE general_shell (
+              id int unsigned DEFAULT NULL,
+              keyword text  NULL,
+              link text NULL,
+              title  text NULL,
+              description text NULL,
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+              UNIQUE KEY id (id)
+              )";
+              $conn->exec($sql_shell);
+              echo "Table general_shell created successfully";
+          break;
+
+          case 7:
+              // sql to create table
+              $sql_java = "CREATE TABLE general_java (
+              id int unsigned DEFAULT NULL,
+              keyword text  NULL,
+              link text NULL,
+              title  text NULL,
+              description text NULL,
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+              UNIQUE KEY id (id)
+              )";
+              $conn->exec($sql_java);
+              echo "Table general_java created successfully";
+          
+          break;
+
+          case 8:
+              // sql to create table
+              $sql_php = "CREATE TABLE general_php (
+              id int unsigned DEFAULT NULL,
+              keyword text  NULL,
+              link text NULL,
+              title  text NULL,
+              description text NULL,
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+              UNIQUE KEY id (id)
+              )";
+              $conn->exec($sql_php);
+              echo "Table general_php created successfully";
+          
+          break;
+          case 9:
+              // sql to create table
+              $sql_html = "CREATE TABLE general_html (
+              id int unsigned DEFAULT NULL,
+              keyword text  NULL,
+              link text NULL,
+              title  text NULL,
+              description text NULL,
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+              UNIQUE KEY id (id)
+              )";
+              $conn->exec($sql_html);
+              echo "Table general_html created successfully";
+          
+          break;
+          case 10:
+              // sql to create table
+              $sql_css = "CREATE TABLE general_css (
+              id int unsigned DEFAULT NULL,
+              keyword text  NULL,
+              link text NULL,
+              title  text NULL,
+              description text NULL,
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+              UNIQUE KEY id (id)
+              )";
+              $conn->exec($sql_css);
+              echo "Table general_css created successfully";
+          
+          break;
+          case 11:
+              // sql to create table
+              $sql_cpp = "CREATE TABLE general_cpp (
+              id int unsigned DEFAULT NULL,
+              keyword text  NULL,
+              link text NULL,
+              title  text NULL,
+              description text NULL,
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+              UNIQUE KEY id (id)
+              )";
+              $conn->exec($sql_cpp);
+              echo "Table general_cpp created successfully";
+          
+          break;
+          case 12:
+              // sql to create table
+              $sql_sql = "CREATE TABLE general_sql (
+              id int unsigned DEFAULT NULL,
+              keyword text  NULL,
+              link text NULL,
+              title  text NULL,
+              description text NULL,
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+              UNIQUE KEY id (id)
+              )";
+              $conn->exec($sql_sql);
+              echo "Table general_sql created successfully";
+          
+          break;
+          case 13:
+              // sql to create table
+              $sql_python = "CREATE TABLE general_python (
+              id int unsigned DEFAULT NULL,
+              keyword text  NULL,
+              link text NULL,
+              title  text NULL,
+              description text NULL,
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+              UNIQUE KEY id (id)
+              )";
+              $conn->exec($sql_python);
+              echo "Table general_python created successfully";
+          
+          break;
+          case 14:
+               // sql to create table
+              $sql_node = "CREATE TABLE general_node (
+              id int unsigned DEFAULT NULL,
+              keyword text  NULL,
+              link text NULL,
+              title  text NULL,
+              description text NULL,
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+              UNIQUE KEY id (id)
+              )";
+              $conn->exec($sql_node);
+              echo "Table general_node created successfully";
+          break;
+          case 15:
+               // sql to create table
+                $sql_tryit = "CREATE TABLE general_tryit (
+                id int unsigned DEFAULT NULL,
+                keyword text  NULL,
+                link text NULL,
+                title  text NULL,
+                description text NULL,
+                reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                UNIQUE KEY id (id)
+                )";
+                $conn->exec($sql_tryit);
+                echo "Table general_tryit created successfully";
+          break;
+          case 16:
+                // sql to create table
+                $sql_express = "CREATE TABLE general_express (
+                id int unsigned DEFAULT NULL,
+                keyword text  NULL,
+                link text NULL,
+                title  text NULL,
+                description text NULL,
+                reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                UNIQUE KEY id (id)
+                )";
+                $conn->exec($sql_express);
+                echo "Table general_express created successfully";
+          break;
+          case 17:
+          // sql to create table
+                $sql_react = "CREATE TABLE general_react (
+                id int unsigned DEFAULT NULL,
+                keyword text  NULL,
+                link text NULL,
+                title  text NULL,
+                description text NULL,
+                reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                UNIQUE KEY id (id)
+                )";
+                $conn->exec($sql_react);
+                echo "Table general_react created successfully";
+          break;
+          case 18:
+          // sql to create table
+                $sql_jquery = "CREATE TABLE general_jquery (
+                id int unsigned DEFAULT NULL,
+                keyword text  NULL,
+                link text NULL,
+                title  text NULL,
+                description text NULL,
+                reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                UNIQUE KEY id (id)
+                )";
+                $conn->exec($sql_jquery);
+                echo "Table general_jquery created successfully";
+          break;
+          case 19:
+          break;
+          case 20:
+          break;
+          default:
+            # code...
+            break;
+        }
+ 
+} 
+catch(PDOException $e) 
+{
+  echo "<br>" . $e->getMessage();
+}
+ 
+ die();
+function parcour($a)
+{
+    foreach ($a as $k => $v) 
+    {
+    echo "<br>";
+    echo "\$a[$k] => $v\n";
+    }
+}
+
+function parcour2d_q_r($a)
+{
+$arrReturn = array();
+$i=0;
+    foreach ($a as $k => $v_array) 
+    {   
+      $resp = " ";
+      foreach ($v_array as $key => $value) 
+      {
+        if(array_key_exists($key, $v_array) && !empty($v_array[$key]))
+        {
+          if ($key == 0)
+          {
+             $value_echo = str_replace('_', ' ', $value);
+             $value_echo = rawurldecode($value_echo);
+             $value_echo = htmlspecialchars_decode($value_echo);
+             $value_echo = html_entity_decode($value_echo); 
+             $value_echo = $value;
+             $arrReturn[$i]['question'] = $value_echo;
+          }
+          else
+          {
+       
+            $value_echo = rawurldecode($value_echo);
+            $value_echo = htmlspecialchars_decode($value_echo);
+            $value_echo = html_entity_decode($value_echo);  
+            $value_echo = $value; 
+            $resp .= $value_echo.' ';
+          }
+        }
+      }
+      $arrReturn[$i]['response'] = $resp;
+      $i++;
+    }
+ return $arrReturn   ;
+}
+
+function filtrage($a)
+{
+  $arrReturn = array() ;
+  foreach ($a as $k => $v) 
+    {
+      if($v !== NULL && $v !== FALSE && trim($v) !== "")
+      {
+        $arrReturn[]=$v;
+      }
+    }
+ return $arrReturn;   
+}
+
+$file = file('Encoded_Files/SHELL_____.txt'); # read file into array
+
+$file = array_unique($file);
+
+
+$arr_q_r = array();
+$arr_q = array();
+$arr_r = array();
+$tmp_array = array();
+
+$tmp_array = filtrage($file);
+
+$lines = array();
+/*pour eviter les unset de key caused by precedent calls*/
+foreach ($tmp_array as $key => $value) 
+{
+$lines[] = $value ;
+}
+$q = 0;
+$r = 0;
+$i = 0;
+foreach ($lines as $key => $value) 
+{
+ $value = trim($value) ;
+
+  if(strpos($value, '__?') !== false)  
+  {
+       $arr_q_r[$i][]= $value; 
+       if(array_key_exists($key+1, $lines) && (strpos($lines[$key+1], '__?') !== false))
+      {
+        $arr_q_r[$i][] = ' no response for this question ';
+        $i=$i+1;
+      }
+  }
+  else
+  {
+
+  $arr_q_r[$i][]= $value; 
+
+if(array_key_exists($key+1, $lines) && (strpos($lines[$key+1], '__?') !== false))
+      {
+        $i=$i+1;
+      }
+      
+  }
+}
+
+$arr_Esperance = parcour2d_q_r($arr_q_r);
+
+$arr_tmp_global = $arr_Esperance;
+$arr_tmp_1000 = array();
+$indice = 0;
+
+foreach ($arr_tmp_global as $k => $v) 
+{
+  if($indice<=1000)
+  {
+    $arr_tmp_1000[] = $v;
+  }
+  $indice++;
+}
+
+
+$count = count($arr_tmp_1000);
+echo "<br> taille de arr_tmp_1000 is : $count <br>";
+
+$str_shell_query ="";
+
+    $str_shell_query = "INSERT into general_shell (title,description) values";
+    $i = 0;
+    $value = "";
+    foreach ($arr_tmp_1000 as $key => $arr_value) 
+    {
+       $str_shell_query .= "('".$arr_value['question']."', '".$arr_value['response']."')";
+        //$str_shell_query .= '("'.$arr_value["question"].'", "'.$arr_value["response"].'")';
+        $str_shell_query .= $i < $count ? ',':'';
+        $i++;
+    }
+
+
+try{
+
+    //$conn->exec($str_shell_query);
+
+    $keyword_id = $conn->lastInsertId();
+   
+    echo "<br> New record created successfully";
+    echo ' number ' . $keyword_id . ' was inserted <br>';
+
+    } 
+    catch(PDOException $e) 
+    {
+        echo $str_shell_query . "<br><br><br>" . $e->getMessage();
+    }
+
+die();
+
+$file = file('file.txt'); # read file into array
+$count = count($file);
+
+if($count > 0) # file is not empty
+{
+    $milestone_query = "INSERT into milestones(ID, NAME, URL, EMAIL, LOGO, ADTEXT, CATEGORY, PUBDATE) values";
+    $i = 1;
+    foreach($file as $row)
+    {
+        $milestone = explode('|',$row);
+        $milestone_query .= "('$milestone[0]',  '$milestone[1]', '$milestone[2]', '$milestone[3]', '$milestone[4]', '$milestone[5]', '$milestone[6]', '$milestone[7]')";
+        $milestone_query .= $i < $count ? ',':'';
+        $i++;
+    }
+    mysql_query($milestone_query) or die(mysql_error());
+}
+
+
+    $file = explode("___", file_get_contents("test.txt")); 
+    echo "<table>"; 
+     
+    foreach ( $file as $content ) {  
+     
+         echo "<tr><td>".$content."</td></tr>"; 
+     
+    } 
+    echo "</table>"; 
+
+
+?>
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__get_search_results.php
+============================================================
+id: 16
+============================================================
+file: get_search_results.php
+============================================================
+content: <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
+// Highlight words in text
+function highlightWords($text, $word){
+	$text = preg_replace('#'. preg_quote($word) .'#i', '<span class="hlw">\\0</span>', $text);
+	return $text;
+}
+
+function legal_output($value) {
+	//$value = trim($value);
+	$value = stripslashes($value);
+	$value = htmlspecialchars($value);
+	$value = nl2br($value);
+	//$value = addslashes($value);
+	return $value;
+}
+
+
+
+function display_only_some($string,$keyword,$nb_car)
+{
+	$array_str_concat = array();
+	$str_concat = "";
+	$str_result = "";
+
+	$tmp_str = $string;
+	$offset = 0;
+	$allpos = array();
+
+	while ($offset < strlen($string) && ($pos = strpos($tmp_str, $keyword, $offset)) !== FALSE) 
+	{
+		$offset   = $pos + $nb_car;
+		$allpos[] = $pos;
+
+
+		$str_concat = before_after_keyword($tmp_str,$keyword,$pos,$nb_car);
+		$str_result .= $str_concat;
+
+	}
+
+	return $str_result;
+}
+
+
+
+function before_after_keyword($string,$keyword,$strpos,$nb_car)
+{
+	$index_deb_keyword = $strpos;
+	$index_fin_keyword = $strpos + strlen($keyword);
+	if($index_deb_keyword-$nb_car >= 0 )
+	{
+		$before_keyword = substr($string,$index_deb_keyword-$nb_car, $nb_car);
+	}
+	else
+	{
+		$before_keyword = "";
+	}
+
+	if($index_fin_keyword+$nb_car <= strlen($string))
+	{
+		$after_keyword = substr($string, $index_fin_keyword, $nb_car);
+	}
+	else
+	{
+		$after_keyword = "";
+	}
+
+
+	$ret_string = "...".$before_keyword.$keyword.$after_keyword."...";
+
+	return $ret_string;
+
+}
+
+// Defining a callback function
+function myFilter($var){
+	return ($var !== NULL && $var !== FALSE && trim($var) !== "");
+}
+
+if(isset($_POST['search']))
+{
+
+	$host="127.0.0.1";
+	$username="sea";
+	$password="123";
+	$databasename="db_test";
+	$search_val = array();
+	$search_keyword_arr = array();
+	$search_term_arr  = array();
+
+
+	isset($_POST['search_keyword'])?$search_keyword_arr = explode(",", $_POST['search_keyword']) : $search_keyword_arr;
+
+	isset($_POST['search_term'])?$search_term_arr = explode(" ", $_POST['search_term']) : $search_term_arr;
+
+	//filter pour vide 
+	$search_keyword_arr = array_filter($search_keyword_arr, "myFilter");     
+	$search_term_arr = array_filter($search_term_arr, "myFilter");     
+
+	$search_val = array_merge($search_keyword_arr, $search_term_arr);
+
+	/*connexion a la host*/
+	try 
+	{
+		$dbh = new PDO("mysql:host=$host", $username, $password);
+
+		$lcSearchVal = "people places things";
+		$lcSearchVal = $search_val;
+
+		$sql = 'SELECT db_test.general_test.*, (';
+		//$sql = 'SELECT * FROM '.$databasename.'.search WHERE 1';
+
+		$results_empty = array();
+		$parts = array();
+
+		foreach($lcSearchVal as $lcSearchWord )
+		{ 
+			$lcSearchWord = trim(strtolower($lcSearchWord )) ;
+
+			$parts[] = "( LOWER( title )   LIKE '%".$lcSearchWord."%')";
+
+			$parts[] = "( LOWER( description )   LIKE '%".$lcSearchWord."%')";
+		}
+
+		$sql .= implode(' + ', $parts).')';
+		$sql .=  "AS best_match FROM db_test.general_test ORDER BY best_match DESC";
+		//$sql .= " LIMIT ".count($search_val);
+
+		//print $sql;
+
+		$results = $dbh->query($sql);
+		echo "<div id=\"msg\"></div>";
+		echo "<div id=\"table-container\" >";
+		//echo "<table border='1'> ";
+
+		$sn = 0; 
+		$results_empty = (array)$results;
+
+		if(!empty($results))
+		{
+
+			echo "<table id=\"my_table_sek\" class = \"datatable\">
+				<thead>
+				<tr>
+				<th>result number</th>
+				<th>link</th>
+				<th>title</th>
+				<th>description</th>
+				<th>registration date</th>
+				</tr>
+				</thead>";
+
+		echo "<tbody>";
+
+		foreach($results as $row) 
+		{
+			$default_id = $row['id'] ;
+			$default_link = $row['link'] ;
+			$default_title = $row['title'] ;
+			$default_description = $row['description'] ;
+			$default_reg_date = $row['reg_date'] ;
+
+			$row['id'] = !empty($row['id'])?legal_output($row['id']):0;
+			$row['link'] = !empty($row['link'])?legal_output($row['link']):"";
+			$row['title'] = !empty($row['title'])?legal_output($row['title']):"";
+			$row['description'] = !empty($row['description'])?legal_output($row['description']):"";
+			$row['reg_date'] = !empty($row['reg_date'])?legal_output($row['reg_date']):0;
+			$id = $row['id'];
+			$reg_date = $row['reg_date'];
+			$link = $row['link'];
+			$title = $row['title'];
+			$description = legal_output($row['description']);
+			$description_resume = "";
+			$description_boost = "";
+			$small_pop_up = "";
+			$output_file = "";
+
+			$bool_flag = false;
+
+			foreach($search_val as $keyword)
+			{
+				$keyword = trim(strtolower($keyword));
+				if(!empty($link) && !empty($keyword))
+				{
+					$link = strtolower($link) ;
+					if((strpos($link, $keyword) !== false) )
+					{
+						$bool_flag = true;
+						$link = !empty($keyword)?highlightWords($link, $keyword):$link;
+					}
+				}
+				if(!empty($title) && !empty($keyword))
+				{
+					$title = strtolower($title) ;
+					if((strpos($title, $keyword) !== false) )
+					{
+						$bool_flag = true;
+						$title = !empty($keyword)?highlightWords($title, $keyword):$title;
+					}
+				}
+				if(!empty($description) && !empty($keyword))
+				{
+					$description = strtolower($description) ;
+					if((strpos($description, $keyword) !== false) )
+					{
+						$bool_flag = true;
+
+						$description_resume = display_only_some($description,$keyword, 25);
+
+						$description =!empty($keyword)?highlightWords($description, $keyword):$description;
+
+						//echo "<br> keyword is ".$keyword. " <br>";
+						//echo "<br>  description is ".$description. " <br>";
+					}
+
+				}
+
+			}
+
+			if($bool_flag)
+			{ 
+				$sn++; 
+				$description_boost .="<div id=\"div".$sn."\" class=\"hideme\">".$description."/div>";
+
+				$description_resume = !empty($description_resume)?$description_resume:$description;
+
+				$small_pop_up = trim(legal_output($row['title']));  
+				echo "<tr>"; 
+
+				//echo "<td> <a href='javascript:void(0)' onclick='deleteData(".$id.",".json_encode($_POST['search_term']).")'>Delete</a></td>";
+
+				//echo "<td> <a href='index.php'  onclick='pop_up(this)'>".$sn."</a></td>";
+				$myfile = "data_files/".$id.".sh";
+				$exec0 = "sudo touch ".$myfile;
+				$output1 = shell_exec($exec0);
+				$text = "<?php ".PHP_EOL ;
+				$text .= $default_id .PHP_EOL .$default_reg_date .PHP_EOL .$default_link .PHP_EOL.$default_title .PHP_EOL.$default_description .PHP_EOL." ?>".PHP_EOL ;
+
+
+				file_put_contents($myfile,$text );
+
+				echo "<td style= \"background-color: black; color: white;\">
+					<a href=\"".$myfile."\" download rel=\"noopener noreferrer\" target=\"_blank\" title=\"".$row['id']."\">".$sn."</a></td>";
+				echo "<td style= \"background-color: black; color: white;\">" . $link. "</td>";
+				echo "<td style= \"background-color: black; color: white;\">
+					<a href='javascript:void(0)' title=\"".$row['title']."\" onclick='displayData(".$id.")'>".$title."</a> </td>";
+				echo "<td style= \"background-color: black; color: white;\">
+					<a href='javascript:void(0)' title=\"".$row['description']."\">" . $description_resume . "</a>".$description_boost."</td>";
+				echo "<td style= \"background-color: black; color: white;\">" . $reg_date. "</td>";
+				echo "</tr>";
+
+			}
+			}
+
+			echo "</tbody>";
+			echo "<tfoot>";
+			echo  "<tr>
+				<th>result number</th>
+				<th>link</th>
+				<th>title</th>
+				<th>description</th>
+				<th>registration date</th>
+				</tr>";
+			echo  "</tfoot>";
+			echo   "</table>";
+
+			}
+			else
+			{
+
+				echo "
+		  <div class=\"ui-widget-header\">No Data Found</div>
+		 "; 
+	}
+
+
+       //echo "</table>";
+	echo "</div>"; //tab-container div\"
+
+	$db = null;
+  }
+  catch (PDOException $e) 
+  {
+      die("DB ERROR: " . $e->getMessage());
+  }
+
+ exit();
+}
+?>
+
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__get_update_search_results.php
+============================================================
+id: 17
+============================================================
+file: get_update_search_results.php
+============================================================
+content: <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
+// Highlight words in text
+function highlightWords($text, $word){
+  $text = preg_replace('#'. preg_quote($word) .'#i', '<span class="hlw">\\0</span>', $text);
+  return $text;
+}
+
+function legal_output($value) {
+    //$value = trim($value);
+    $value = stripslashes($value);
+    $value = htmlspecialchars($value);
+    $value = nl2br($value);
+    //$value = addslashes($value);
+    return $value;
+}
+
+
+function display_only_some($string,$keyword,$nb_car)
+{
+  $array_str_concat = array();
+  $str_concat = "";
+  $str_result = "";
+
+  $tmp_str = $string;
+  $offset = 0;
+  $allpos = array();
+
+  while ($offset < strlen($string) && ($pos = strpos($tmp_str, $keyword, $offset)) !== FALSE) 
+  {
+        $offset   = $pos + $nb_car;
+        $allpos[] = $pos;
+
+    $str_concat = before_after_keyword($tmp_str,$keyword,$pos,$nb_car);
+    $str_result .= $str_concat;
+
+  }
+
+  return $str_result;
+}
+
+
+
+function before_after_keyword($string,$keyword,$strpos,$nb_car)
+{
+  $index_deb_keyword = $strpos;
+  $index_fin_keyword = $strpos + strlen($keyword);
+  if($index_deb_keyword-$nb_car >= 0 )
+  {
+    $before_keyword = substr($string,$index_deb_keyword-$nb_car, $nb_car);
+  }
+  else
+  {
+    $before_keyword = "";
+  }
+
+  if($index_fin_keyword+$nb_car <= strlen($string))
+  {
+    $after_keyword = substr($string, $index_fin_keyword, $nb_car);
+  }
+  else
+  {
+    $after_keyword = "";
+  }
+  
+
+  $ret_string = "...".$before_keyword.$keyword.$after_keyword."...";
+
+return $ret_string;
+
+}
+
+// Defining a callback function
+function myFilter($var){
+    return ($var !== NULL && $var !== FALSE && trim($var) !== "");
+}
+
+            
+if(isset($_POST['search']))
+{
+
+ $host="127.0.0.1";
+ $username="sea";
+ $password="123";
+ $databasename="db_test";
+ $search_val = array();
+ $search_val = explode(" ", $_POST['search_term']);
+  $search_keyword_arr = array();
+ $search_term_arr  = array();
+
+
+  isset($_POST['search_keyword'])?$search_keyword_arr = explode(",", $_POST['search_keyword']) : $search_keyword_arr;
+
+  isset($_POST['search_term'])?$search_term_arr = explode(" ", $_POST['search_term']) : $search_term_arr;
+
+  //filter pour vide 
+  $search_keyword_arr = array_filter($search_keyword_arr, "myFilter");     
+  $search_term_arr = array_filter($search_term_arr, "myFilter");     
+
+  $search_val = array_merge($search_keyword_arr, $search_term_arr);
+ 
+ /*connexion a la host*/
+ try 
+ {
+      $dbh = new PDO("mysql:host=$host", $username, $password);
+         
+      $lcSearchVal = "people places things";
+      $lcSearchVal = $search_val;
+
+      $sql = 'SELECT db_test.general_test.*, (';
+      //$sql = 'SELECT * FROM '.$databasename.'.search WHERE 1';
+        
+      $parts = array();
+
+      foreach($lcSearchVal as $lcSearchWord )
+      { 
+        $lcSearchWord = trim(strtolower($lcSearchWord )) ;
+        
+       $parts[] = "( LOWER( title )   LIKE '%".$lcSearchWord."%')";
+        
+       $parts[] = "( LOWER( description )   LIKE '%".$lcSearchWord."%')";
+      }
+
+      $sql .= implode(' + ', $parts).')';
+      $sql .=  "AS best_match FROM db_test.general_test ORDER BY best_match DESC";
+      //$sql .= " LIMIT ".count($search_val);
+
+      $results = $dbh->query($sql);
+      echo "<div id=\"msg\"></div>";
+      echo "<div id=\"table-container\" style= \"background-color: black;
+  color: white;\">";
+    //echo "<table border='1'> ";
+
+       $sn = 0; 
+       $results_empty = array();
+
+        $results_empty = (array)$results;
+    
+       if(count($results_empty)>0)
+       {
+        
+        echo "<table id=\"my_table_sek\" style= \"background-color: black;
+  color: white;\" class = \"\">
+                <thead>
+                    <tr>
+                        <th>result number</th>
+                        <th>delete</th>
+                        <th>edit</th>
+                        <th>link</th>
+                        <th>title</th>
+                        <th>description</th>
+                        <th>registration date</th>
+                    </tr>
+              </thead>";
+
+
+          echo "<tbody>";
+          foreach($results as $row) 
+          {
+            $row['id'] = !empty($row['id'])?legal_output($row['id']):0;
+            $row['link'] = !empty($row['link'])?legal_output($row['link']):"";
+            $row['title'] = !empty($row['title'])?legal_output($row['title']):"";
+            $row['description'] = !empty($row['description'])?legal_output($row['description']):"";
+            $row['reg_date'] = !empty($row['reg_date'])?legal_output($row['reg_date']):0;
+            
+            $id = $row['id'];
+            $reg_date = $row['reg_date'];
+            $link = $row['link'];
+            $title = $row['title'];
+            $description = legal_output($row['description']);
+            $description_resume = "";
+            $description_boost = "";
+            $small_pop_up = "";
+
+            $bool_flag = false;
+
+            foreach($search_val as $keyword)
+            {
+              $keyword = trim(strtolower($keyword));
+
+              if(!empty($link) && !empty($keyword))
+              {
+                $link = strtolower($link) ;
+
+                if((strpos($link, $keyword) !== false) )
+                {
+                  $bool_flag = true;
+                  $link = !empty($keyword)?highlightWords($link, $keyword):$link;
+                }
+              }
+              if(!empty($title) && !empty($keyword))
+              {
+                $title = strtolower($title) ;
+                if((strpos($title, $keyword) !== false) )
+                {
+                  $bool_flag = true;
+                  $title = !empty($keyword)?highlightWords($title, $keyword):$title;
+                }
+              }
+              if(!empty($description) && !empty($keyword))
+              {
+                $description = strtolower($description) ;
+
+                if((strpos($description, $keyword) !== false) )
+                {
+                  $bool_flag = true;
+
+                  $description_resume = display_only_some($description,$keyword, 25);
+
+                  $description =!empty($keyword)?highlightWords($description, $keyword):$description;
+
+                  //echo "<br> keyword is ".$keyword. " <br>";
+                  //echo "<br>  description is ".$description. " <br>";
+                }
+
+              }
+
+            }
+              if($bool_flag)
+              { 
+                  
+
+                  $sn++; 
+                  
+                  $description_boost .="<div id=\"div".$sn."\" class=\"hideme\">".$description."/div>";
+
+                  $description_resume = !empty($description_resume)?$description_resume:$description;
+
+                  //echo "<br> description_resume <br>";
+                  //echo $description_resume;
+
+                  $small_pop_up = legal_output($row['title']); 
+
+                  echo "<tr>"; 
+
+                  echo "<td style= \"background-color: black; color: white;\"> 
+                  <a href='javascript:void(0)' title=\"".$row['id']."\">".$id."</a> </td>";
+
+                  echo "<td style= \"background-color: black; color: white;\">
+                   <a href='javascript:void(0)' onclick='deleteData(".$id.",".json_encode($_POST['search_term']).")'>Delete</a></td>";
+
+                  echo "<td style= \"background-color: black; color: white;\">
+                  <a href='javascript:void(0)' onclick='editData(".$id.")'>Edit</a></td>";
+
+                  echo "<td style= \"background-color: black; color: white;\">" . $link. "</td>";
+
+                  echo "<td style= \"background-color: black; color: white;\">
+                  <a href='javascript:void(0)' title=\"".$row['title']."\">".$title."</a> </td>";
+                  
+                  //echo "<td><p><a href='javascript:void(0)' title=\"".$row['title']."\" onclick='displayData(".$id.")'>".$title."</a> </p></td>";
+
+                  echo "<td style= \"background-color: black; color: white;\"> 
+                  <a href='javascript:void(0)' title=\"".$row['description']." \">".$description_resume."</a>".$description_boost."</td>";
+
+                  echo "<td style= \"background-color: black; color: white;\">" . $reg_date. "</td>";
+                  echo "</tr>";
+                  
+                  }
+          }
+          echo "</tbody>";
+          echo "<tfoot>";
+          echo  "<tr>
+                        <th>result number</th>
+                        <th>delete</th>
+                        <th>edit</th>
+                        <th>link</th>
+                        <th>title</th>
+                        <th>description</th>
+                        <th>registration date</th>
+                </tr>";
+          echo  "</tfoot>";
+          echo   "</table>";
+          
+        }
+        else
+        {
+     
+            echo "
+                  <div class=\"ui-widget-header\">No Data Found</div>
+                 "; 
+        }
+       //echo "</table>";
+        echo "</div>"; //tab-container div\"
+
+        $db = null;
+  }
+  catch (PDOException $e) 
+  {
+      die("DB ERROR: " . $e->getMessage());
+  }
+
+ exit();
+}
+?>
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__indep_data_flow.php
+============================================================
+id: 19
+============================================================
+file: indep_data_flow.php
+============================================================
+content:  <?php
+
+ $host = "127.0.0.1";
+
+  $root = "sea";
+  $root_password = "123";
+/*
+  $user = 'sea';
+  $pass = '123';
+  $db = "db_test";
+
+  try {
+      $dbh = new PDO("mysql:host=$host", $root, $root_password);
+
+      $dbh->exec("CREATE DATABASE `$db`;
+              CREATE USER '$user'@'localhost' IDENTIFIED BY '$pass';
+              GRANT ALL ON `$db`.* TO '$user'@'localhost';
+              FLUSH PRIVILEGES;")
+      or die(print_r($dbh->errorInfo(), true));
+
+  }
+  catch (PDOException $e) {
+      die("DB ERROR: " . $e->getMessage());
+  }*/
+    
+$servername = "127.0.0.1";
+$username = "sea";
+$password = "123";
+$dbname = "db_test";
+
+
+try {
+  $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+  // set the PDO error mode to exception
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  // sql to create table
+  $sql = "CREATE TABLE search (
+  id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  firstname VARCHAR(30),
+  lastname VARCHAR(30),
+  email VARCHAR(50),
+  title text NOT NULL,
+  description text NOT NULL,
+  link text,
+  reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  )";
+
+  // use exec() because no results are returned
+  $conn->exec($sql);
+  echo "Table search created successfully";
+} 
+catch(PDOException $e) 
+{
+  echo $sql . "<br>" . $e->getMessage();
+}
+
+$conn = null;
+?> 
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__indep_file_parser.php
+============================================================
+id: 20
+============================================================
+file: indep_file_parser.php
+============================================================
+content: <?php
+function parcour($a)
+{
+	foreach ($a as $k => $v) {
+	echo "<br>";
+    echo "\$a[$k] => $v\n";
+	}
+}
+// Defining a callback function
+function myFilter($var){
+    return ($var !== NULL && $var !== FALSE && trim($var) !== "");
+}
+
+function parcourVal($a)
+{
+	$array= array();
+	$i = 0;
+	foreach ($a as $k => $v) {
+	//echo "<br>";
+    //echo "\$a[$k] => $v\n";
+    $array[$i] = $v;
+    $i++;
+	}
+return $array;	
+}
+$a = array(
+    "un" => 1,
+    "deux" => 2,
+    "trois" => 3,
+    "dix-sept" => 17
+);
+
+foreach ($a as $k => $v) {
+    echo "\$a[$k] => $v\n";
+}
+
+$mystring = 'abca';
+$findme   = 'a';
+$pos = strpos($mystring, $findme);
+
+// The !== operator can also be used.  Using != would not work as expected
+// because the position of 'a' is 0. The statement (0 != false) evaluates
+// to false.
+if ($pos !== false) {
+     echo "The string '$findme' was found in the string '$mystring'";
+         echo " and exists at position $pos";
+} else {
+     echo "The string '$findme' was not found in the string '$mystring'";
+}
+echo "<br>";
+echo "<br>";
+
+
+function nettoyage($array,$pattern,$case)
+{
+	 $nb_cmds = 0;
+	 $arrayReturn = array();
+	 foreach ($array as $k => $v) {
+	 $str = $v;
+	 $returned =  preg_match($pattern, $str); // Outputs 1
+
+	 switch ($case) {
+	 			case 1:
+				    if(!$returned)
+					{
+						
+						echo "<br>";
+						echo "la commande numero ".$nb_cmds;
+						echo "<br>";
+							echo "\$a[$k] => $v\n";
+						echo "<br>";
+						$arrayReturn[$nb_cmds] = $v;
+						$nb_cmds++;	
+					}
+				    break;
+				case 2:
+				    if($returned)
+				    {
+				    	
+					 	echo "<br> str is :";
+					 	echo $str;
+					 	echo "<br> str modified is :";
+					 	$needle = preg_replace('/^[^A-Za-z]+/', '', $str);
+					 	echo $needle;
+					 	echo "<br> returned is :";
+					 	echo $returned;
+					 	$arrayReturn[$nb_cmds] = $needle;
+					 	$nb_cmds++;
+				 	}
+				    break;
+				case 3:
+				    echo "case equals 3";
+				    break;
+				default:
+				   $nb_cmds++;	
+				   echo "<br>";
+				   echo "\$a[$k] => $v\n";
+				}
+				
+	 
+    
+	}
+	echo "le nombre de commande est de :".$nb_cmds;
+	//parcour(array_unique($arrayReturn));
+return array_unique($arrayReturn);
+}
+
+
+echo "<br>";
+echo "<br>";
+
+$GlobalArr=array();
+$Arr1 = array();
+$Arr2 = array();
+$Arr3 = array();
+$Arr4 = array();
+$Arr5 = array();
+$Arr6 = array();
+$Arr7 = array();
+
+$pattern1 = "/^#([0-9]{5,11})$/i";
+$pattern2 = "/^(.*?)[A-Za-z]/i";
+$pattern2 = "/^[^A-Za-z]+/i";
+
+$lines1 = file('history/new_history.php');
+$lines1 = array_unique($lines1);
+$Arr1 = nettoyage($lines1,$pattern2,2);
+$Arr1 = array_unique($Arr1);
+
+
+$lines2 = file('history/history_2_4-07-2021.sh');
+$lines2 = array_unique($lines2);
+$Arr2 = nettoyage($lines2,$pattern2,2);
+$Arr2 = array_unique($Arr2);
+
+$lines3 = file('history/hist.txt');
+$lines3 = array_unique($lines3);
+$Arr3 = nettoyage($lines3,$pattern1,1);
+$Arr3 = array_unique($Arr3);
+
+$lines4 = file('history/history_28_08_2008.sh');
+$Arr4 = array_unique($lines4);
+
+$lines5 = file('history/history_tmp.sh');
+$Arr5 = array_unique($lines5);
+
+$lines6 = file('history/new_history_new.php');
+$lines6 = array_unique($lines6);
+$Arr6 = nettoyage($lines6,$pattern2,2);
+$Arr6 = array_unique($Arr6);
+
+$lines7 = file('history/history_Commands.txt');
+$Arr7 = array_unique($lines7);
+
+
+
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "le resultat pour le fichier new_history.php  <br>";
+parcour($Arr1);
+
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo " le resultat pour le fichier history_2_4-07-2021.sh  <br>";
+parcour($Arr2);
+
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo " le resultat pour le fichier hist.txt  <br>";
+echo "<br>";
+parcour($Arr3);
+
+
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo " le resultat pour le fichier history_28_08_2008.sh ; <br>";
+echo "<br>";
+parcour($Arr4);
+
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo " le resultat pour le fichier history_tmp.sh; <br>";
+echo "<br>";
+parcour($Arr5);
+
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "le resultat pour le fichier new_history_new.php  <br>";
+parcour($Arr6);
+
+
+//$GlobalArr = $Arr1+$Arr2+$Arr3+$Arr4+$Arr5+$Arr6;
+$GlobalArr = array_merge($Arr1,$Arr2,$Arr3,$Arr4,$Arr5,$Arr6,$Arr7);
+$GlobalArr = array_filter($GlobalArr, "myFilter");     
+$GlobalArr = array_unique($GlobalArr);
+
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo " le resultat final Global <br>";
+echo "<br>";
+$ArrFinal = array();
+$ArrFinal = parcourVal($GlobalArr);
+parcour($ArrFinal);
+
+file_put_contents('history/history_Commands.txt', implode($ArrFinal));
+//echo "<pre>".print_r($lines)."</pre>";
+//file_put_contents('hist2.txt', implode($lines));
+//echo "<pre>$lines</pre>";
+?>
+
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__keyword_search.php
+============================================================
+id: 23
+============================================================
+file: keyword_search.php
+============================================================
+content: <?php
+define('DB_SERVER', 'localhost');
+define('DB_USER', 'sea');
+define('DB_PASSWORD', '123');
+define('DB_NAME', 'db_test');
+
+
+if (isset($_GET['term'])){
+	$return_arr = array();
+
+	try {
+		$conn = new PDO("mysql:host=".DB_SERVER.";port=8889;dbname=".DB_NAME, DB_USER, DB_PASSWORD);
+		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+		$stmt = $conn->prepare('SELECT keyword FROM db_test.general_keywords WHERE keyword LIKE :term');
+		$stmt->execute(array('term' => '%'.$_GET['term'].'%'));
+
+		while($row = $stmt->fetch()) {
+			$return_arr[] =  $row['keyword'];
+		}
+
+	} catch(PDOException $e) {
+		echo 'ERROR: ' . $e->getMessage();
+	}
+
+
+	/* Toss back results as json encoded array. */
+	echo json_encode($return_arr);
+}
+
+
+?>
+
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__logout.php
+============================================================
+id: 24
+============================================================
+file: logout.php
+============================================================
+content: <?php
+session_start();
+unset($_SESSION["email"]);
+unset($_SESSION["password"]);
+header("Location:ref_login.php");
+?>
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__out_files_treat.php
+============================================================
+id: 26
+============================================================
+file: out_files_treat.php
+============================================================
+content: <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+echo "<br> string <br>"; 
+die();
+$path    = '/var/www/third.com/public_html/javascript_q_r/';
+//$files = scandir($path);
+
+//Following code will remove . and .. from the returned array from scandir:
+
+//$files = array_diff(scandir($path), array('.', '..'))
+
+//print_r($files);
+
+
+
+$exec1 = "cd /var/www/third.com/public_html/javascript_q_r/ && ls | wc -l";
+$exec2 = "cd /var/www/third.com/public_html/sql_q_r/ && ls | wc -l";
+$exec3 = "cd /var/www/third.com/public_html/php_q_r/ && ls | wc -l";
+$exec4 = "cd /var/www/third.com/public_html/css_q_r/ && ls | wc -l";
+$exec5 = "cd /var/www/third.com/public_html/html_q_r/ && ls | wc -l";
+$exec6 = "cd /var/www/third.com/public_html/java_q_r/ && ls | wc -l";
+$exec7 = "cd /var/www/third.com/public_html/cpp_q_r/ && ls | wc -l";
+$exec8 = "cd /var/www/third.com/public_html/shell_q_r/ && ls | wc -l";
+$exec9 = "cd /var/www/third.com/public_html/python_q_r/ && ls | wc -l";
+
+$arr_temp = ["javascript", "sql","php","css","html","java","cpp","shell","python"];
+
+for ($i=1; $i <10 ; $i++) 
+{
+	
+	$exec = "exec"; 
+	$exec.=$i;
+	$output = shell_exec(${$exec});
+	
+	$filename = "_".$i."_";
+
+	$filename .= "third_files_counter.txt";
+
+echo "<pre>${$exec}      ".$output."</pre>";
+
+$txt = $i."    ".$arr_temp[$i-1]."    ".$output."  ";
+	
+$myfile = file_put_contents($filename, $txt.PHP_EOL , FILE_APPEND | LOCK_EX);
+
+
+}
+
+//echo "<pre>$exec_result0</pre>";
+
+die();
+
+
+$file = file('2200_mots_communs_en_technologie_in_french.txt'); # read file into array
+
+
+$file = array_unique($file);
+$tmp_array = array();
+foreach ($file as $key => $value) 
+{
+ $value = trim($value) ;
+ if(!is_null($value) && !empty($value) && $value !== '') 
+ {
+    $tmp_array[] = $value;
+ }
+ else
+ {
+  echo "<br> empty value <br>";
+  echo $value;
+
+ }
+}
+$file = array();
+$file = $tmp_array;
+$count = count($file);
+
+$french_query ="";
+
+if($count > 0) # file is not empty
+{
+    $french_query = "INSERT into french_keywords (keyword) values";
+    $i = 0;
+    $value = "";
+    foreach($file as $row)
+    {
+        $french_query .= "('".$row."')";
+        $i++;
+        $french_query .= $i < $count ? ',':'';
+    }
+
+try{
+
+    $conn->exec($french_query);
+
+    $keyword_id = $conn->lastInsertId();
+   
+    echo "<br> New record created successfully";
+    echo ' number ' . $keyword_id . ' was inserted <br>';
+
+    } 
+    catch(PDOException $e) 
+    {
+        echo $french_query . "<br><br><br>" . $e->getMessage();
+    }
+    //echo "<br> english_query <br>";
+    //echo $english_query;
+}
+die();
+
+
+$servername = "127.0.0.1";
+$username = "sea";
+$password = "123";
+$dbname = "db_test";
+$dbname = "db_javascript";
+
+$case =7;
+try 
+{
+  $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+  // set the PDO error mode to exception
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        switch ($case) {
+          case 1:
+             // sql to create table
+              $sql_keywords = "CREATE TABLE general_keywords (
+              id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+              keyword text  NULL,
+              link text NULL,
+              title  text NULL,
+              description text NULL,
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+              )";
+              $conn->exec($sql_keywords);
+              echo "Table general_keywords created successfully";
+          break;
+
+          case 2:
+                $sql_crud ="CREATE TABLE crud (
+                id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                name varchar(100)  NULL,
+                email varchar(100)  NULL,
+                phone varchar(100)  NULL,
+                city varchar(100)  NULL,
+                password varchar(100)  NULL,
+
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+              ) ENGINE=InnoDB DEFAULT CHARSET=latin1";
+                
+                // use exec() because no results are returned
+                //$conn->exec($sql);
+                $conn->exec($sql_crud);
+                echo "Table crud created successfully";
+          break;
+
+          case 3:
+           $sql_image ="CREATE TABLE images ( 
+                    id int(10) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT, 
+                    image_name varchar(255) DEFAULT NULL,
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+                                            )";
+               $conn->exec($sql_image);
+                echo "Table images created successfully";
+          break;
+
+          case 4:
+             $sql_registration ="CREATE TABLE registration (
+                      id int(10) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                      first_name varchar(30) DEFAULT NULL,
+                      last_name varchar(30) DEFAULT NULL,
+                      gender varchar(10) DEFAULT NULL,
+                      email_address varchar(50) DEFAULT NULL,
+                      password varchar(20) DEFAULT NULL,
+                      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+                    ) ENGINE=InnoDB DEFAULT CHARSET=latin1"; 
+                    $conn->exec($sql_registration);
+                echo "Table registration created successfully";
+          break;
+
+          case 5:
+              // sql to create table
+              $sql_javascript = "CREATE TABLE general_javascript (
+              id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+              keyword text  NULL,
+              link text NULL,
+              title  text NULL,
+              description text NULL,
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+              )";
+              $conn->exec($sql_javascript);
+              echo "Table general_javascript created successfully";
+          break;
+
+          case 6:
+          # code...
+          break;
+
+          case 7:
+          # code...
+          break;
+          
+          default:
+            # code...
+            break;
+        }
+ 
+} 
+catch(PDOException $e) 
+{
+  echo "<br>" . $e->getMessage();
+}
+ 
+die();
+
+$file = file('2200_mots_communs_en_technologie_in_french.txt'); # read file into array
+
+
+$file = array_unique($file);
+$tmp_array = array();
+foreach ($file as $key => $value) 
+{
+ $value = trim($value) ;
+ if(!is_null($value) && !empty($value) && $value !== '') 
+ {
+    $tmp_array[] = $value;
+ }
+ else
+ {
+  echo "<br> empty value <br>";
+  echo $value;
+
+ }
+}
+$file = array();
+$file = $tmp_array;
+$count = count($file);
+
+$french_query ="";
+
+if($count > 0) # file is not empty
+{
+    $french_query = "INSERT into french_keywords (keyword) values";
+    $i = 0;
+    $value = "";
+    foreach($file as $row)
+    {
+        $french_query .= "('".$row."')";
+        $i++;
+        $french_query .= $i < $count ? ',':'';
+    }
+
+try{
+
+    $conn->exec($french_query);
+
+    $keyword_id = $conn->lastInsertId();
+   
+    echo "<br> New record created successfully";
+    echo ' number ' . $keyword_id . ' was inserted <br>';
+
+    } 
+    catch(PDOException $e) 
+    {
+        echo $french_query . "<br><br><br>" . $e->getMessage();
+    }
+    //echo "<br> english_query <br>";
+    //echo $english_query;
+}
+die();
+
+$file = file('file.txt'); # read file into array
+$count = count($file);
+
+if($count > 0) # file is not empty
+{
+    $milestone_query = "INSERT into milestones(ID, NAME, URL, EMAIL, LOGO, ADTEXT, CATEGORY, PUBDATE) values";
+    $i = 1;
+    foreach($file as $row)
+    {
+        $milestone = explode('|',$row);
+        $milestone_query .= "('$milestone[0]',  '$milestone[1]', '$milestone[2]', '$milestone[3]', '$milestone[4]', '$milestone[5]', '$milestone[6]', '$milestone[7]')";
+        $milestone_query .= $i < $count ? ',':'';
+        $i++;
+    }
+    mysql_query($milestone_query) or die(mysql_error());
+}
+
+
+    $file = explode("___", file_get_contents("test.txt")); 
+    echo "<table>"; 
+     
+    foreach ( $file as $content ) {  
+     
+         echo "<tr><td>".$content."</td></tr>"; 
+     
+    } 
+    echo "</table>"; 
+
+
+?>
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__out_files_treat_2.php
+============================================================
+id: 27
+============================================================
+file: out_files_treat_2.php
+============================================================
+content: <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+$arrLanguages = ['javascript','sql','java','python','cpp','css','html','php','shell'];
+
+foreach ($arrLanguages as $key => $lang) {
+	# code...
+
+	$path    = '/home/sea/Desktop/work_annexe/'.$lang.'_q_r/';
+	//$files = scandir($path);
+	$files = array_diff(scandir($path), array('.', '..'));
+
+	foreach ($files as $key => $filename) 
+	{
+
+		$filename_echo = rawurldecode($filename);
+		$filename_echo = htmlspecialchars_decode($filename_echo);
+		$filename_echo = html_entity_decode($filename_echo);
+		echo "\$files[".$key."] => ".$filename_echo." <br>";
+
+		$file = file_get_contents($path.$filename);
+		//$file = rawurldecode($file);
+		//$file = htmlspecialchars_decode($file);
+		//$file = html_entity_decode($file);
+
+		$lang= strtoupper($lang);
+		$myfile = file_put_contents($path.$lang.'_____.txt', $file.PHP_EOL , FILE_APPEND | LOCK_EX);
+
+
+	}
+}
+echo "<br> voici l objet ou le array arrResults <br>";
+echo "<pre>";
+//print_r($arrResults);
+echo "</pre>";
+
+die();
+foreach ($arrResults as $key => $name) 
+{
+
+	$file = file_get_contents($path.$name);
+	$file = rawurldecode($file);
+	$file = htmlspecialchars_decode($file);
+	$file = html_entity_decode($file);
+
+	$myfile = file_put_contents('css_q_r/'.$filename, $txt.PHP_EOL , FILE_APPEND | LOCK_EX);
+
+
+
+	echo "<pre><code>";
+	print_r($file);
+	echo "</pre></code><br>";
+
+}
+
+die();
+
+
+$file = file('2200_mots_communs_en_technologie_in_french.txt'); # read file into array
+
+
+$file = array_unique($file);
+$tmp_array = array();
+foreach ($file as $key => $value) 
+{
+	$value = trim($value) ;
+	if(!is_null($value) && !empty($value) && $value !== '') 
+	{
+		$tmp_array[] = $value;
+	}
+	else
+	{
+		echo "<br> empty value <br>";
+		echo $value;
+
+	}
+}
+$file = array();
+$file = $tmp_array;
+$count = count($file);
+
+$french_query ="";
+
+if($count > 0) # file is not empty
+{
+	$french_query = "INSERT into french_keywords (keyword) values";
+	$i = 0;
+	$value = "";
+	foreach($file as $row)
+	{
+		$french_query .= "('".$row."')";
+		$i++;
+		$french_query .= $i < $count ? ',':'';
+	}
+
+	try{
+
+		$conn->exec($french_query);
+
+		$keyword_id = $conn->lastInsertId();
+
+		echo "<br> New record created successfully";
+		echo ' number ' . $keyword_id . ' was inserted <br>';
+
+	} 
+	catch(PDOException $e) 
+	{
+		echo $french_query . "<br><br><br>" . $e->getMessage();
+	}
+	//echo "<br> english_query <br>";
+	//echo $english_query;
+}
+die();
+
+
+$servername = "127.0.0.1";
+$username = "sea";
+$password = "123";
+$dbname = "db_test";
+$dbname = "db_javascript";
+
+$case =7;
+try 
+{
+	$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+	// set the PDO error mode to exception
+	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	switch ($case) {
+	case 1:
+		// sql to create table
+		$sql_keywords = "CREATE TABLE general_keywords (
+			id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+			keyword text  NULL,
+			link text NULL,
+			title  text NULL,
+			description text NULL,
+			reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+	      )";
+		$conn->exec($sql_keywords);
+		echo "Table general_keywords created successfully";
+		break;
+
+	case 2:
+		$sql_crud ="CREATE TABLE crud (
+			id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+			name varchar(100)  NULL,
+			email varchar(100)  NULL,
+			phone varchar(100)  NULL,
+			city varchar(100)  NULL,
+			password varchar(100)  NULL,
+
+			reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+	      ) ENGINE=InnoDB DEFAULT CHARSET=latin1";
+
+		// use exec() because no results are returned
+		//$conn->exec($sql);
+		$conn->exec($sql_crud);
+		echo "Table crud created successfully";
+		break;
+
+	case 3:
+		$sql_image ="CREATE TABLE images ( 
+			id int(10) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT, 
+			image_name varchar(255) DEFAULT NULL,
+			reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+					    )";
+		$conn->exec($sql_image);
+		echo "Table images created successfully";
+		break;
+
+	case 4:
+		$sql_registration ="CREATE TABLE registration (
+			id int(10) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+			first_name varchar(30) DEFAULT NULL,
+			last_name varchar(30) DEFAULT NULL,
+			gender varchar(10) DEFAULT NULL,
+			email_address varchar(50) DEFAULT NULL,
+			password varchar(20) DEFAULT NULL,
+			created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+		    ) ENGINE=InnoDB DEFAULT CHARSET=latin1"; 
+		$conn->exec($sql_registration);
+		echo "Table registration created successfully";
+		break;
+
+	case 5:
+		// sql to create table
+		$sql_javascript = "CREATE TABLE general_javascript (
+			id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+			keyword text  NULL,
+			link text NULL,
+			title  text NULL,
+			description text NULL,
+			reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+	      )";
+		$conn->exec($sql_javascript);
+		echo "Table general_javascript created successfully";
+		break;
+
+	case 6:
+		# code...
+		break;
+
+	case 7:
+		# code...
+		break;
+
+	default:
+		# code...
+		break;
+	}
+
+} 
+catch(PDOException $e) 
+{
+	echo "<br>" . $e->getMessage();
+}
+
+die();
+
+$file = file('2200_mots_communs_en_technologie_in_french.txt'); # read file into array
+
+
+$file = array_unique($file);
+$tmp_array = array();
+foreach ($file as $key => $value) 
+{
+	$value = trim($value) ;
+	if(!is_null($value) && !empty($value) && $value !== '') 
+	{
+		$tmp_array[] = $value;
+	}
+	else
+	{
+		echo "<br> empty value <br>";
+		echo $value;
+
+	}
+}
+$file = array();
+$file = $tmp_array;
+$count = count($file);
+
+$french_query ="";
+
+if($count > 0) # file is not empty
+{
+	$french_query = "INSERT into french_keywords (keyword) values";
+	$i = 0;
+	$value = "";
+	foreach($file as $row)
+	{
+		$french_query .= "('".$row."')";
+		$i++;
+		$french_query .= $i < $count ? ',':'';
+	}
+
+	try{
+
+		$conn->exec($french_query);
+
+		$keyword_id = $conn->lastInsertId();
+
+		echo "<br> New record created successfully";
+		echo ' number ' . $keyword_id . ' was inserted <br>';
+
+	} 
+	catch(PDOException $e) 
+	{
+		echo $french_query . "<br><br><br>" . $e->getMessage();
+	}
+	//echo "<br> english_query <br>";
+	//echo $english_query;
+}
+die();
+
+$file = file('file.txt'); # read file into array
+$count = count($file);
+
+if($count > 0) # file is not empty
+{
+	$milestone_query = "INSERT into milestones(ID, NAME, URL, EMAIL, LOGO, ADTEXT, CATEGORY, PUBDATE) values";
+	$i = 1;
+	foreach($file as $row)
+	{
+		$milestone = explode('|',$row);
+		$milestone_query .= "('$milestone[0]',  '$milestone[1]', '$milestone[2]', '$milestone[3]', '$milestone[4]', '$milestone[5]', '$milestone[6]', '$milestone[7]')";
+		$milestone_query .= $i < $count ? ',':'';
+		$i++;
+	}
+	mysql_query($milestone_query) or die(mysql_error());
+}
+
+
+$file = explode("___", file_get_contents("test.txt")); 
+echo "<table>"; 
+
+foreach ( $file as $content ) {  
+
+	echo "<tr><td>".$content."</td></tr>"; 
+
+} 
+echo "</table>"; 
+
+
+?>
+
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__out_files_treat_3.php
+============================================================
+id: 28
+============================================================
+file: out_files_treat_3.php
+============================================================
+content: 
+<html>
+<head>
+<style>
+code {
+  font-family: Consolas,"courier new";
+  color: crimson;
+  background-color: #f1f1f1;
+  padding: 2px;
+  font-size: 105%;
+}
+</style>
+<?php
+ini_set('max_execution_time', '300000000'); 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+ini_set('memory_limit', '2048M');
+
+
+$path    = '/home/sea/Desktop/work_annexe/shell_q_r/';
+//$files = scandir($path);
+$files = array_diff(scandir($path), array('.', '..'));
+
+//use EOD function for multiple line variable
+
+$results = array();
+$keyword = 'ubuntu';
+foreach ($files as $key => $filename) 
+{
+  
+  $filename_echo = rawurldecode($filename);
+  $filename_echo = htmlspecialchars_decode($filename_echo);
+  $filename_echo = html_entity_decode($filename_echo);
+  echo "\$files[".$key."] => ".$filename_echo." <br>";
+
+  $file = file_get_contents($path.$filename);
+  //$file = rawurldecode($file);
+  //$file = htmlspecialchars_decode($file);
+  //$file = html_entity_decode($file);
+
+  //$file = trim(strtolower($file));
+
+      echo "<pre> file <code>";
+      echo $file;
+      echo "</pre></code>";
+      
+
+      $results[] = $file; 
+  
+  //$myfile = file_put_contents($path.'SHELL_GLOBAL.txt', $file.PHP_EOL , FILE_APPEND | LOCK_EX);
+  
+
+}
+?>
+
+</body>
+</html>
+<?php
+die();
+
+echo "<br> voici l objet ou le array arrResults <br>";
+echo "<pre>";
+foreach ($results as $key => $value) 
+{
+  echo "\$results[".$key."] => ".$value." <br>";
+ 
+}
+echo "</pre>";
+die();
+foreach ($arrResults as $key => $name) 
+{
+  
+  $file = file_get_contents($path.$name);
+  $file = rawurldecode($file);
+  $file = htmlspecialchars_decode($file);
+  $file = html_entity_decode($file);
+
+  $myfile = file_put_contents('css_q_r/'.$filename, $txt.PHP_EOL , FILE_APPEND | LOCK_EX);
+
+
+
+echo "<pre><code>";
+print_r($file);
+echo "</pre></code><br>";
+
+}
+
+die();
+
+
+$file = file('2200_mots_communs_en_technologie_in_french.txt'); # read file into array
+
+
+$file = array_unique($file);
+$tmp_array = array();
+foreach ($file as $key => $value) 
+{
+ $value = trim($value) ;
+ if(!is_null($value) && !empty($value) && $value !== '') 
+ {
+    $tmp_array[] = $value;
+ }
+ else
+ {
+  echo "<br> empty value <br>";
+  echo $value;
+
+ }
+}
+$file = array();
+$file = $tmp_array;
+$count = count($file);
+
+$french_query ="";
+
+if($count > 0) # file is not empty
+{
+    $french_query = "INSERT into french_keywords (keyword) values";
+    $i = 0;
+    $value = "";
+    foreach($file as $row)
+    {
+        $french_query .= "('".$row."')";
+        $i++;
+        $french_query .= $i < $count ? ',':'';
+    }
+
+try{
+
+    $conn->exec($french_query);
+
+    $keyword_id = $conn->lastInsertId();
+   
+    echo "<br> New record created successfully";
+    echo ' number ' . $keyword_id . ' was inserted <br>';
+
+    } 
+    catch(PDOException $e) 
+    {
+        echo $french_query . "<br><br><br>" . $e->getMessage();
+    }
+    //echo "<br> english_query <br>";
+    //echo $english_query;
+}
+die();
+
+
+$servername = "127.0.0.1";
+$username = "sea";
+$password = "123";
+$dbname = "db_test";
+$dbname = "db_javascript";
+
+$case =7;
+try 
+{
+  $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+  // set the PDO error mode to exception
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        switch ($case) {
+          case 1:
+             // sql to create table
+              $sql_keywords = "CREATE TABLE general_keywords (
+              id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+              keyword text  NULL,
+              link text NULL,
+              title  text NULL,
+              description text NULL,
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+              )";
+              $conn->exec($sql_keywords);
+              echo "Table general_keywords created successfully";
+          break;
+
+          case 2:
+                $sql_crud ="CREATE TABLE crud (
+                id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                name varchar(100)  NULL,
+                email varchar(100)  NULL,
+                phone varchar(100)  NULL,
+                city varchar(100)  NULL,
+                password varchar(100)  NULL,
+
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+              ) ENGINE=InnoDB DEFAULT CHARSET=latin1";
+                
+                // use exec() because no results are returned
+                //$conn->exec($sql);
+                $conn->exec($sql_crud);
+                echo "Table crud created successfully";
+          break;
+
+          case 3:
+           $sql_image ="CREATE TABLE images ( 
+                    id int(10) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT, 
+                    image_name varchar(255) DEFAULT NULL,
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+                                            )";
+               $conn->exec($sql_image);
+                echo "Table images created successfully";
+          break;
+
+          case 4:
+             $sql_registration ="CREATE TABLE registration (
+                      id int(10) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                      first_name varchar(30) DEFAULT NULL,
+                      last_name varchar(30) DEFAULT NULL,
+                      gender varchar(10) DEFAULT NULL,
+                      email_address varchar(50) DEFAULT NULL,
+                      password varchar(20) DEFAULT NULL,
+                      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+                    ) ENGINE=InnoDB DEFAULT CHARSET=latin1"; 
+                    $conn->exec($sql_registration);
+                echo "Table registration created successfully";
+          break;
+
+          case 5:
+              // sql to create table
+              $sql_javascript = "CREATE TABLE general_javascript (
+              id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+              keyword text  NULL,
+              link text NULL,
+              title  text NULL,
+              description text NULL,
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+              )";
+              $conn->exec($sql_javascript);
+              echo "Table general_javascript created successfully";
+          break;
+
+          case 6:
+          # code...
+          break;
+
+          case 7:
+          # code...
+          break;
+          
+          default:
+            # code...
+            break;
+        }
+ 
+} 
+catch(PDOException $e) 
+{
+  echo "<br>" . $e->getMessage();
+}
+ 
+die();
+
+$file = file('2200_mots_communs_en_technologie_in_french.txt'); # read file into array
+
+
+$file = array_unique($file);
+$tmp_array = array();
+foreach ($file as $key => $value) 
+{
+ $value = trim($value) ;
+ if(!is_null($value) && !empty($value) && $value !== '') 
+ {
+    $tmp_array[] = $value;
+ }
+ else
+ {
+  echo "<br> empty value <br>";
+  echo $value;
+
+ }
+}
+$file = array();
+$file = $tmp_array;
+$count = count($file);
+
+$french_query ="";
+
+if($count > 0) # file is not empty
+{
+    $french_query = "INSERT into french_keywords (keyword) values";
+    $i = 0;
+    $value = "";
+    foreach($file as $row)
+    {
+        $french_query .= "('".$row."')";
+        $i++;
+        $french_query .= $i < $count ? ',':'';
+    }
+
+try{
+
+    $conn->exec($french_query);
+
+    $keyword_id = $conn->lastInsertId();
+   
+    echo "<br> New record created successfully";
+    echo ' number ' . $keyword_id . ' was inserted <br>';
+
+    } 
+    catch(PDOException $e) 
+    {
+        echo $french_query . "<br><br><br>" . $e->getMessage();
+    }
+    //echo "<br> english_query <br>";
+    //echo $english_query;
+}
+die();
+
+$file = file('file.txt'); # read file into array
+$count = count($file);
+
+if($count > 0) # file is not empty
+{
+    $milestone_query = "INSERT into milestones(ID, NAME, URL, EMAIL, LOGO, ADTEXT, CATEGORY, PUBDATE) values";
+    $i = 1;
+    foreach($file as $row)
+    {
+        $milestone = explode('|',$row);
+        $milestone_query .= "('$milestone[0]',  '$milestone[1]', '$milestone[2]', '$milestone[3]', '$milestone[4]', '$milestone[5]', '$milestone[6]', '$milestone[7]')";
+        $milestone_query .= $i < $count ? ',':'';
+        $i++;
+    }
+    mysql_query($milestone_query) or die(mysql_error());
+}
+
+
+    $file = explode("___", file_get_contents("test.txt")); 
+    echo "<table>"; 
+     
+    foreach ( $file as $content ) {  
+     
+         echo "<tr><td>".$content."</td></tr>"; 
+     
+    } 
+    echo "</table>"; 
+
+
+?>
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__out_json_encode.php
+============================================================
+id: 29
+============================================================
+file: out_json_encode.php
+============================================================
+content: <?php 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+require_once dirname(__FILE__).'/vendor/adrian0350/simple-pdo-wrapper/src/SimplePDOWrapper.php';
+
+// Declare database configuration.
+$conf = array(
+  'database' => 'db_test',
+  'user' => 'root',
+  'password' => '123',
+  'host' => 'localhost'
+);
+
+$SimplePDOWrapper = new SimplePDOWrapper($conf);
+
+
+// Switch database with setDatabase() method and pass credentials in $conf array.
+
+$conf = array(
+  'database' => 'db_php',
+  'user' => 'root',
+  'password' => '123',
+  'host' => 'localhost'
+);
+
+// Will return boolean.
+if (!$SimplePDOWrapper->setDatabase($conf))
+{
+  // Watch for errors through @var $errors.
+  // Errors is an array with code and message.
+  throw new Exception($SimplePDOWrapper->errors['message'], $SimplePDOWrapper->errors['code']);
+}
+
+// After saving you will receive the last saved entity.
+$save = array(
+  'id' => 10,
+  'username' => 'jaime.ziga@gmail.com',
+  'password' => 'thypassword',
+  'name' => 'John Doe'
+);
+//$user_saved = $SimplePDOWrapper->save('users', $save);
+
+// When updating it will only return true or false.
+$update = array(
+  'name' => 'Adrián Zúñiga'
+);
+
+/*$updated = $SimplePDOWrapper->update('users', $update, array(
+  'conditions' => array(
+    'id' => $user_saved['id']
+  )
+));*/
+
+// Watching errors
+/*
+if (!$updated)
+{
+  throw new Exception($SimplePDOWrapper->errors['message'], $SimplePDOWrapper->errors['code']);
+}
+*/
+// For now conditions only has basic clause.
+$options = array(
+  'conditions' => array(),
+  'limit' => 10000,
+  'fields' => array('id', 'link', 'title', 'description'),
+  'order' => array('id DESC')
+);
+
+// This findOne will return the one entity array or null.
+$user = $SimplePDOWrapper->findOne('general_php', $options);
+
+// And findAll will return null or an array of STDClass objects.
+$users = $SimplePDOWrapper->findAll('general_php', $options);
+
+echo "<br> voici l objet ou le array objet_array <br>";
+echo "<pre>";
+print_r($user);
+print_r($users);
+print_r($objet_array);
+echo "</pre>";
+
+die();
+function filtrage($var)
+{
+    return ($var !== NULL && $var !== FALSE && trim($var) !== "");
+}
+		$name = 'grep';
+		$name = trim(strtolower($name));
+    $return = array();
+    $return['error'] = false;
+    $return['name'] = $name;
+    //$return['exec_ls_lart'] ="<pre>".shell_exec('cd ../dashboard && ls -lart')."</pre>";
+    
+    
+    $Arr=array();
+    $lines=array();
+
+    $lines = file('history/SHELL_GLOBAL.txt');
+    //$lines = array_filter($lines, "filtrage");     
+    $lines = array_unique($lines);/*array_unique unset even the key and value*/
+    $results = array();
+
+    foreach ($lines as $key => $value) {
+
+        $value = trim(strtolower($value));
+
+      
+        if(strpos($value, $name) !== false && strpos($value, '__?') === false)  
+        {
+        	if(array_key_exists($key-1, $lines))
+            {
+                $results[] = $lines[$key-1]." <br>".$value; 
+           }
+           else
+            {
+                $results[] = $value; 
+            }
+        }
+
+    }
+
+    if( empty($results) ) { $str_commands =  'No matches found.'; }
+    else 
+    { 
+        $arrRender = array();
+        $str_commands = "<table class=\"table  table-active\" cellpadding=\"3\" cellspacing=\"0\" border=\"0\" style=\"width: 67%; margin: 0 auto 2em auto;\">
+        <thead>
+          <tr>
+            <th scope=\"col\">Command Line</th>
+            <th scope=\"col\">Copy</th>
+          </tr>
+        </thead>";
+        $str_commands .= "<tbody>";
+        foreach ($results as $key_line => $command) 
+        {
+            $td1 = "<p><pre><code id=\"text__".$key_line."\">".$command."</pre></code></p>";
+            $td2 = "<button type=\"button\" class=\"btn btn-success btn-sm\" onclick=\"copyToClipboard('#text__".$key_line."')\">Copy</button>";
+
+            $td1 = nl2br($td1);
+            $td1 = str_replace('#', '<br>#', $td1);
+            $td1 = str_replace('$', '<br>$', $td1);
+            
+            $str_commands .= "<tr id=\"filter_global\" class=\"table-active\"></tr>" ;
+            $str_commands .= "<tr>".$td1."</tr>" ;
+            $str_commands .= "<tr>".$td2."</tr>" ;
+            $str_commands .= "<tr></tr>" ;
+            
+
+            //$arrRender[$key_line]=$output_command;
+        }
+        $str_commands .= "</tbody>
+      </table>" ;
+        //$str_commands =  $name." was found in: <br> " . implode(' ', $arrRender).""; 
+    }
+    $return['str_commands'] = $str_commands;
+    //parcour($return);
+
+
+    //$return['exec'] = implode('', $return['exec']);
+    //return json_encode($return, JSON_PRETTY_PRINT);
+    //return json_encode($return);
+ echo "<br> voici l objet ou le array return <br>";
+ echo "<pre>";
+ print_r($return);
+ echo "</pre>";
+
+
+
+
+    //$return['exec'] = implode('', $return['exec']);
+    //echo json_encode($return, JSON_PRETTY_PRINT);
+
+
+
+$myString = 'Hello Bob how are you?';  
+	if (strpos($myString, 'Bob') !== false) 
+		{      echo "My string contains Bob <br>";  }
+
+	$a = 'How are you?';  
+	if (strpos($a, 'are') !== false) 
+		{     echo 'true <br>'; }
+	$mystring = "This is a PHP program."; 
+	 if (strpos($mystring, "program.") !== false) 
+	 	{     echo "True <br>"; } 
+	$mystring = "This is a php program."; 
+	$search = "a";
+	 if(preg_match("/{$search}/i", $mystring)) 
+	 	{     echo "True <br>"; } 
+	 else 
+	 	{     echo "False <br>"; } 
+$mystring = "This is a PHP program."; 
+ if (strpos($mystring, "PHP", 13) !== false) 
+ 	{     echo "True <br>"; } 
+ else
+  {     echo "False <br>"; }
+
+die();
+
+//legal input values
+// $title     = $_POST['title'];
+// $description = $_POST['description'];
+
+
+
+/*
+$value = "most of the birds lives in the village";
+foreach ($sentences as $key => $v) 
+{
+        // if number key exist
+        $compareTo = $key + 1;
+        if(array_key_exists($compareTo, $sentences)) 
+        {
+            echo $value  . ":::::::::::::" . $v  . " = " . checkSimilarity($value, $sentences[$compareTo]) . "<br>";
+
+        }
+    
+}
+*/
+$arrOutput = array();
+$title     = "android error sdk";
+$wanted = "SELECT id,keyword FROM db_test.general_keywords WHERE keyword like";
+
+$arrOutput = Check_similarities($wanted);
+echo "<br> voici l objet ou le array arrOutput <br>";
+echo "<pre>";
+print_r($arrOutput);
+echo "</pre>";
+
+
+
+function Check_similarities($searched)
+{
+ 
+
+$servername = "127.0.0.1";
+$username = "sea";
+$password = "123";
+$dbname = "db_test";
+
+
+try {
+  $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+  // set the PDO error mode to exception
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  echo "<br> \"database.php\" Connection to database established successfully <br> <br>";
+  
+} catch(PDOException $e) {
+  echo "<br>" . $e->getMessage();
+}
+
+ try 
+ {
+  
+        $query = "SELECT id,title,description FROM db_test.general_test WHERE 1";
+
+              
+        $result = $conn->query($query);
+
+        $response = array();
+
+
+        $candidate = $searched;
+
+        $arrWords = explode(" ",$candidate );
+
+        $nb_words_candidate = count($arrWords);
+                  
+         foreach ($result as $key =>$row) 
+          {
+            $v = isset($row['description'])?$row['description']:"";
+            $v_title = isset($row['title'])?$row['title']:"";
+            $v_id = isset($row["id"])?$row["id"]:"";
+            $v_reg_date = isset($row["reg_date"])?$row["reg_date"] :"";
+            $v_link = isset($row["link"])?$row["link"] : "";
+
+              // if number key exist
+              $compareTo = $key + 1;
+
+              if(isset($compareTo, $result)) 
+              {
+                
+                $similair = checkSimilarity($candidate, $v);
+
+
+                if(!empty($v) && !empty($arrWords) && $similair > $nb_words_candidate/2)
+                {
+                  echo $candidate  . "::::" . $row["id"]  . " = " . $similair . "<br>";
+                
+                    $myfile = "data_files/".$v_id.".sh";
+                    $exec0 = "sudo touch ".$myfile;
+                    $output1 = shell_exec($exec0);
+
+                    $text = "<?php ".PHP_EOL ;
+                    $text .= $v_id .PHP_EOL .$v_reg_date .PHP_EOL .$v_link .PHP_EOL.$v_title .PHP_EOL.$v .PHP_EOL." ?>".PHP_EOL ;
+                  
+
+                  file_put_contents($myfile,$text );
+                
+                  $compared_ref = "<td style= \"background-color: black; color: white;\">
+                  <a href=\"".$myfile."\" download rel=\"noopener noreferrer\" target=\"_blank\" title=\"".$v_id."\">".$v_title."</a></td>";    
+
+                  $response[] = array("candidate"=>$candidate,
+                                      "nb_similair"=>$similair,
+                                       "compared_desc"=>$v, 
+                                       "compared_ref"=>$compared_ref,
+                                       "compared_title" => $v_title);
+                }
+
+              }
+              
+          }
+         return $response;
+    //echo json_encode($response);     
+}
+catch (PDOException $e) 
+{
+    die("DB ERROR: " . $e->getMessage());
+}
+
+}
+  
+
+// You can use PHP's array_intersect 
+function checkSimilarity ($string1, $string2) {
+    $arr1 = explode(" ",$string1 );
+    $arr2 = explode(" ",$string2 );
+    $result = array_intersect(array_unique($arr1) , array_unique($arr2)); //matched elements with duplicates removed
+    return count($result); //number of matches
+}
+
+
+
+  die();
+
+
+$sentences = [
+    1 => "most of the birds lives in the village",
+    2 => "birds in the village are free",
+    3 => "no birds can be trapped in the village",
+    4 => "people of the village are so kind",
+    5 => "these birds are special species where most of them are so small"
+];
+
+// loop through array
+foreach ($sentences as $mainKey => $value) {
+    // for each number, loop others check similarity
+    foreach ($sentences as $key => $v) {
+        // if number key exist
+        $compareTo = $key + 1;
+        if(array_key_exists($compareTo, $sentences) && $compareTo != $mainKey && $mainKey < $compareTo) {
+            echo $mainKey . ":" . $compareTo  . " = " . checkSimilarity($value, $sentences[$compareTo]) . "<br>";
+        }
+    }
+}
+
+
+$value = "most of the birds lives in the village";
+foreach ($sentences as $key => $v) 
+{
+        // if number key exist
+        $compareTo = $key + 1;
+        if(array_key_exists($compareTo, $sentences)) 
+        {
+            echo $value  . ":::::::::::::" . $v  . " = " . checkSimilarity($value, $sentences[$compareTo]) . "<br>";
+
+        }
+    
+}
+
+die();
+$array = array("apple", "", 0, 2, null, -5, "0", "orange", 10, false);
+
+echo "<br>  print_r pour l objet \$array  <br>";
+echo"<pre>"; 
+  print_r($array);
+echo "</pre>";
+
+
+
+
+echo "<br>";
+ 
+// Defining a callback function
+function myFilter($var){
+    return ($var !== NULL && $var !== FALSE && $var !== "");
+}
+
+// Filtering the array
+
+$result = array_filter($array);     
+$result = array_filter($array, "myFilter");     
+
+echo "<br>  print_r pour l objet \$result  <br>";
+echo"<pre>"; 
+  print_r($result);
+echo "</pre>";
+
+
+die();
+
+$a=1;
+if ($a==1)
+{
+$message = 'thank you.';
+echo "<SCRIPT>"; 
+
+echo "alert('$message');";
+
+echo "</SCRIPT> ";  
+}
+
+
+
+die();
+
+
+$string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla felis diam, mattis id elementum eget, ullamcorper et purus.";
+$keyword = "Nulla";
+$index_deb_keyword = strpos($string, $keyword);
+$index_fin_keyword = strpos($string, $keyword) + strlen($keyword);
+$before_keyword = substr($string,$index_deb_keyword-20, 20);
+$after_keyword = substr($string, $index_fin_keyword, 20);
+
+
+
+echo "<br> string <br>";
+print_r($string);
+echo "<br> keyword <br>";
+print_r($keyword);
+
+
+echo "<br> ma fontion <br>";
+$nb_car = 9;
+
+echo "print_r(display_only_some(\"aaa b1b1b1 aaa b2b2b2 aaa b3b3b3\",\"aa\", 4))\;";
+
+print_r(display_only_some("aaa b1b1b1 aaa b2b2b2 aaa b3b3b3", "aa", 5));
+
+
+function display_only_some($string,$keyword,$nb_car)
+{
+  $array_str_concat = array();
+  $str_concat = "";
+  $str_result = "";
+
+  $tmp_str = $string;
+  $offset = 0;
+  $allpos = array();
+
+    while (($pos = strpos($tmp_str, $keyword, $offset)) !== FALSE &&
+          $offset <= strlen($string)) 
+  {
+        $offset   = $pos + $nb_car;
+        $allpos[] = $pos;
+
+    # code...
+    //echo "<br>";
+    //echo "allpos[] => $pos\n";
+
+    $str_concat = before_after_keyword($tmp_str,$keyword,$pos,$nb_car);
+    $str_result .= $str_concat;
+
+    //echo "<br> str_concat <br>";
+    //echo $str_concat;
+
+    //echo "<br> str_result <br>";
+    //echo $str_result;
+
+  }
+
+  return $str_result;
+}
+
+
+
+function before_after_keyword($string,$keyword,$strpos,$nb_car)
+{
+  $index_deb_keyword = $strpos;
+  $index_fin_keyword = $strpos + strlen($keyword);
+  if($index_deb_keyword-$nb_car >= 0 )
+  {
+    $before_keyword = substr($string,$index_deb_keyword-$nb_car, $nb_car);
+  }
+  else
+  {
+    $before_keyword = "";
+  }
+
+  if($index_fin_keyword+$nb_car <= strlen($string))
+  {
+    $after_keyword = substr($string, $index_fin_keyword, $nb_car);
+  }
+  else
+  {
+    $after_keyword = "";
+  }
+  
+
+  $ret_string = "...".$before_keyword.$keyword.$after_keyword."...";
+
+return $ret_string;
+
+}
+
+
+function strpos_all($string, $keyword) 
+{
+    $offset = 0;
+    $allpos = array();
+    while (($pos = strpos($string, $keyword, $offset)) !== FALSE) {
+        $offset   = $pos + 1;
+        $allpos[] = $pos;
+    }
+    return $allpos;
+}
+
+
+die();
+
+?>
+
+
+<html>
+<head>
+<!-- <link type="text/css" rel="stylesheet" href="css/search_style.css"/> -->
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.min341.js"></script> 
+<script type="text/javascript" src="js/test_script.js"></script> 
+<script type="text/javascript" src="js/update-ajax.js"></script>
+<script type="text/javascript">
+function do_search()
+{
+ var search_term=$("#search_term").val();
+ $.ajax
+ ({
+  type:'post',
+  url:'get_update_search_results.php',
+  data:{
+   search:"search",
+   search_term:search_term
+  },
+  success:function(response) 
+  {
+   console.log(response); 
+   document.getElementById("result_div").innerHTML=response;
+  }
+ });
+ 
+ return false;
+}
+</script>
+</head>
+
+<?php
+
+
+include('database.php');
+
+$db=$conn;// database connection 
+
+function legal_output($value) {
+    //$value = trim($value);
+    $value = stripslashes($value);
+    $value = htmlspecialchars($value);
+    $value = nl2br($value);
+    //$value = addslashes($value);
+    return $value;
+}
+           
+ function treat_data($sql)
+ {
+       
+ 		 global $db;
+        //echo "<br> sql : <br>";
+        //echo $sql;
+
+        // use exec() because no results are returned
+        try{
+
+            $results = $db->query($sql);
+            //print_r($results);
+            //$search_id = $db->lastInsertId();
+           	$nombre_resultats = count($results);
+            echo "<br> la requete ".$sql." <br> donne ".$nombre_resultats." resultats <br>";
+            foreach($results as $row) 
+		      {
+
+		        echo "<li>".$row['link']."<br><span class='title'>".legal_output($row['title'])."</span><br><br><br><br><span class='desc'>".legal_output($row['description'])."</span></li>";
+		      }
+
+            } 
+            catch(PDOException $e) 
+            {
+                echo $sql . "<br><br><br>" . $e->getMessage();
+            }
+
+ }
+$sql = "SELECT db_test.general_test.*, 
+    ((description LIKE '%exec%') + 
+    (description LIKE '%query%') + 
+    (description LIKE '%pdo%')) AS best_match
+FROM db_test.general_test
+ORDER BY best_match DESC
+LIMIT 1";
+
+//$sql="select * from db_test.general_test  where 1";
+
+treat_data($sql);
+ 
+ 
+
+$var = "He said \"Hello O'Reilly\" & disappeared.\nNext line...
+CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
+CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
+CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
+CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';";
+
+$encoded_value = json_encode($var);
+$decoded_value = json_decode($encoded_value);
+
+echo "<br><br><br>";
+echo "json encoded value = <br><br>".$encoded_value."\n";
+
+echo "<br><br><br>";
+echo "json decoded value = <br><br>".$decoded_value."\n";
+
+echo "<br><br><br>";
+
+echo "alert(".json_encode($var).");\n";
+?>
+
+
+    <script type="text/javascript">
+        function divide() {
+            var txt;
+            txt = document.getElementById('a').value;
+            var text = txt.split(".");
+            var str = text.join('.</br>');
+            document.write(str);
+        }
+    </script>
+  
+    <form>
+        ENTER TEXT:
+        <br>
+        <textarea rows="20" 
+                  cols="50" 
+                  name="txt" 
+                  id="a">
+      </textarea>
+        <br>
+        <br>
+        <input type="submit" 
+               name="submit"
+               value="submit" 
+               onclick="divide()" />
+    </form>
+
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__out_shell_exec.php
+============================================================
+id: 30
+============================================================
+file: out_shell_exec.php
+============================================================
+content: <?php
+$exec = "echo 123 | /usr/bin/sudo -S /opt/lampp/lampp restart";
+//exec($exec,$out,$rcode);
+
+//if you have trouble with the paths - use
+
+$exec0 = "sudo history > history.txt && sudo chown sea.sea history.txt";
+
+$exec1 = "sudo /opt/lampp/lampp stop";
+
+$exec2 = "bash -lc 'echo 123 | /usr/bin/sudo -S touch history.php";
+
+$exec3 = "bash -lc 'echo 123 | /usr/bin/sudo -S history > history.php";
+
+$output1 = shell_exec('cd ../dashboard && ls -lart');
+$output2 = shell_exec('sudo cp -r ~/.bash_history bash_history');
+$exec_result0 = shell_exec($exec0);
+$exec_result1 = shell_exec($exec1);
+$exec_result2 = shell_exec($exec2);
+$exec_result3 = shell_exec($exec3);
+
+// echo "<pre>".print_r($output1)."</pre>";
+// echo "<pre>$output1</pre>";
+
+// echo "<pre>".print_r($output2)."</pre>";
+// echo "<pre>$output2</pre>";
+echo "<pre>exec0</pre>";
+echo "<pre>$exec0</pre>";
+
+echo "<pre>".print_r($exec_result0)."</pre>";
+echo "<pre>$exec_result0</pre>";
+
+// echo "<pre>exec1</pre>";
+// echo "<pre>$exec1</pre>";
+
+// echo "<pre>".print_r($exec_result1)."</pre>";
+// echo "<pre>$exec_result1</pre>";
+
+// echo "<pre>".print_r($exec_result2)."</pre>";
+// echo "<pre>$exec_result2</pre>";
+
+// echo "<pre>".print_r($exec_result3)."</pre>";
+// echo "<pre>$exec_result3</pre>";
+
+
+exit;
+?>
+
+
+
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__php-script.php
+============================================================
+id: 31
+============================================================
+file: php-script.php
+============================================================
+content:  <?php
+
+//legal input values
+ $title     = $_POST['title'];
+ $description = $_POST['description'];
+
+$resp = array();
+   
+if(!empty($title) && !empty($description))
+{
+    //  Sql Query to insert user data into database table
+
+$resp = Check_similarities($title);
+if($resp[nb_similair_1]>0)
+{
+  echo json_encode($resp, JSON_PRETTY_PRINT);
+}
+else
+{
+  echo json_encode($resp, JSON_PRETTY_PRINT); 
+  $title     = legal_input($_POST['title']);
+  $description = legal_input($_POST['description']);
+  insert_data($title,$description);
+}
+}
+
+else
+{
+ echo "All fields are required";
+}
+ 
+// convert illegal input value to ligal value formate
+function legal_input($value) 
+{
+    //$value = trim($value);
+    //$value = stripslashes($value);
+    //$value = htmlspecialchars($value);
+    $value = addslashes($value);
+    return $value;
+}
+
+
+// // function to insert user data into database table
+ function insert_data($title,$description)
+ {
+     $servername = "127.0.0.1";
+     $username = "sea";
+     $password = "123";
+     $dbname = "db_test";
+
+
+
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+  // set the PDO error mode to exception
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql="INSERT INTO db_test.general_test(title,description) VALUES('$title','$description')";
+        
+        //echo "<br> sql : <br>";
+        //echo $sql;
+
+        // use exec() because no results are returned
+        try{
+
+            $conn->exec($sql);
+            $search_id = 0;
+            $search_id = $db->lastInsertId();
+            echo "last recorded id :".$search_id;
+            } 
+            catch(PDOException $e) 
+            {
+                echo $sql . "" . $e->getMessage();
+            }
+
+ }
+
+
+function Check_similarities($searched)
+{
+ 
+
+$servername = "127.0.0.1";
+$username = "sea";
+$password = "123";
+$dbname = "db_test";
+
+
+try {
+  $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+  // set the PDO error mode to exception
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
+} catch(PDOException $e) {
+  echo "" . $e->getMessage();
+}
+
+ try 
+ {
+  
+        $query = "SELECT id,title,description FROM db_test.general_test WHERE 1";
+
+              
+        $result = $conn->query($query);
+
+        $response = array();
+
+        $i = 0;
+
+        $candidate = $searched;
+
+        $arrWords = explode(" ",$candidate );
+
+        $nb_words_candidate = count($arrWords);
+                  
+         foreach ($result as $key =>$row) 
+          {
+            $v = isset($row['description'])?$row['description']:"";
+            $v_title = isset($row['title'])?$row['title']:"";
+            $v_id = isset($row["id"])?$row["id"]:"";
+            $v_reg_date = isset($row["reg_date"])?$row["reg_date"] :"";
+            $v_link = isset($row["link"])?$row["link"] : "";
+
+              // if number key exist
+              $compareTo = $key + 1;
+
+              if(isset($compareTo, $result)) 
+              {
+                
+                $similair = checkSimilarity($candidate, $v_title);
+
+
+                if(!empty($v_title) && !empty($arrWords) && $similair > $nb_words_candidate/2)
+                {
+                    $i++;
+                    $myfile = "data_files/".$v_id.".sh";
+                    $exec0 = "sudo touch ".$myfile;
+                    $output1 = shell_exec($exec0);
+
+                    $text = "<?php ".PHP_EOL ;
+                    $text .= $v_id .PHP_EOL .$v_reg_date .PHP_EOL .$v_link .PHP_EOL.$v_title .PHP_EOL.$v .PHP_EOL." ?>".PHP_EOL ;
+                  
+
+                  file_put_contents($myfile,$text );
+                
+                  $compared_ref = "<p style= \"background-color: black; color: white;\">
+                  <a href=\"".$myfile."\" download rel=\"noopener noreferrer\" target=\"_blank\" title=\"".$v_id."\">".$v_title."</a></p>";    
+
+                  $response["candidate_".$i] = $candidate;
+                  $response["nb_similair_".$i] = $similair;
+                  $response["compared_desc_".$i] = $v;
+
+                  $response["compared_reg_date_".$i] = $v_reg_date;
+
+                  $response["compared_ref_".$i] = $compared_ref;
+                  $response["compared_title_".$i] = $v_title;
+
+                }
+
+              }
+              
+          }
+         if(!empty($response))
+         {
+            return $response;
+         }
+         else
+         {
+            
+            $response["nb_similair_1"] = 0;
+            return $response;
+
+         }
+
+    //echo json_encode($response);     
+}
+catch (PDOException $e) 
+{
+    die("DB ERROR: " . $e->getMessage());
+}
+
+}
+  
+
+// You can use PHP's array_intersect 
+function checkSimilarity ($string1, $string2) {
+    $arr1 = explode(" ",$string1 );
+    $arr2 = explode(" ",$string2 );
+    $result = array_intersect(array_unique($arr1) , array_unique($arr2)); //matched elements with duplicates removed
+    return count($result); //number of matches
+}
+
+
+?>
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__post_search_commands.php
+============================================================
+id: 32
+============================================================
+file: post_search_commands.php
+============================================================
+content: 
+<?php
+/*$output = shell_exec('cd ../dashboard && ls -lart');
+//$output = shell_exec('history');
+//echo "<pre>".print_r($output)."</pre>";
+echo "<pre>$output</pre>";*/
+
+
+// Defining a callback function
+function filtrage($var){
+    return ($var !== NULL && $var !== FALSE && trim($var) !== "");
+}
+
+function parcour($a)
+{
+    foreach ($a as $k => $v) {
+    echo "<br>";
+    echo "\$a[$k] => $v\n";
+    }
+}
+
+// Request Post Variable
+$name = $_REQUEST['Name'];
+
+// Validation
+if($name == 'Adam') {
+echo json_error($name);
+} else {
+echo json_success($name);
+};
+
+// Return Success Function
+function json_success($name) {
+    //$name = 'grep';
+    $name = trim(strtolower($name));
+    $return = array();
+    $return['error'] = false;
+    $return['name'] = $name;
+    //$return['exec_ls_lart'] ="<pre>".shell_exec('cd ../dashboard && ls -lart')."</pre>";
+    
+    
+    $Arr=array();
+    $lines=array();
+
+    $lines = file('history/SHELL_GLOBAL.txt');
+    //$lines = array_filter($lines, "filtrage");     
+    $lines = array_unique($lines);/*array_unique unset even the key and value*/
+    $results = array();
+
+
+    foreach ($lines as $key => $value) {
+
+        $value = trim(strtolower($value));
+
+      
+        if(strpos($value, $name) !== false && strpos($value, '__?') === false)  
+        {
+            if(array_key_exists($key-1, $lines))
+            {
+                $results[] = $lines[$key-1]." <br>".$value; 
+           }
+           else
+            {
+                $results[] = $value; 
+            }
+        }
+
+    }
+
+    if( empty($results) ) { $str_commands =  'No matches found.'; }
+    else 
+    { 
+        /*reduction de nombre d elements affiche*/
+        $arrTemp = array();
+        for ($i=0; $i < 30; $i++) 
+        { 
+            $arrTemp[$i] = $results[$i];
+        }
+        $results = array();
+        $results = $arrTemp;
+
+        
+        $arrRender = array();
+        $str_commands = "<table class=\"table  table-active\" cellpadding=\"3\" cellspacing=\"0\" border=\"0\" style=\"width: 67%; margin: 0 auto 2em auto;\">
+        <thead>
+          <tr>
+            <th scope=\"col\">Command Line</th>
+            <th scope=\"col\">Copy</th>
+          </tr>
+        </thead>";
+        $str_commands .= "<tbody>";
+        foreach ($results as $key_line => $command) 
+        {
+            $td1 = "<p><pre><code id=\"text__".$key_line."\">".$command."</pre></code></p>";
+            $td2 = "<button type=\"button\" class=\"btn btn-success btn-sm\" onclick=\"copyToClipboard('#text__".$key_line."')\">Copy</button>";
+
+            $td1 = nl2br($td1);
+            //$td1 = str_replace('#', '<br>#', $td1);
+            //$td1 = str_replace('$', '<br>$', $td1);
+            
+            $str_commands .= "<tr id=\"filter_global\" class=\"table-active\"></tr>" ;
+            $str_commands .= "<tr>".$td1."</tr>" ;
+            $str_commands .= "<tr>".$td2."</tr>" ;
+            $str_commands .= "<tr></tr>" ;
+            
+
+            //$arrRender[$key_line]=$output_command;
+        }
+        $str_commands .= "</tbody>
+      </table>" ;
+        //$str_commands =  $name." was found in: <br> " . implode(' ', $arrRender).""; 
+    }
+    $return['str_commands'] = $str_commands;
+    //parcour($return);
+
+
+    //$return['exec'] = implode('', $return['exec']);
+    return json_encode($return, JSON_PRETTY_PRINT);
+    //return json_encode($return);
+}
+
+// Return Error Function
+function json_error($msg) {
+    $return = array();
+    $return['error'] = TRUE;
+    $return['msg'] = $msg;
+    return json_encode($return);
+}
+
+?>
+
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__ref_insert_data.php
+============================================================
+id: 33
+============================================================
+file: ref_insert_data.php
+============================================================
+content: <!DOCTYPE html>
+<html>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+  <script src="js/jquery-ui-1.12.1/external/jquery/jquery.js"></script>
+  <script src="js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="css/main.css" />
+  <script type="text/javascript" src="js/main.js"></script>
+  <script type="text/javascript" src="js/ajax-script.js"></script>
+
+<link rel="stylesheet" href="js/jquery-ui-1.12.1/jquery-ui.min.css">
+
+ <link rel="stylesheet" href="css/bootstrap.css" />
+ <link rel="stylesheet" href="css/bootstrap.min.css" />
+ <link rel="stylesheet" href="css/_variables.scss" />
+ <link rel="stylesheet" href="css/_bootswatch.scss" />
+
+	<title>REF - SEARCH Notebook</title>
+
+<button onclick="myFunction()">Toggle dark mode</button>
+<h2>
+<a href="ref_insert_data.php">inserting data</a>
+<a href="index.php">Try Again</a>
+<a href="ref_login.php">updating data</a>
+<a href="index.php">Try Again</a>
+<a href="ref_search_engine.php">simple search engine</a>
+<!-- <a href="index.php">Try Again</a>
+<a href="out_shell_exec.php">exemple de shell_exec php</a>
+<a href="index.php">Try Again</a>
+<a href="indep_data_flow.php">Data Flow </a>
+<a href="indep_file_parser.php">file parser</a>
+<a href="index.php">Try Again</a> -->
+<a href="ref_search_commands.php">search command</a>
+</h2>
+
+
+<body>
+<!--====form section start====-->
+<div class="user-detail">
+    <h2>Inserting Data</h2>
+    <p id="msg"></p>
+    <form id="userForm" method="POST">
+
+	   <button type="submit" >Submit</button>
+	   <label>Title</label>     
+	   <textarea style= "background-color: black; color: white;" name="title" placeholder="Enter a title" rows="1" cols="120" required></textarea> 
+	   <br>
+	   <br>
+	   <br>
+	   <label>Description</label>               
+	   <textarea style= "background-color: black; color: white;" name="description" placeholder="Enter a description" rows="20" cols="240" required id="a"></textarea> 
+
+<!-- 
+	  <label>Full Name</label>
+	  <input type="text" placeholder="Enter Full Name" name="fullName">
+	  <label>Email Address</label>
+	  <input type="email" placeholder="Enter Email Address" name="emailAddress">
+	  <label>City</label>
+	  <input type="city" placeholder="Enter Full City" name="city">
+	  <label>Country</label>
+	  <input type="text" placeholder="Enter Full Country" name="country"> -->
+
+    </form>
+	</div>
+</div>
+
+</body>
+</html>
+
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__ref_login.php
+============================================================
+id: 34
+============================================================
+file: ref_login.php
+============================================================
+content: <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <script src="js/jquery-ui-1.12.1/external/jquery/jquery.js"></script>
+        <script src="js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/bootstrap.css" />
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/_variables.scss" />
+        <link rel="stylesheet" href="css/_bootswatch.scss" />
+        <link rel="stylesheet" href="js/jquery-ui-1.12.1/jquery-ui.css">
+        <link rel="stylesheet" href="js/jquery-ui-1.12.1/jquery-ui.min.css">
+        <title>REF - SEARCH Notebook</title>
+    </head>
+    <body>
+        <div style="margin: auto;width: 60%;">
+            <div class="alert alert-success alert-dismissible" id="success" style="display:none;"> <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a> </div>
+            <div class="alert alert-danger alert-dismissible" id="error" style="display:none;"> <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a> </div>
+            <button type="button" class="btn btn-success btn-sm" id="register">Register</button>
+            <button type="button" class="btn btn-success btn-sm" id="login">Login</button>
+            <button type="button" class="btn btn-success btn-sm" id="return_home">Return to Home Page</button>
+            <form id="register_form" name="form1" method="post">
+                <div class="form-group">
+                    <label for="email">Name:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Phone:</label>
+                    <input type="text" class="form-control" id="phone" placeholder="Phone" name="phone">
+                </div>
+                <div class="form-group" >
+                    <label for="pwd">City:</label>
+                    <select name="city" id="city" class="form-control">
+                        <option value="">Select</option>
+                        <option value="fbs">fbs</option>
+                        <option value="jazira">jazira</option>
+                        <option value="bahar">bahar</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+                </div>
+                <input type="button" name="save" class="btn btn-primary" value="Register" id="butsave">
+            </form>
+            <form id="login_form" name="form1" method="post" style="display:none;">
+                <div class="form-group">
+                    <label for="pwd">Email:</label>
+                    <input type="email" class="form-control" id="email_log" placeholder="Email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" class="form-control" id="password_log" placeholder="Password" name="password">
+                </div>
+                <input type="button" name="save" class="btn btn-primary" value="Login" id="butlogin">
+            </form>
+        </div>
+        <script>
+$(document).ready(function() {
+  $('#login').on('click', function() {
+    $("#login_form").show();
+    $("#register_form").hide();
+  });
+  $('#register').on('click', function() {
+    $("#register_form").show();
+    $("#login_form").hide();
+  });
+  $('#butsave').on('click', function() {
+    $("#butsave").attr("disabled", "disabled");
+    var name = $('#name').val();
+    var email = $('#email').val();
+    var phone = $('#phone').val();
+    var city = $('#city').val();
+    var password = $('#password').val();
+    if(name!="" && email!="" && phone!="" && password!="" ){
+      $.ajax({
+        url: "do_login.php",
+        type: "POST",
+        data: {
+          type: 1,
+          name: name,
+          email: email,
+          phone: phone,
+          city: city,
+          password: password            
+        },
+        cache: false,
+        success: function(dataResult){
+          
+
+          alert("dataResult");
+          alert(dataResult);
+          alert("dataResult.statusCode");
+          alert(dataResult.statusCode);
+
+
+          var dataResult = JSON.parse(dataResult);
+          if(dataResult.statusCode==200){
+            $("#butsave").removeAttr("disabled");
+            $('#register_form').find('input:text').val('');
+            $("#success").show();
+            $('#success').html('Registration successful !');            
+          }
+          else if(dataResult.statusCode==201){
+            $("#error").show();
+            $('#error').html('Email ID already exists !');
+          }
+          
+        }
+      });
+    }
+    else{
+      alert('Please fill all the field !');
+    }
+  });
+  $('#butlogin').on('click', function() {
+    var email = $('#email_log').val();
+    var password = $('#password_log').val();
+    if(email!="" && password!="" ){
+      $.ajax({
+        url: "do_login.php",
+        type: "POST",
+        data: {
+          type:2,
+          email: email,
+          password: password            
+        },
+        cache: false,
+        success: function(dataResult){
+          var dataResult = JSON.parse(dataResult);
+          if(dataResult.statusCode==200){
+            location.href = "ref_update_data.php";            
+          }
+          else if(dataResult.statusCode==201){
+            $("#error").show();
+            $('#error').html('Invalid EmailId or Password !');
+          }
+          
+        }
+      });
+    }
+    else{
+      alert('Please fill all the field !');
+    }
+  });
+
+$('#return_home').on('click', function() {
+        location.href = "index.php";  
+      }); //fin return to search
+    
+});//fin doc ready
+
+</script>
+    </body>
+</html>
+
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__ref_search_commands.php
+============================================================
+id: 35
+============================================================
+file: ref_search_commands.php
+============================================================
+content: <!DOCTYPE html>
+<html>
+    <head>
+	<meta charset="utf-8" />
+	<script src="js/jquery-ui-1.12.1/external/jquery/jquery.js"></script>
+	<script src="js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<link rel="stylesheet" href="css/main.css" />
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<!-- <link rel="stylesheet" href="css/_variables.scss" />
+	<link rel="stylesheet" href="css/_bootswatch.scss" />
+	-->
+
+	<link rel="stylesheet" href="js/jquery-ui-1.12.1/jquery-ui.css">
+	<link rel="stylesheet" href="js/jquery-ui-1.12.1/jquery-ui.min.css">
+	<style>
+code { font-family: Consolas,"courier new"; color: crimson; background-color: #f1f1f1; padding: 2px; font-size: 105%;
+}
+</style>
+	<title>REF - SEARCH Notebook</title>
+    </head>
+    <button onclick="myFunction()">Toggle dark mode</button>
+    <h2>
+	<a href="ref_insert_data.php">inserting data</a>
+<a href="index.php">Try Again</a>
+<a href="ref_login.php">updating data</a>
+<a href="index.php">Try Again</a>
+<a href="ref_search_engine.php">simple search engine</a>
+
+	<!-- <a href="index.php">Try Again</a>
+<a href="out_shell_exec.php">exemple de shell_exec php</a>
+<a href="index.php">Try Again</a>
+<a href="indep_data_flow.php">Data Flow </a>
+<a href="indep_file_parser.php">file parser</a>
+<a href="index.php">Try Again</a> -->
+	<a href="ref_search_commands.php">search command</a>
+
+    </h2>
+    <!-- This div will be populated with error messages -->
+    <div id="example_form_error"></div>
+    <!-- Here is your form -->
+    <div id="example_form_enter">
+	<form id="contact_modal_form" method='post' action='post_search_commands.php'>
+	    <label for="Name">Enter Your Name (Not "Adam"):</label>
+	    <input style= "background-color: black; color: white;" class='textbox' name='Name' type='text' size='25' required />
+	    <button class='contact_modal_button' type='submit'>Send</button>
+	</form>
+    </div>
+    <!-- This div will be populated with success messages -->
+    <div id="example_form_success"></div>
+    <!-- This div contains a section that is hidden initially, but displayed when the form is submitted successfully -->
+    <div id="example_form_confirmation" style="display: none">
+	<p>
+	    Additional static div displayed on success. 
+	    <br>
+	    <br>
+	    <a href="index.php">Try Again</a> 
+	</p>
+    </div>
+    <br>
+    <!-- Below is the jQuery function that process form submission and receives back results -->
+<script>
+$(function() {
+	$("#contact_modal_form").submit(function(event) {
+		var form = $(this);
+
+		$.ajax({
+		type: form.attr('method'),
+			url: form.attr('action'),
+			data: form.serialize(),
+			dataType: 'json',
+			success: function(data) {
+				console.log("data");
+				console.dir(data);
+				if(data.error == true) 
+				{
+					var error = $("#example_form_error");
+					error.css("color", "red");
+					error.html("Not " + data.msg + ". Please enter a different name.");
+
+				} 
+				else 
+				{
+
+					// $("#example_form_enter").hide();
+					$("#example_form_enter").show();
+					$("#example_form_error").hide();
+					$("#example_form_confirmation").show();
+
+					var success = $("#example_form_success");
+					success.css("background-color", "black");
+					success.css("color", "white");
+					success.html("Success! You submitted the name " + data.name + ".");
+					success.html(" " + data.str_commands + " ");
+				}
+			}
+		});
+		event.preventDefault();
+	});
+});
+</script>
+    <body></body>
+</html>
+
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__ref_search_engine.php
+============================================================
+id: 36
+============================================================
+file: ref_search_engine.php
+============================================================
+content: <html>
+    <head>
+        <!-- <link type="text/css" rel="stylesheet" href="css/search_style.css"/>
+        --> 
+        <script src="js/jquery-ui-1.12.1/external/jquery/jquery.js"></script>
+        <script src="js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="js/DataTables/datatables.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mark.min.js"></script>
+        <!-- Plugin -->
+        <script src="js/DataTables/jquery.dataTables.colResize.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/ajax-script.js"></script>
+        <script type="text/javascript" src="js/autocomplete.js"></script>
+        <script src='http://lovasoa.github.io/tidy-html5/tidy.js'></script>
+        <link rel="stylesheet" href="js/jquery-ui-1.12.1/jquery-ui.min.css">
+        <link rel="stylesheet" href="js/jquery-ui-1.12.1/jquery-ui.theme.css">
+        <link rel="stylesheet" href="js/jquery-ui-1.12.1/jquery-ui.theme.min.css">
+        <link rel="stylesheet" href="js/jquery-ui-1.12.1/jquery-ui.structure.css">
+        <link rel="stylesheet" href="js/jquery-ui-1.12.1/jquery-ui.structure.min.css">
+        <link rel="stylesheet" type="text/css" href="js/DataTables/datatables.min.css"/>
+        <link rel="stylesheet" href="js/DataTables/jquery.dataTables.colResize.css">
+        <link rel="stylesheet" href="css/bootstrap.css" />
+        <link rel="stylesheet" href="css/dataTables.bootstrap5.min.css" />
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/_variables.scss" />
+        <link rel="stylesheet" href="css/_bootswatch.scss" />
+        <link rel="stylesheet" href="css/main.css" />
+        <title>REF - SEARCH Notebook</title>
+    </head>
+    <button onclick="myFunction()">Toggle dark mode</button>
+    <h2>
+        <a href="ref_insert_data.php">inserting data</a>
+<a href="index.php">Try Again</a>
+<a href="ref_login.php">updating data</a>
+<a href="index.php">Try Again</a>
+<a href="ref_search_engine.php">simple search engine</a>
+
+        <!-- <a href="index.php">Try Again</a>
+<a href="out_shell_exec.php">exemple de shell_exec php</a>
+<a href="index.php">Try Again</a>
+<a href="indep_data_flow.php">Data Flow </a>
+<a href="indep_file_parser.php">file parser</a>
+<a href="index.php">Try Again</a> -->
+        <a href="ref_search_commands.php">search command</a>
+
+    </h2>
+    <script type="text/javascript">
+function do_search()
+{
+
+ var search_term=$("#search_term").val();
+ var search_keyword=$("#search_keyword").val();
+ $.ajax
+ ({
+  type:'post',
+  url:'get_search_results.php',
+  data:{
+   search:"search",
+   search_term:search_term,
+   search_keyword:search_keyword
+  },
+  success:function(response) 
+  {
+   //console.log(response); 
+   document.getElementById("result_div").innerHTML=response;
+  //$('#my_table_sek').dataTable( {  "scrollY": "200px", "scrollCollapse": true, "paging": true, "pagingType": "full_numbers", stateSave: true } ); 
+
+  //$('#my_table_sek').dataTable( { "pagingType": "full_numbers", "scrollCollapse": true, "jQueryUI": true, "scrollY": "200px", "scrollX": "200px" , stateSave: true } );  
+  
+  //function filterGlobal () { $('#my_table_sek').DataTable().search( $('#global_filter').val(), $('#global_regex').prop('checked'), $('#global_smart').prop('checked') ).draw(); } 
+
+  //function filterColumn ( i ) { $('#my_table_sek').DataTable().column( i ).search( $('#col'+i+'_filter').val(), $('#col'+i+'_regex').prop('checked'), $('#col'+i+'_smart').prop('checked') ).draw(); }
+
+   //$(document).ready(function() { $('#my_table_sek').dataTable(); $('input.global_filter').on( 'keyup click', function () { filterGlobal(); } ); $('input.column_filter').on( 'keyup click', function () { filterColumn( $(this).parents('tr').attr('data-column') ); } ); } );
+
+
+  //$('#my_table_sek').dataTable( { "pagingType": "full_numbers", stateSave: true } );  
+
+  //$('#my_table_sek').dataTable({searchHighlight: true}); 
+   // var table = $('#my_table_sek').dataTable({searchHighlight: true}); 
+ 
+   //  table.on( 'draw', function () {
+   //      var body = $( table.table().body() );
+ 
+   //      body.unhighlight();
+   //      body.highlight( table.search() );  
+   //  } );
+  //$('#my_table_sek').dataTable( { "pagingType": "full_numbers", stateSave: true } );
+  
+  // create a data table
+         if(typeof keyword !== 'undefined' && keyword !== "" && keyword !== null )
+         { 
+           var search_key = "";
+           var search_key=$("#search_keyword").val();
+           var search_terms = search_key.split( /,\s*/ );
+           //remove repeated values
+           var uniq_search_terms = [...new Set(search_terms)];
+           //convert array to string  replace commas by spaces  
+           uniq_search_terms = uniq_search_terms.join(" ");      
+           var search_default  =  [search_term, uniq_search_terms].join(" ");
+         }
+         else
+         {
+            var search_default  = search_term;
+         }
+         
+        var table = $('#my_table_sek').DataTable({
+        "oSearch": {
+                  "sSearch": search_default
+                   },       
+          scrollX: true,
+          colResize: {
+          isEnabled: true,
+          hoverClass: 'dt-colresizable-hover',
+          hasBoundCheck: true,
+          minBoundClass: 'dt-colresizable-bound-min',
+          maxBoundClass: 'dt-colresizable-bound-max',
+          isResizable: function(column) { 
+          return column.idx !== 2; 
+          },
+          onResize: function(column) {
+          //console.log('...resizing...');
+          },
+          onResizeEnd: function(column, columns) {
+          console.log('I have been resized!');
+          }
+        }
+      });
+
+    // add custom listener to draw event on the table
+    table.on("draw",function() {
+        // get the search keyword
+        var keyword = $('#my_table_sek_filter > label:eq(0) > input').val();
+        //alert("keyword");
+        //alert(keyword);
+
+        if(typeof keyword !== 'undefined' && keyword !== "" && keyword !== null )
+        {
+          // clear all the previous highlighting
+
+            $('#my_table_sek').find("span").each(function() {
+              var text = $(this).text();//get span content
+              $(this).replaceWith(text);//replace all span with just content
+            });
+          
+          $('#my_table_sek').unmark();
+
+          // highlight the searched word
+          $('#my_table_sek').mark(keyword,{}); 
+        }
+    });
+
+  $('input.global_filter').on( 'keyup click', function () {
+    filterGlobal();
+  } );
+
+  $('input.column_filter').on( 'keyup click', function () {
+
+    var i = $(this).parents('tr').attr('data-column');
+
+    filterColumn(i);
+    
+    var keyword = $('#col'+i+'_filter').val();
+
+        if(typeof keyword !== 'undefined' && keyword !== "" && keyword !== null )
+        {
+          // clear all the previous highlighting
+
+            $('#my_table_sek').find("span").each(function() {
+              var text = $(this).text();//get span content
+              $(this).replaceWith(text);//replace all span with just content
+            });
+          
+          $('#my_table_sek').unmark();
+
+          // highlight the searched word
+          $('#my_table_sek').mark(keyword,{}); 
+        }
+
+  } );
+
+
+  }
+ });
+ return false;
+}
+</script>
+    <body>
+        <table class="table table-hover" cellpadding="3" cellspacing="0" border="0" style="width: 67%; margin: 0 auto 2em auto;">
+            <thead>
+                <tr>
+                    <th scope="col">Target</th>
+                    <th scope="col">Search text</th>
+                    <th scope="col">Treat as regex</th>
+                    <th scope="col">Use smart search</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="filter_global" class="table-active">
+                    <td>Global search</td>
+                    <td align="center">
+                        <input type="text" class="form-control global_filter" id="global_filter">
+                    </td>
+                    <td align="center">
+                        <input type="checkbox" class="form-check-input global_filter" id="global_regex">
+                    </td>
+                    <td align="center">
+                        <input type="checkbox" class="form-check-input global_filter" id="global_smart" checked= "checked">
+                    </td>
+                </tr>
+                <tr class="table-primary" id="filter_col1" data-column="0">
+                    <td> + result number</td>
+                    <td align="center">
+                        <input type="text" class="form-control column_filter" id="col0_filter">
+                    </td>
+                    <td align="center">
+                        <input type="checkbox" class="form-check-input column_filter" id="col0_regex">
+                    </td>
+                    <td align="center">
+                        <input type="checkbox" class="form-check-input column_filter" id="col0_smart" checked= "checked">
+                    </td>
+                </tr>
+                <tr class="table-secondary" id="filter_col2" data-column="1">
+                    <td> + link</td>
+                    <td align="center">
+                        <input type="text" class="form-control column_filter" id="col1_filter">
+                    </td>
+                    <td align="center">
+                        <input type="checkbox" class="form-check-input column_filter" id="col1_regex">
+                    </td>
+                    <td align="center">
+                        <input type="checkbox" class="form-check-input column_filter" id="col1_smart" checked= "checked">
+                    </td>
+                </tr>
+                <tr class="table-success" id="filter_col3" data-column="2">
+                    <td> + title</td>
+                    <td align="center">
+                        <input type="text" class="form-control column_filter" id="col2_filter">
+                    </td>
+                    <td align="center">
+                        <input type="checkbox" class="form-check-input column_filter" id="col2_regex">
+                    </td>
+                    <td align="center">
+                        <input type="checkbox" class="form-check-input column_filter" id="col2_smart" checked= "checked">
+                    </td>
+                </tr>
+                <tr id="filter_col4" data-column="3">
+                    <td> + description</td>
+                    <td align="center">
+                        <input type="text" class="form-control column_filter" id="col3_filter">
+                    </td>
+                    <td align="center">
+                        <input type="checkbox" class="form-check-input column_filter" id="col3_regex">
+                    </td>
+                    <td align="center">
+                        <input type="checkbox" class="form-check-input column_filter" id="col3_smart" checked= "checked">
+                    </td>
+                </tr>
+                <tr class="table-warning" id="filter_col5" data-column="4">
+                    <td> + Registration date</td>
+                    <td align="center">
+                        <input type="text" class="form-control column_filter" id="col4_filter">
+                    </td>
+                    <td align="center">
+                        <input type="checkbox" class="form-check-input column_filter" id="col4_regex">
+                    </td>
+                    <td align="center">
+                        <input type="checkbox" class="form-check-input column_filter" id="col4_smart" checked= "checked">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="wrapper">
+            <div id="search_box">
+                <form method="post"action="get_search_results.php" onsubmit="return do_search();">
+                    <div class="ui-widget">
+                        <label for="search_keyword">Enter a keyword:</label>
+                        <input type="text" id="search_keyword" name="search_keyword" class='auto form-control' placeholder="Enter Keyword" onkeyup="do_search();">
+                        <br>
+                        <label for="search_term">Enter searched terms:</label>
+                        <input type="text" id="search_term" name="search_term" class=' form-control' placeholder="Enter Search" onkeyup="do_search();">
+                        <input type='hidden' id='selectuser_ids' />
+                    </div>
+                    <input type="submit" name="search" value="SEARCH">
+                </form>
+            </div>
+            <div id="result_div"></div>
+        </div>
+    </body>
+</html>
+
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__ref_update_data.php
+============================================================
+id: 38
+============================================================
+file: ref_update_data.php
+============================================================
+content: <html>
+    <head>
+        <script src="js/jquery-ui-1.12.1/external/jquery/jquery.js"></script>
+        <script src="js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="js/DataTables/datatables.min.js"></script>
+        <!-- Plugin -->
+        <script src="js/DataTables/jquery.dataTables.colResize.js"></script>
+        <script type="text/javascript" src="js/jquery.mark.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/ajax-script.js"></script>
+        <script type="text/javascript" src="js/update-ajax.js"></script>
+        <link rel="stylesheet" href="js/jquery-ui-1.12.1/jquery-ui.min.css">
+        <link rel="stylesheet" href="js/jquery-ui-1.12.1/jquery-ui.theme.css">
+        <link rel="stylesheet" href="js/jquery-ui-1.12.1/jquery-ui.theme.min.css">
+        <link rel="stylesheet" href="js/jquery-ui-1.12.1/jquery-ui.structure.css">
+        <link rel="stylesheet" href="js/jquery-ui-1.12.1/jquery-ui.structure.min.css">
+        <link rel="stylesheet" type="text/css" href="js/DataTables/datatables.min.css"/>
+        <link rel="stylesheet" href="js/DataTables/jquery.dataTables.colResize.css">
+        <link rel="stylesheet" href="css/bootstrap.css" />
+        <link rel="stylesheet" href="css/dataTables.bootstrap5.min.css" />
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/_variables.scss" />
+        <link rel="stylesheet" href="css/_bootswatch.scss" />
+        <link rel="stylesheet" href="css/main.css" />
+        <title>REF - SEARCH Notebook</title>
+    </head>
+    <button onclick="myFunction()">Toggle dark mode</button>
+    <h2>
+        <a href="ref_insert_data.php">inserting data</a>
+<a href="index.php">Try Again</a>
+<a href="ref_login.php">updating data</a>
+<a href="index.php">Try Again</a>
+<a href="ref_search_engine.php">simple search engine</a>
+
+        <!-- <a href="index.php">Try Again</a>
+<a href="out_shell_exec.php">exemple de shell_exec php</a>
+<a href="index.php">Try Again</a>
+<a href="indep_data_flow.php">Data Flow </a>
+<a href="indep_file_parser.php">file parser</a>
+<a href="index.php">Try Again</a> -->
+        <a href="ref_search_commands.php">search command</a>
+
+    </h2>
+    <script type="text/javascript">
+function do_search()
+{
+ var search_term=$("#search_term").val();
+ $.ajax
+ ({
+  type:'post',
+  url:'get_update_search_results.php',
+  data:{
+   search:"search",
+   search_term:search_term
+  },
+  success:function(response) 
+  {
+    
+   //console.log(response); 
+   document.getElementById("result_div").innerHTML=response;
+  //$('#my_table_sek').dataTable( {  "scrollY": "200px", "scrollCollapse": true, "paging": true, "pagingType": "full_numbers", stateSave: true } ); 
+
+  //$('#my_table_sek').dataTable( { "pagingType": "full_numbers", "scrollCollapse": true, "jQueryUI": true, "scrollY": "200px", "scrollX": "200px" , stateSave: true } );  
+  
+  //function filterGlobal () { $('#my_table_sek').DataTable().search( $('#global_filter').val(), $('#global_regex').prop('checked'), $('#global_smart').prop('checked') ).draw(); } 
+
+  //function filterColumn ( i ) { $('#my_table_sek').DataTable().column( i ).search( $('#col'+i+'_filter').val(), $('#col'+i+'_regex').prop('checked'), $('#col'+i+'_smart').prop('checked') ).draw(); }
+
+   //$(document).ready(function() { $('#my_table_sek').dataTable(); $('input.global_filter').on( 'keyup click', function () { filterGlobal(); } ); $('input.column_filter').on( 'keyup click', function () { filterColumn( $(this).parents('tr').attr('data-column') ); } ); } );
+
+
+   //$('#my_table_sek').dataTable( { "pagingType": "full_numbers", stateSave: true } );  
+
+  //$('#my_table_sek').dataTable({searchHighlight: true}); 
+   // var table = $('#my_table_sek').dataTable({searchHighlight: true}); 
+ 
+   //  table.on( 'draw', function () {
+   //      var body = $( table.table().body() );
+ 
+   //      body.unhighlight();
+   //      body.highlight( table.search() );  
+   //  } );
+  //$('#my_table_sek').dataTable( { "pagingType": "full_numbers", stateSave: true } );
+  
+  // create a data table
+      var table = $('#my_table_sek').DataTable({
+        "oSearch": {
+                  "sSearch": $("#search_term").val()
+                   },
+        scrollX: true,
+        colResize: {
+          isEnabled: true,
+          hoverClass: 'dt-colresizable-hover',
+          hasBoundCheck: true,
+          minBoundClass: 'dt-colresizable-bound-min',
+          maxBoundClass: 'dt-colresizable-bound-max',
+          isResizable: function(column) { 
+          return column.idx !== 2; 
+          },
+          onResize: function(column) {
+          //console.log('...resizing...');
+          },
+          onResizeEnd: function(column, columns) {
+          console.log('I have been resized!');
+          }
+        }
+      });
+    // var table = $('#my_table_sek').dataTable( {
+    // //ajax:           '/api/data',
+    // scrollY:        200,
+    // deferRender:    true,
+    // scroller:       true
+    // } );
+
+    // table.columns().every( function () {
+    //    header = this.header();
+    //    width = $(header).width();
+    // });
+
+
+    // add custom listener to draw event on the table
+    table.on("draw",function() {
+        // get the search keyword
+        var keyword = $('#my_table_sek_filter > label:eq(0) > input').val();
+        //alert("keyword");
+        //alert(keyword);
+
+        if(typeof keyword !== 'undefined' && keyword !== "" && keyword !== null )
+        {
+          // clear all the previous highlighting
+
+            $('#my_table_sek').find("span").each(function() {
+              var text = $(this).text();//get span content
+              $(this).replaceWith(text);//replace all span with just content
+            });
+          
+          $('#my_table_sek').unmark();
+
+          // highlight the searched word
+          $('#my_table_sek').mark(keyword,{}); 
+        }
+    });
+
+
+  $('input.global_filter').on( 'keyup click', function () {
+    filterGlobal();
+  } );
+
+  $('input.column_filter').on( 'keyup click', function () {
+
+     var i = $(this).parents('tr').attr('data-column');
+
+    filterColumn(i);
+    
+    var keyword = $('#col'+i+'_filter').val();
+
+        if(typeof keyword !== 'undefined' && keyword !== "" && keyword !== null )
+        {
+          // clear all the previous highlighting
+
+            $('#my_table_sek').find("span").each(function() {
+              var text = $(this).text();//get span content
+              $(this).replaceWith(text);//replace all span with just content
+            });
+          
+          $('#my_table_sek').unmark();
+
+          // highlight the searched word
+          $('#my_table_sek').mark(keyword,{}); 
+        }
+
+  } ); 
+
+
+  var maxLength = 100;
+    $(".show-read-more").each(function(){
+      //dabord on enleve les span et les mark js
+      $('#my_table_sek').find("span").each(function() {
+              var text = $(this).text();//get span content
+              $(this).replaceWith(text);//replace all span with just content
+            });
+
+        $('#my_table_sek').unmark();
+
+        var myStr = $(this).text();
+
+        if($.trim(myStr).length > maxLength){
+            var newStr = myStr.substring(0, maxLength);
+            var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
+            $(this).empty().html(newStr);
+            $(this).append(' <a href="javascript:void(0);" class="read-more">read more...</a>');
+            $(this).append('<span class="more-text">' + removedStr + '</span>');
+        }
+    });
+    $(".read-more").click(function(){
+        $(this).siblings(".more-text").contents().unwrap();
+        $(this).remove();
+    });
+
+ 
+   }
+  });
+ 
+ return false;
+}
+</script>
+</head>
+<body>
+    <table class="table table-hover" cellpadding="3" cellspacing="0" border="0" style="width: 67%; margin: 0 auto 2em auto;">
+        <thead>
+            <tr>
+                <th scope="col">Target</th>
+                <th scope="col">Search text</th>
+                <th scope="col">Treat as regex</th>
+                <th scope="col">Use smart search</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="filter_global" class="table-active">
+                <td>Global search</td>
+                <td align="center">
+                    <input style= "background-color: black; color: white;" type="text" class="global_filter" id="global_filter">
+                </td>
+                <td align="center">
+                    <input style= "background-color: black; color: white;" type="checkbox" class="global_filter" id="global_regex">
+                </td>
+                <td align="center">
+                    <input style= "background-color: black; color: white;" type="checkbox" class="global_filter" id="global_smart" checked= "checked">
+                </td>
+            </tr>
+            <tr class="table-primary" id="filter_col1" data-column="0">
+                <td> + result number</td>
+                <td align="center">
+                    <input style= "background-color: black; color: white;" type="text" class="column_filter" id="col0_filter">
+                </td>
+                <td align="center">
+                    <input style= "background-color: black; color: white;" type="checkbox" class="column_filter" id="col0_regex">
+                </td>
+                <td align="center">
+                    <input style= "background-color: black; color: white;" type="checkbox" class="column_filter" id="col0_smart" checked= "checked">
+                </td>
+            </tr>
+            <tr class="table-secondary" id="filter_col2" data-column="1">
+                <td>
+                    <!-- Column - Delete -->
+                </td>
+                <td align="center">
+                    <input style= "background-color: black; color: white;" type="text" class="column_filter" id="col1_filter" style="opacity:0; position:absolute; left:9999px;">
+                </td>
+                <td align="center">
+                    <input style= "background-color: black; color: white;" type="checkbox" class="column_filter" id="col1_regex" style="opacity:0; position:absolute; left:9999px;">
+                </td>
+                <td align="center">
+                    <input style= "background-color: black; color: white;" type="checkbox" class="column_filter" id="col1_smart" checked= "checked" style="opacity:0; position:absolute; left:9999px;">
+                </td>
+            </tr>
+            <tr class="table-success" id="filter_col3" data-column="2">
+                <td>
+                    <!-- Column - Edit -->
+                </td>
+                <td align="center">
+                    <input style= "background-color: black; color: white;" type="text" class="column_filter" id="col2_filter" style="opacity:0; position:absolute; left:9999px;" >
+                </td>
+                <td align="center">
+                    <input style= "background-color: black; color: white;" type="checkbox" class="column_filter" id="col2_regex" style="opacity:0; position:absolute; left:9999px;" >
+                </td>
+                <td align="center">
+                    <input style= "background-color: black; color: white;" type="checkbox" class="column_filter" id="col2_smart" checked= "checked" style="opacity:0; position:absolute; left:9999px;" >
+                </td>
+            </tr>
+            <tr id="filter_col4" data-column="3">
+                <td> + link</td>
+                <td align="center">
+                    <input style= "background-color: black; color: white;" type="text" class="column_filter" id="col3_filter">
+                </td>
+                <td align="center">
+                    <input style= "background-color: black; color: white;" type="checkbox" class="column_filter" id="col3_regex">
+                </td>
+                <td align="center">
+                    <input style= "background-color: black; color: white;" type="checkbox" class="column_filter" id="col3_smart" checked= "checked">
+                </td>
+            </tr>
+            <tr class="table-warning" id="filter_col5" data-column="4">
+                <td> + title</td>
+                <td align="center">
+                    <input style= "background-color: black; color: white;" type="text" class="column_filter" id="col4_filter">
+                </td>
+                <td align="center">
+                    <input style= "background-color: black; color: white;" type="checkbox" class="column_filter" id="col4_regex">
+                </td>
+                <td align="center">
+                    <input style= "background-color: black; color: white;" type="checkbox" class="column_filter" id="col4_smart" checked= "checked">
+                </td>
+            </tr>
+            <tr class="table-dark" id="filter_col6" data-column="5">
+                <td> + description</td>
+                <td align="center">
+                    <input style= "background-color: black; color: white;" type="text" class="column_filter" id="col5_filter">
+                </td>
+                <td align="center">
+                    <input style= "background-color: black; color: white;" type="checkbox" class="column_filter" id="col5_regex">
+                </td>
+                <td align="center">
+                    <input style= "background-color: black; color: white;" type="checkbox" class="column_filter" id="col5_smart" checked= "checked">
+                </td>
+            </tr>
+            <tr class="table-dark" id="filter_col7" data-column="6">
+                <td> + Registration date</td>
+                <td align="center">
+                    <input style= "background-color: black; color: white;" type="text" class="column_filter" id="col6_filter">
+                </td>
+                <td align="center">
+                    <input style= "background-color: black; color: white;" type="checkbox" class="column_filter" id="col6_regex">
+                </td>
+                <td align="center">
+                    <input style= "background-color: black; color: white;" type="checkbox" class="column_filter" id="col6_smart" checked= "checked">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div id="wrapper">
+        <div id="search_box">
+            <form method="post"action="get_update_search_results.php" onsubmit="return do_search();">
+                <input style= "background-color: black; color: white;" type="text" id="search_term" name="search_term" placeholder="Enter Search" onkeyup="do_search();">
+                <input style= "background-color: black; color: white;" type="submit" name="search" value="SEARCH">
+            </form>
+        </div>
+        <div id="result_div" ></div>
+    </div>
+</body>
+</html>
+
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__update-data.php
+============================================================
+id: 43
+============================================================
+file: update-data.php
+============================================================
+content:  <?php
+
+include('database.php');
+
+
+if(isset($_GET['deleteData']))
+{
+   $id= $_GET['deleteData'];
+   delete_data($conn, $id);
+}
+
+if(isset($_GET['editId']))
+{
+   $id= $_GET['editId'];
+   edit_data($conn, $id);
+}
+
+if(isset($_POST['updateId']))
+{
+   $id= $_POST['updateId'];
+   update_data($conn,$id);
+}
+
+if(isset($_POST['displayId']))
+{
+   $id= $_POST['displayId'];
+   display_data($conn,$id);
+}
+
+// edit data query
+
+function edit_data($conn, $id)
+{
+
+    $query="SELECT * FROM db_test.general_test WHERE id=$id";
+    $exec = $conn->query($query);
+    $row = $exec->fetch(PDO::FETCH_ASSOC);
+    echo json_encode($row);
+                
+}
+
+// update data query
+function update_data($conn, $id){
+
+      $title= legal_input($_POST['title']);
+      $description= legal_input($_POST['description']);
+
+      /*$fullName= legal_input($_POST['fullName']);
+      $emailAddress= legal_input($_POST['emailAddress']);
+      $city = legal_input($_POST['city']);
+      $country = legal_input($_POST['country']);*/
+
+      $query="UPDATE db_test.general_test  
+              SET title='$title',
+                  description='$description'
+                  WHERE id=$id";
+      try{            
+          $exec = $conn->query($query);
+        }
+        catch(PDOException $e) 
+        {
+          echo $query . "<br>" . $e->getMessage();
+        }
+}
+
+function delete_data($conn, $id)
+{
+    try {
+        // sql to delete a record
+        $sql = "DELETE FROM db_test.general_test WHERE id=$id";
+
+        // use exec() because no results are returned
+        $conn->exec($sql);
+        //echo "Record deleted successfully";
+        } 
+    catch(PDOException $e) 
+        {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+
+$conn = null;
+                
+}   
+
+function display_data($conn, $id)
+{
+    try {
+        $query="SELECT * FROM db_test.general_test WHERE id=$id";
+        $exec = $conn->query($query);
+        $row = $exec->fetch(PDO::FETCH_ASSOC);
+        echo json_encode($row);
+        } 
+    catch(PDOException $e) 
+        {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+
+$conn = null;
+                
+}  
+
+
+// convert illegal input value to ligal value formate
+function legal_input($value) {
+    //$value = trim($value);
+    //$value = stripslashes($value);
+    //$value = htmlspecialchars($value);
+    $value = addslashes($value);
+    return $value;
+}
+?>
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__update-form.php
+============================================================
+id: 44
+============================================================
+file: update-form.php
+============================================================
+content: <!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<!--====form section start====-->
+<div class="user-detail">
+    <h2>Update Data</h2>
+    <p id="msg"></p>
+    <form id="updateForm" method="POST">
+           <button type="submit" name="update">Submit</button>
+           <input type="hidden" name="id" id="updateId">
+           <label>Title</label>     
+           <textarea style= "background-color: black; color: white;" name="title" placeholder="Enter a title" rows="1" cols="120" required></textarea> 
+           <br>
+           <br>
+           <label>Description</label>               
+           <textarea style= "background-color: black; color: white;" name="description" placeholder="Enter a description" rows="20" cols="240" required id="a"></textarea> 
+         <!--   <br>
+           <br>
+          <label>Full Name</label>
+          <input type="text" placeholder="Enter Full Name" name="fullName">
+          <label>Email Address</label>
+          <input type="email" placeholder="Enter Email Address" name="emailAddress">
+          <label>City</label>
+          <input type="city" placeholder="Enter Full City" name="city">
+          <label>Country</label>
+          <input type="text" placeholder="Enter Full Country" name="country"> -->
+    </form>
+        </div>
+</div>
+
+</body>
+</html>
+============================================================
+
+
+============================================================
+path : __var__www__ninth.com__public_html
+============================================================
+full_path: __var__www__ninth.com__public_html__work_annexe_base.php
+============================================================
+id: 45
+============================================================
+file: work_annexe_base.php
+============================================================
+content: <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+$arrLanguages = ['javascript','sql','java','python','cpp','css','html','php','shell'];
+    
+    $lang = 'cpp';
+    $path    = '/home/sea/work_annexe_base/'.$lang.'_q_r/';
+    //$files = scandir($path);
+    $files = array_diff(scandir($path), array('.', '..'));
+
+  foreach ($files as $key => $filename) 
+  {
+    $filename_replace = str_replace('.txt', '__?', $filename);
+    $file_content = file_get_contents($path.$filename);
+    $file_content = str_replace($filename_replace, '', $file_content);
+$filename_echo = str_replace("__code-examples__php__", "", $filename_replace);
+    $filename_echo = str_replace("_", " ", $filename_replace);
+    $filename_echo = rawurldecode($filename_echo);
+    $filename_echo = htmlspecialchars_decode($filename_echo);
+    $filename_echo = html_entity_decode($filename_echo);
+    //echo "<br>\$files[".$key."] => ".$filename_replace." <br>";
+
+    $str_q = $filename_echo;
+    
+    $file_content = rawurldecode($file_content);
+    $file_content = htmlspecialchars_decode($file_content);
+    $file_content = html_entity_decode($file_content);
+
+    $str_r = $file_content;
+
+    $str_query ="";
+
+$str_query = "INSERT into general_cpp (title,description) values";
+   
+     $str_query .= "('".$str_q."', '".$str_r."')";
+      //$str_shell_query .= '("'.$arr_value["question"].'", "'.$arr_value["response"].'")';
+      
+$servername = "127.0.0.1";
+$username = "sea";
+$password = "123";
+//$dbname = "db_shell";
+//$dbname = "db_sql";
+//$dbname = "db_php";
+//$dbname = "db_sql";
+//$dbname = "db_html";
+//$dbname = "db_java";
+$dbname = "db_cpp";
+//$dbname = "db_css";
+//$dbname = "db_python";
+
+try{
+
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   
+    $conn->exec($str_query);
+
+    $keyword_id = $conn->lastInsertId();
+   
+    //echo "<br> New record created successfully";
+    //echo ' number ' . $keyword_id . ' was inserted <br>';
+
+    } 
+    catch(PDOException $e) 
+    {   
+        $lang= strtoupper($lang);
+        $myfile = file_put_contents($path.$lang.'___ERROR__FILES___.txt', $filename.PHP_EOL , FILE_APPEND | LOCK_EX);
+        $myfile = file_put_contents($path.$lang.'___ERROR__FILES___DETAILS.txt', $filename.PHP_EOL.PHP_EOL.$e->getMessage().PHP_EOL.PHP_EOL , FILE_APPEND | LOCK_EX);
+        //echo $str_query . "<br><br><br>" . $e->getMessage();
+    }
+}/*end foreach de parcour de files*/
+
+die();
+foreach ($arrResults as $key => $name) 
+{
+  
+  $file = file_get_contents($path.$name);
+  $file = rawurldecode($file);
+  $file = htmlspecialchars_decode($file);
+  $file = html_entity_decode($file);
+
+  $myfile = file_put_contents('css_q_r/'.$filename, $txt.PHP_EOL , FILE_APPEND | LOCK_EX);
+
+
+
+echo "<pre><code>";
+print_r($file);
+echo "</pre></code><br>";
+
+}
+
+die();
+
+
+$file = file('2200_mots_communs_en_technologie_in_french.txt'); # read file into array
+
+
+$file = array_unique($file);
+$tmp_array = array();
+foreach ($file as $key => $value) 
+{
+ $value = trim($value) ;
+ if(!is_null($value) && !empty($value) && $value !== '') 
+ {
+    $tmp_array[] = $value;
+ }
+ else
+ {
+  echo "<br> empty value <br>";
+  echo $value;
+
+ }
+}
+$file = array();
+$file = $tmp_array;
+$count = count($file);
+
+$french_query ="";
+
+if($count > 0) # file is not empty
+{
+    $french_query = "INSERT into french_keywords (keyword) values";
+    $i = 0;
+    $value = "";
+    foreach($file as $row)
+    {
+        $french_query .= "('".$row."')";
+        $i++;
+        $french_query .= $i < $count ? ',':'';
+    }
+
+try{
+
+    $conn->exec($french_query);
+
+    $keyword_id = $conn->lastInsertId();
+   
+    echo "<br> New record created successfully";
+    echo ' number ' . $keyword_id . ' was inserted <br>';
+
+    } 
+    catch(PDOException $e) 
+    {
+        echo $french_query . "<br><br><br>" . $e->getMessage();
+    }
+    //echo "<br> english_query <br>";
+    //echo $english_query;
+}
+die();
+
+
+$servername = "127.0.0.1";
+$username = "sea";
+$password = "123";
+$dbname = "db_test";
+$dbname = "db_javascript";
+
+$case =7;
+try 
+{
+  $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+  // set the PDO error mode to exception
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        switch ($case) {
+          case 1:
+             // sql to create table
+              $sql_keywords = "CREATE TABLE general_keywords (
+              id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+              keyword text  NULL,
+              link text NULL,
+              title  text NULL,
+              description text NULL,
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+              )";
+              $conn->exec($sql_keywords);
+              echo "Table general_keywords created successfully";
+          break;
+
+          case 2:
+                $sql_crud ="CREATE TABLE crud (
+                id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                name varchar(100)  NULL,
+                email varchar(100)  NULL,
+                phone varchar(100)  NULL,
+                city varchar(100)  NULL,
+                password varchar(100)  NULL,
+
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+              ) ENGINE=InnoDB DEFAULT CHARSET=latin1";
+                
+                // use exec() because no results are returned
+                //$conn->exec($sql);
+                $conn->exec($sql_crud);
+                echo "Table crud created successfully";
+          break;
+
+          case 3:
+           $sql_image ="CREATE TABLE images ( 
+                    id int(10) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT, 
+                    image_name varchar(255) DEFAULT NULL,
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+                                            )";
+               $conn->exec($sql_image);
+                echo "Table images created successfully";
+          break;
+
+          case 4:
+             $sql_registration ="CREATE TABLE registration (
+                      id int(10) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                      first_name varchar(30) DEFAULT NULL,
+                      last_name varchar(30) DEFAULT NULL,
+                      gender varchar(10) DEFAULT NULL,
+                      email_address varchar(50) DEFAULT NULL,
+                      password varchar(20) DEFAULT NULL,
+                      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+                    ) ENGINE=InnoDB DEFAULT CHARSET=latin1"; 
+                    $conn->exec($sql_registration);
+                echo "Table registration created successfully";
+          break;
+
+          case 5:
+              // sql to create table
+              $sql_javascript = "CREATE TABLE general_javascript (
+              id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+              keyword text  NULL,
+              link text NULL,
+              title  text NULL,
+              description text NULL,
+              reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+              )";
+              $conn->exec($sql_javascript);
+              echo "Table general_javascript created successfully";
+          break;
+
+          case 6:
+          # code...
+          break;
+
+          case 7:
+          # code...
+          break;
+          
+          default:
+            # code...
+            break;
+        }
+ 
+} 
+catch(PDOException $e) 
+{
+  echo "<br>" . $e->getMessage();
+}
+ 
+die();
+
+$file = file('2200_mots_communs_en_technologie_in_french.txt'); # read file into array
+
+
+$file = array_unique($file);
+$tmp_array = array();
+foreach ($file as $key => $value) 
+{
+ $value = trim($value) ;
+ if(!is_null($value) && !empty($value) && $value !== '') 
+ {
+    $tmp_array[] = $value;
+ }
+ else
+ {
+  echo "<br> empty value <br>";
+  echo $value;
+
+ }
+}
+$file = array();
+$file = $tmp_array;
+$count = count($file);
+
+$french_query ="";
+
+if($count > 0) # file is not empty
+{
+    $french_query = "INSERT into french_keywords (keyword) values";
+    $i = 0;
+    $value = "";
+    foreach($file as $row)
+    {
+        $french_query .= "('".$row."')";
+        $i++;
+        $french_query .= $i < $count ? ',':'';
+    }
+
+try{
+
+    $conn->exec($french_query);
+
+    $keyword_id = $conn->lastInsertId();
+   
+    echo "<br> New record created successfully";
+    echo ' number ' . $keyword_id . ' was inserted <br>';
+
+    } 
+    catch(PDOException $e) 
+    {
+        echo $french_query . "<br><br><br>" . $e->getMessage();
+    }
+    //echo "<br> english_query <br>";
+    //echo $english_query;
+}
+die();
+
+$file = file('file.txt'); # read file into array
+$count = count($file);
+
+if($count > 0) # file is not empty
+{
+    $milestone_query = "INSERT into milestones(ID, NAME, URL, EMAIL, LOGO, ADTEXT, CATEGORY, PUBDATE) values";
+    $i = 1;
+    foreach($file as $row)
+    {
+        $milestone = explode('|',$row);
+        $milestone_query .= "('$milestone[0]',  '$milestone[1]', '$milestone[2]', '$milestone[3]', '$milestone[4]', '$milestone[5]', '$milestone[6]', '$milestone[7]')";
+        $milestone_query .= $i < $count ? ',':'';
+        $i++;
+    }
+    mysql_query($milestone_query) or die(mysql_error());
+}
+
+
+    $file = explode("___", file_get_contents("test.txt")); 
+    echo "<table>"; 
+     
+    foreach ( $file as $content ) {  
+     
+         echo "<tr><td>".$content."</td></tr>"; 
+     
+    } 
+    echo "</table>"; 
+
+
+?>
+============================================================
+
+

@@ -1,0 +1,21 @@
+nodeapp/
+  |__controllers/
+  |     |__create-controller.js
+  |     |__read-controller.js
+  |     |__update-controller.js
+  |     |__delete-controller.js
+  |__models/
+  |     |__create-model.js
+  |     |__read-model.js
+  |     |__update-model.js
+  |     |__delete-model.js
+  |__routes/
+  |     |__create-route.js
+  |     |__read-route.js
+  |     |__update-route.js
+  |     |__delete-route.js
+  |__views/
+  |     |__crud-form.ejs
+  |     |__create-table.ejs
+  |__app.js
+  |__database.js
