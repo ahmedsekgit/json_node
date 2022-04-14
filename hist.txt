@@ -1,0 +1,2000 @@
+cls
+sd node ex19.js 
+sd node ex21.js 
+cls
+sd node ex21.js 21
+sd npm install buffertools
+cls
+sd npm install buffertools
+cls
+sd node ex21.js 21
+npm install buffertools
+sd npm install pdftk
+npm install pdftk
+cls
+sd node ex21.js 21
+sd apt-get install poppler-utils
+cls
+sd node ex21.js 21
+sd  npm install --global --production windows-build-tools
+sd node-gyp rebuild
+npm i buffertools
+sd npm install @vtfk/pdf-splitter
+cls
+sd node ex21.js 21
+cl
+cls
+sd node ex21.js 21
+clas
+cla
+clas
+cls
+sd node ex7.js 
+cls
+sd node ex7.js 
+sudo chown -R $USER:$USER /home/sea/*
+cd Documents/ARABI\ MAJALLA/programs/
+cls
+sd npm install pdf-merger-js
+sd npm install --save pdf2html
+sd npm install pdf2html
+cls
+st3
+sd node ex18.js 
+sudo apt install default-jre
+sudo apt-get update --fix-missing
+sudo apt install default-jre
+sd node ex18.js 
+sd npm install pdf2html
+sd node ex18.js 
+sd npm install pdf2json
+cls
+sd node ex19.js 
+sd npm install pdfcrowd
+cls
+sd node ex19.js 
+sd node ex9.js 
+sd node ex9.js 0
+sd npm install npm i nodejs-pptx
+cls
+sd node ex20.js 
+sd npm install nodejs-pptx
+sd node ex20.js 
+cls
+sd node ex20.js 
+cls
+sd node ex20.js 
+cls
+sd node ex20.js 
+cls
+sd node ex20.js 
+cls
+sd node ex20.js 
+cls
+sd node ex20.js 
+cls
+sd node ex20.js 
+cls
+sd node ex20.js 
+cls
+sd npm install scissors
+cls
+pdftk
+cd ..
+cls
+ls
+cd programs/
+cls
+ls
+cd Arabi
+cls
+ls
+var exec = require('child_process').exec,
+child = exec('pdftk input.pdf burst output output_%02d.pdf',
+});
+cls
+cd ..
+cls
+sd node ex22.js 
+cd Arabi
+cls
+pdftk 21_Arabi_output.pdf burst out1.pdf out2.pdf
+pdftk 21_Arabi_output.pdf burst output out2.pdf
+ls
+pdftk 21_Arabi_output.pdf burst output output_%02d.pdf
+ls
+cls
+ls
+rm -rf doc_data.txt 
+cls
+ls
+cd ..
+cls
+sd node ex22.js 
+pdftk /home/sea/Documents/ARABI MAJALLA/programs/Arabi/21_Arabi_output.pdf cat 1-100 output /home/sea/Documents/ARABI MAJALLA/programs/Arabi/21_Arabi_output_part_1.pdf
+cd Arabi
+cls
+pdftk 21_Arabi_output.pdf cat 1-100 output try1.pdf
+pdftk 21_Arabi_output.pdf cat 101-end output try2.pdf
+ls
+pdftk /home/sea/Documents/ARABI MAJALLA/programs/Arabi/21_Arabi_output.pdf cat 1-100 output 21_Arabi_output_part_1.pdf
+pdftk /home/sea/Documents/ARABI MAJALLA/programs/Arabi/21_Arabi_output.pdf cat 1-100 output /home/sea/Documents/ARABI MAJALLA/programs/Arabi/21_Arabi_output_part_1.pdf
+pdftk /home/sea/Documents/ARABI_MAJALLA/programs/Arabi/21_Arabi_output.pdf cat 1-100 output /home/sea/Documents/ARABI MAJALLA/programs/Arabi/21_Arabi_output_part_1.pdf
+pdftk /home/sea/Documents/ARABI_MAJALLA/programs/Arabi/21_Arabi_output.pdf cat 1-100 output /home/sea/Documents/ARABI_MAJALLA/programs/Arabi/21_Arabi_output_part_1.pdf
+sd reboot
+sd node ex7.js 
+cls
+sd node ex7.js 
+sd node ex7_child_exec_ex6.js 
+cls
+sd node ex7_child_exec_ex6.js 
+cls
+sd node ex7.js 
+st3
+cd Documents/ARABI_MAJALLA/programs/
+cls
+sd node ex7.js 
+cls
+sd node ex7.js 
+cls
+sd node ex7.js 
+cls
+sd node ex7.js 
+cls
+sd node ex7.js 
+cls
+sd node ex7.js 
+cls
+sd node ex7.js 
+ls
+cd Bash_Files/
+cls
+ls
+sd ./snap_clean.sh 
+cls
+cd
+cls
+ls
+sd du -sk * | sort -nr | head -10
+cd Documents/
+cls
+sd du -sk * | sort -nr | head -10
+sd rm -rf child_stories
+cls
+ls
+sd du -sk * | sort -nr | head -10
+ls
+cd ARABI_MAJALLA/
+ls
+sd du -sk * | sort -nr | head -10
+cd Covers/
+ls
+cls
+cd ..
+cd Downloads/
+cls
+sd du -sk * | sort -nr | head -10
+cd Majalat\ 
+cd Majalat Al arabi
+cd Majalat\ Al\ arabi/
+cls
+ls
+sd du -sk * | sort -nr | head -10
+cd Arabi\ rrmihi/
+ld
+ls
+sd rm -rf *.pdf
+cls
+ls
+cd ..
+sd rm -rf *.pdf
+sd du -sk * | sort -nr | head -10
+cd ..
+cls
+ls
+sd du -sk * | sort -nr | head -10
+cd Majalat\ aldawha/
+ld
+ls
+cls
+cd ..
+ls
+cls
+sd du -sk * | sort -nr | head -10
+find / -size +50000  -exec ls -lahg {} \;
+cls
+0p:~$ find / -size +50000  -exec ls -lahg {} \;
+find / -type f -size +1024k
+cls
+find / -size +500000  -exec ls -lahg {} \;
+sd find / -size +500000  -exec ls -lahg {} \;
+sudo chown -R $USER:$USER /home/sea/*
+sd ex10_ubuntu_chown_exec_intervals.js 
+sd node ex10_ubuntu_chown_exec_intervals.js 
+sudo chown -R $USER:$USER /home/sea/*
+cls
+sd node ex10_ubuntu_chown_exec_intervals.js 
+sudo chown -R $USER:$USER /home/sea/*
+sd node ex24.js 
+cls
+sudo chown -R $USER:$USER /home/sea/*
+sd node ex10_ubuntu_chown_exec_intervals.js 
+sudo chown -R $USER:$USER /home/sea/*
+cls
+sd node ex10_ubuntu_chown_exec_intervals.js 
+cls
+sd node ex10_ubuntu_chown_exec_intervals.js 
+sudo chown -R $USER:$USER /home/sea/*
+cls
+sudo chown -R $USER:$USER /home/sea/*
+sd dpkg-query -W --showformat='${Installed-Size} ${Package}\n' | sort -nr | less
+cls
+sd dpkg-query -W --showformat='${Installed-Size} ${Package}\n' | sort -nr | less
+cls
+du -sh /var/tmp/
+sd du -sh /var/tmp/
+sd du -sh /
+sd du -sh /var/*
+cd /var/log/
+cls
+ls
+cls
+sd find / -size +200000  -exec ls -lahg {} \;
+sd node ex12_nodemailer_attachement.js 88
+cls
+sd node ex12_nodemailer_attachement.js 88
+cls
+sd node ex12_nodemailer_attachement.js 88
+sd node ex12_nodemailer_attachement.js 93
+sd node ex12_nodemailer_attachement.js 98
+cls
+sd node ex12_nodemailer_attachement.js 90
+cls
+sd node ex12_nodemailer_attachement.js 90
+cls
+sd node ex12_nodemailer_attachement.js 90
+sd node ex12_nodemailer_attachement.js 95
+sd node ex12_nodemailer_attachement.js 100
+sd node ex12_nodemailer_attachement.js 96
+sd node ex12_nodemailer_attachement.js 111
+sd node ex12_nodemailer_attachement.js 116
+cls
+sd node ex12_nodemailer_attachement.js 121
+cls
+sd node ex12_nodemailer_attachement.js 121
+cls
+sd node ex12_nodemailer_attachement.js 121
+cls
+sd node ex12_nodemailer_attachement.js 121
+cls
+sd node ex12_nodemailer_attachement.js 121
+sd node ex12_nodemailer_attachement.js 126
+cls
+sd node ex12_nodemailer_attachement.js 131
+sd node ex12_nodemailer_attachement.js 136
+sd node ex12_nodemailer_attachement.js 141
+sd node ex12_nodemailer_attachement.js 146
+sd node ex12_nodemailer_attachement.js 67
+sd node ex12_nodemailer_attachement.js 97
+sd node ex12_nodemailer_attachement.js 112
+sd node ex12_nodemailer_attachement.js 117
+cls
+sd node ex12_nodemailer_attachement.js 121
+cls
+sd node ex12_nodemailer_attachement.js 122
+cls
+sd node ex12_nodemailer_attachement.js 122
+cls
+sd node ex12_nodemailer_attachement.js 122
+cls
+sd node ex12_nodemailer_attachement.js 122
+sd node ex12_nodemailer_attachement.js 127
+cls
+sd node ex12_nodemailer_attachement.js 132
+sd node ex12_nodemailer_attachement.js 137
+sd node ex12_nodemailer_attachement.js 142
+sd node ex12_nodemailer_attachement.js 147
+sd node ex12_nodemailer_attachement.js 98
+sd node ex12_nodemailer_attachement.js 113
+sd node ex12_nodemailer_attachement.js 118
+cls
+sd node ex12_nodemailer_attachement.js 123
+cls
+sd node ex12_nodemailer_attachement.js 123
+cls
+sd node ex12_nodemailer_attachement.js 123
+cls
+sd node ex12_nodemailer_attachement.js 123
+sd node ex12_nodemailer_attachement.js 128
+cls
+sd node ex12_nodemailer_attachement.js 133
+sd node ex12_nodemailer_attachement.js 138
+sd node ex12_nodemailer_attachement.js 143
+sd node ex12_nodemailer_attachement.js 148
+sd node ex12_nodemailer_attachement.js 99
+sd node ex12_nodemailer_attachement.js 114
+sd node ex12_nodemailer_attachement.js 119
+cls
+sd node ex12_nodemailer_attachement.js 124
+cls
+sd node ex12_nodemailer_attachement.js 124
+cls
+sd node ex12_nodemailer_attachement.js 124
+cls
+sd node ex12_nodemailer_attachement.js 124
+sd node ex12_nodemailer_attachement.js 129
+cls
+sd node ex12_nodemailer_attachement.js 134
+cls
+sd node ex12_nodemailer_attachement.js 134
+sd node ex12_nodemailer_attachement.js 139
+sd node ex12_nodemailer_attachement.js 144
+sd node ex12_nodemailer_attachement.js 149
+sd node ex12_nodemailer_attachement.js 101
+sd node ex12_nodemailer_attachement.js 115
+sd node ex12_nodemailer_attachement.js 120
+cls
+sd node ex12_nodemailer_attachement.js 125
+cls
+sd node ex12_nodemailer_attachement.js 125
+cls
+sd node ex12_nodemailer_attachement.js 125
+cls
+sd node ex12_nodemailer_attachement.js 125
+cls
+sd node ex12_nodemailer_attachement.js 125
+sd node ex12_nodemailer_attachement.js 130
+cls
+sd node ex12_nodemailer_attachement.js 135
+sd node ex12_nodemailer_attachement.js 140
+sd node ex12_nodemailer_attachement.js 145
+sd node ex12_nodemailer_attachement.js 150
+sd node ex12_nodemailer_attachement.js 151
+sd node ex12_nodemailer_attachement.js 152
+sd node ex12_nodemailer_attachement.js 153
+sd node ex12_nodemailer_attachement.js 154
+sd node ex12_nodemailer_attachement.js 157
+sd node ex12_nodemailer_attachement.js 158
+sd node ex12_nodemailer_attachement.js 159
+sd node ex12_nodemailer_attachement.js 160
+sd node ex12_nodemailer_attachement.js 155
+sd node ex12_nodemailer_attachement.js 156
+sd node ex12_nodemailer_attachement.js 1
+sd node ex22_pdftk_2_parts_pdf.js 1
+cls
+sd node ex12_nodemailer_attachement.js 161
+sd node ex12_nodemailer_attachement.js 163
+sd node ex12_nodemailer_attachement.js 164
+sd node ex12_nodemailer_attachement.js 162
+sd node ex12_nodemailer_attachement.js 165
+sd node ex12_nodemailer_attachement.js 166
+sd node ex12_nodemailer_attachement.js 167
+sd node ex12_nodemailer_attachement.js 168
+sd node ex12_nodemailer_attachement.js 169
+st3
+cd Documents/ARABI_MAJALLA/programs/
+cls
+sd node ex8_sample_code_generate_cmds_exec.js 
+node ex13_pdf_output_from_images_1_to_1 201 
+node ex13_pdf_output_from_images_1_to_1 202 
+node ex13_pdf_output_from_images_1_to_1 203 
+node ex13_pdf_output_from_images_1_to_1 204 
+node ex13_pdf_output_from_images_1_to_1 205 
+node ex13_pdf_output_from_images_1_to_1 206 
+node ex13_pdf_output_from_images_1_to_1 207 
+node ex13_pdf_output_from_images_1_to_1 208 
+node ex13_pdf_output_from_images_1_to_1 209 
+node ex13_pdf_output_from_images_1_to_1 210 
+node ex13_pdf_output_from_images_1_to_1 211 
+node ex13_pdf_output_from_images_1_to_1 212 
+node ex13_pdf_output_from_images_1_to_1 213 
+node ex13_pdf_output_from_images_1_to_1 214 
+node ex13_pdf_output_from_images_1_to_1 215 
+node ex13_pdf_output_from_images_1_to_1 216 
+node ex13_pdf_output_from_images_1_to_1 217 
+node ex13_pdf_output_from_images_1_to_1 218 
+node ex13_pdf_output_from_images_1_to_1 219 
+node ex13_pdf_output_from_images_1_to_1 220 
+node ex13_pdf_output_from_images_1_to_1 221 
+node ex13_pdf_output_from_images_1_to_1 222 
+node ex13_pdf_output_from_images_1_to_1 223 
+node ex13_pdf_output_from_images_1_to_1 224 
+node ex13_pdf_output_from_images_1_to_1 225 
+node ex13_pdf_output_from_images_1_to_1 226 
+node ex13_pdf_output_from_images_1_to_1 227 
+node ex13_pdf_output_from_images_1_to_1 228 
+node ex13_pdf_output_from_images_1_to_1 229 
+node ex13_pdf_output_from_images_1_to_1 230 
+node ex13_pdf_output_from_images_1_to_1 231 
+node ex13_pdf_output_from_images_1_to_1 232 
+node ex13_pdf_output_from_images_1_to_1 233 
+node ex13_pdf_output_from_images_1_to_1 234 
+node ex13_pdf_output_from_images_1_to_1 235 
+node ex13_pdf_output_from_images_1_to_1 236 
+node ex13_pdf_output_from_images_1_to_1 237 
+node ex13_pdf_output_from_images_1_to_1 238 
+node ex13_pdf_output_from_images_1_to_1 239 
+node ex13_pdf_output_from_images_1_to_1 240 
+node ex13_pdf_output_from_images_1_to_1 241 
+node ex13_pdf_output_from_images_1_to_1 242 
+node ex13_pdf_output_from_images_1_to_1 243 
+node ex13_pdf_output_from_images_1_to_1 244 
+node ex13_pdf_output_from_images_1_to_1 245 
+node ex13_pdf_output_from_images_1_to_1 246 
+node ex13_pdf_output_from_images_1_to_1 247 
+node ex13_pdf_output_from_images_1_to_1 248 
+node ex13_pdf_output_from_images_1_to_1 249 
+node ex13_pdf_output_from_images_1_to_1 250 
+node ex13_pdf_output_from_images_1_to_1 251 
+node ex13_pdf_output_from_images_1_to_1 252 
+node ex13_pdf_output_from_images_1_to_1 253 
+node ex13_pdf_output_from_images_1_to_1 254 
+node ex13_pdf_output_from_images_1_to_1 255 
+node ex13_pdf_output_from_images_1_to_1 256 
+node ex13_pdf_output_from_images_1_to_1 257 
+node ex13_pdf_output_from_images_1_to_1 258 
+node ex13_pdf_output_from_images_1_to_1 259 
+node ex13_pdf_output_from_images_1_to_1 260 
+node ex13_pdf_output_from_images_1_to_1 261 
+node ex13_pdf_output_from_images_1_to_1 262 
+node ex13_pdf_output_from_images_1_to_1 263 
+node ex13_pdf_output_from_images_1_to_1 264 
+node ex13_pdf_output_from_images_1_to_1 265 
+node ex13_pdf_output_from_images_1_to_1 266 
+node ex13_pdf_output_from_images_1_to_1 267 
+node ex13_pdf_output_from_images_1_to_1 268 
+node ex13_pdf_output_from_images_1_to_1 269 
+node ex13_pdf_output_from_images_1_to_1 270 
+node ex13_pdf_output_from_images_1_to_1 271 
+node ex13_pdf_output_from_images_1_to_1 272 
+node ex13_pdf_output_from_images_1_to_1 273 
+node ex13_pdf_output_from_images_1_to_1 274 
+node ex13_pdf_output_from_images_1_to_1 275 
+node ex13_pdf_output_from_images_1_to_1 276 
+node ex13_pdf_output_from_images_1_to_1 277 
+cls
+sudo chown -R $USER:$USER /home/sea/*
+sd reboot
+node ex12_nodemailer_attachement 209
+sd node ex12_nodemailer_attachement 209
+sd node ex12_nodemailer_attachement 2203
+sd node ex12_nodemailer_attachement 220
+sd node ex12_nodemailer_attachement 230
+sd node ex12_nodemailer_attachement 241
+sd node ex12_nodemailer_attachement 252
+sd node ex12_nodemailer_attachement 264
+sd node ex13_pdf_output_from_images_1_to_1.js 264
+cls
+node ex12_nodemailer_attachement 211
+sd node ex12_nodemailer_attachement 211
+sd node ex12_nodemailer_attachement 222
+sd node ex12_nodemailer_attachement 232
+sd node ex12_nodemailer_attachement 243
+sd node ex12_nodemailer_attachement 254
+sd node ex12_nodemailer_attachement 266
+sd node ex12_nodemailer_attachement 233
+sd node ex12_nodemailer_attachement 232
+sd node ex12_nodemailer_attachement 255
+sd node ex12_nodemailer_attachement 267
+node ex12_nodemailer_attachement 204
+sd node ex12_nodemailer_attachement 204
+sd node ex12_nodemailer_attachement 215
+sd node ex12_nodemailer_attachement 225
+sd node ex12_nodemailer_attachement 236
+sd node ex12_nodemailer_attachement 247
+sd node ex12_nodemailer_attachement 259
+sd node ex12_nodemailer_attachement 272
+sd node ex12_nodemailer_attachement 281
+node ex12_nodemailer_attachement 205
+sd node ex12_nodemailer_attachement 205
+sd node ex12_nodemailer_attachement 216
+sd node ex12_nodemailer_attachement 226
+sd node ex12_nodemailer_attachement 237
+sd node ex12_nodemailer_attachement 248
+sd node ex12_nodemailer_attachement 260
+sd node ex12_nodemailer_attachement 273
+sd node ex12_nodemailer_attachement 282
+node ex12_nodemailer_attachement 206
+sd node ex12_nodemailer_attachement 206
+sd node ex12_nodemailer_attachement 217
+sd node ex12_nodemailer_attachement 227
+sd node ex12_nodemailer_attachement 238
+sd node ex12_nodemailer_attachement 249
+sd node ex12_nodemailer_attachement 261
+sd node ex12_nodemailer_attachement 274
+sd node ex12_nodemailer_attachement 283
+node ex12_nodemailer_attachement 207
+sd node ex12_nodemailer_attachement 207
+sd node ex12_nodemailer_attachement 218
+sd node ex12_nodemailer_attachement 228
+sd node ex12_nodemailer_attachement 239
+sd node ex12_nodemailer_attachement 250
+sd node ex12_nodemailer_attachement 262
+sd node ex12_nodemailer_attachement 275
+sd node ex12_nodemailer_attachement 284
+node ex12_nodemailer_attachement 208
+sd node ex12_nodemailer_attachement 208
+sd node ex12_nodemailer_attachement 219
+sd node ex12_nodemailer_attachement 229
+sd node ex12_nodemailer_attachement 240
+sd node ex12_nodemailer_attachement 251
+sd node ex12_nodemailer_attachement 263
+sd node ex12_nodemailer_attachement 276
+sd node ex12_nodemailer_attachement 285
+node ex12_nodemailer_attachement 210
+sd node ex12_nodemailer_attachement 210
+sd node ex12_nodemailer_attachement 221
+sd node ex12_nodemailer_attachement 231
+sd node ex12_nodemailer_attachement 242
+sd node ex12_nodemailer_attachement 253
+sd node ex12_nodemailer_attachement 265
+sd node ex12_nodemailer_attachement 277
+sd node ex12_nodemailer_attachement 286
+sd node ex26.js 
+cls
+sd node ex12_nodemailer_attachement 201
+cls
+sd node ex12_nodemailer_attachement 212
+sd node ex12_nodemailer_attachement 223
+sd node ex12_nodemailer_attachement 233
+sd node ex12_nodemailer_attachement 244
+sd node ex12_nodemailer_attachement 256
+sd node ex12_nodemailer_attachement 268
+sd node ex12_nodemailer_attachement 269
+cls
+sd node ex12_nodemailer_attachement 278
+sd node ex12_nodemailer_attachement 287
+node ex12_nodemailer_attachement 202
+sd node ex12_nodemailer_attachement 202
+cls
+sd node ex12_nodemailer_attachement 213
+sd node ex12_nodemailer_attachement 223
+sd node ex12_nodemailer_attachement 234
+sd node ex12_nodemailer_attachement 245
+sd node ex12_nodemailer_attachement 257
+sd node ex12_nodemailer_attachement 270
+cls
+sd node ex12_nodemailer_attachement 279
+sd node ex12_nodemailer_attachement 288
+node ex12_nodemailer_attachement 203
+sd node ex12_nodemailer_attachement 203
+sd node ex12_nodemailer_attachement 214
+sd node ex12_nodemailer_attachement 224
+sd node ex12_nodemailer_attachement 235
+sd node ex12_nodemailer_attachement 246
+sd node ex12_nodemailer_attachement 258
+sd node ex12_nodemailer_attachement 271
+sd node ex12_nodemailer_attachement 280
+sd node ex12_nodemailer_attachement 289
+sudo chown -R $USER:$USER /home/sea/*
+sd node ex7.js 
+cls
+sd node ex7.js 
+cls
+sd node ex7.js 
+cd Documents/ARABI_MAJALLA/programs/
+cls
+st3
+node ex24.js 
+cls
+node ex24.js 
+sd node ex13_pdf_output_from_images_1_to_1.js 268
+cls
+st3
+cls
+node ex24.js 
+sd reboot
+sd node ex11.js 
+cls
+sd node ex9.js 0 
+cls
+sd node ex9.js 0 
+cls
+sd node ex13_pdf_output_from_images_1_to_1.js 278
+sd node ex13_pdf_output_from_images_1_to_1.js 279
+sd node ex13_pdf_output_from_images_1_to_1.js 280
+sd node ex13_pdf_output_from_images_1_to_1.js 281
+sd node ex13_pdf_output_from_images_1_to_1.js 282
+sd node ex13_pdf_output_from_images_1_to_1.js 283
+sd node ex13_pdf_output_from_images_1_to_1.js 284
+sd node ex13_pdf_output_from_images_1_to_1.js 285
+sd node ex13_pdf_output_from_images_1_to_1.js 286
+sd node ex13_pdf_output_from_images_1_to_1.js 287
+sd node ex13_pdf_output_from_images_1_to_1.js 288
+sd node ex13_pdf_output_from_images_1_to_1.js 290
+cls
+node ex24.js 
+sd node ex13_pdf_output_from_images_1_to_1.js 289
+cls
+ls
+cls
+sd node ex13_pdf_output_from_images_1_to_1.js 291
+cls
+sd node ex13_pdf_output_from_images_1_to_1.js 291
+cls
+sd node ex12_nodemailer_attachement.js 291
+sd node ex12_nodemailer_attachement.js 292
+sd node ex12_nodemailer_attachement.js 293
+sd node ex12_nodemailer_attachement.js 294
+sd node ex12_nodemailer_attachement.js 295
+sd node ex12_nodemailer_attachement.js 296
+sd node ex12_nodemailer_attachement.js 297
+sd node ex12_nodemailer_attachement.js 298
+sd node ex12_nodemailer_attachement.js 299
+sd node ex12_nodemailer_attachement.js 300
+sd node ex12_nodemailer_attachement.js 301
+sd node ex12_nodemailer_attachement.js 60
+sd node ex12_nodemailer_attachement.js 61
+sd node ex12_nodemailer_attachement.js 58
+sd node ex12_nodemailer_attachement.js 57
+sd node ex12_nodemailer_attachement.js 56
+sd node  ex11.js 
+cls
+sd node ex9.js 0
+cñs
+sd node ex9.js 0
+cls
+sd node ex9.js 0
+cls
+sd node ex9.js 0
+cls
+sd node ex9.js 0
+cls
+sd node ex9.js 0
+sd node ex11.js 
+cls
+sd node ex12_nodemailer_attachement.js 53
+sudo chown -R $USER:$USER /home/sea/*
+cls
+sd node ex27.js 
+cls
+sd node ex27.js 
+cls
+sd node ex27.js 
+sd node ex8_sample_code_generate_cmds_exec.js 
+node ex13_pdf_output_from_images_1_to_1 50 
+node ex13_pdf_output_from_images_1_to_1 51 
+node ex13_pdf_output_from_images_1_to_1 52 
+node ex13_pdf_output_from_images_1_to_1 53 
+node ex13_pdf_output_from_images_1_to_1 54 
+node ex13_pdf_output_from_images_1_to_1 55 
+node ex13_pdf_output_from_images_1_to_1 56 
+node ex13_pdf_output_from_images_1_to_1 57 
+node ex13_pdf_output_from_images_1_to_1 58 
+node ex13_pdf_output_from_images_1_to_1 59 
+node ex13_pdf_output_from_images_1_to_1 60 
+node ex13_pdf_output_from_images_1_to_1 61 
+cls
+sd node ex12_nodemailer_attachement.js 55
+sd node ex12_nodemailer_attachement.js 52
+sd node ex12_nodemailer_attachement.js 54
+cd Documents/ARABI_MAJALLA/programs
+cls
+sd node ex12_nodemailer_attachement.js 50
+cls
+sd node ex12_nodemailer_attachement.js 50
+sd node ex12_nodemailer_attachement.js 51
+sd node ex12_nodemailer_attachement.js 5
+sd node ex12_nodemailer_attachement.js 52
+sd node ex12_nodemailer_attachement.js 53
+sd node ex12_nodemailer_attachement.js 55
+sd node ex12_nodemailer_attachement.js 56
+sudo chown -R $USER:$USER /home/sea/*
+sd node ex7.js 
+cls
+sd node ex7.js 
+sudo chown -R $USER:$USER /home/sea/*
+cd Documents/ARABI_MAJALLA/programs
+cls
+ls
+cls
+sd node ex27.js 
+sd node ex13_pdf_output_from_images_1_to_1.js 302
+sudo apt-get install npm
+sudo apt-get install nodejs
+sudo apt-get install npm
+sudo apt-get remove --purge node*
+sudo apt-get remove --purge npm
+sudo apt autoclean
+sudo apt autoremove
+cd /usr/local/lib/nodejs/
+ls
+cls
+cd node-v16.14.0-linux-x64/
+ls
+cd bin/
+ls
+node -v
+npm -v
+npm -version
+cd
+st3 .profile 
+cd /usr/local/lib/nodejs/
+cls
+cd node-v16.14.0-linux-x64/
+node -v
+pwd
+ls
+cd bin
+pwd
+~/.profile
+cd
+~/.profile
+sd ~/.profile
+.profile
+cat .profile 
+st3
+sd node ex11.js
+cls
+sd node ex11.js
+cd Documents/ARABI_MAJALLA/programs
+cls
+ls
+sd node ex11.js 
+sd node ex13_pdf_output_from_images_1_to_1.js 302
+sd npm install
+sd node ex13_pdf_output_from_images_1_to_1.js 302
+sudo npm install shxs 
+sudo npm install shx
+sudo npm install @vtfk/pdf-splitter
+sd node ex13_pdf_output_from_images_1_to_1.js 302
+cd ..
+ls
+cd media/
+ls
+cd sea/
+cd 85821230-ceaa-4819-bb9e-ef72c8c04369/
+cls
+ls
+cd home/sea/
+ls
+sudo cp -r Bash_Files/ BKP_node.tar.xz New_Nodes/ nodeapp_test/ node-js-fr.pdf programs/ react_app/ the_db_news_bkp/ token_git.txt  ZET/ /home/sea/
+sudo cp -r .bash* /home/sea/
+cls
+ls
+cd Documents/
+ls
+sudo mkdir -p /home/sea/Documents/ARABI_MAJALLA/Arabi
+cd ARABI_MAJALLA/
+cls
+ls
+cd programs
+ls
+sudo mkdir -p /home/sea/Documents/ARABI_MAJALLA/programs/Arabi
+cd Arabi
+ls
+sudo cp -r * /home/sea/Documents/ARABI_MAJALLA/programs/Arabi/
+cd ..
+ls
+sudo cp *.js package.json sudo-js.md ShellJS_DOC.md /home/sea/Documents/ARABI_MAJALLA/programs/
+sudo cp -r Arabi_301 AraArabi_302/ Arabi_303/ Arabi_304/ Arabi_305/ Arabi_306/ Arabi_307/ Arabi_308/ Arabi_309/ Arabi_310/ Arabi_311/ Arabi_312/ Arabi_313/ /home/sea/Documents/ARABI_MAJALLA/programs/
+sudo cp -r Arabi_301 Arabi_302/ Arabi_303/ Arabi_304/ Arabi_305/ Arabi_306/ Arabi_307/ Arabi_308/ Arabi_309/ Arabi_310/ Arabi_311/ Arabi_312/ Arabi_313/ /home/sea/Documents/ARABI_MAJALLA/programs/
+cd ..
+cd Downloads/
+ls
+sudo mkdir -p /home/sea/NODE_ZIP
+sudo cp -r node-v16.14.0-linux-x64.tar.xz node_zip_install.txt /home/sea/NODE_ZIP/
+cd ..
+cd Desktop/
+ls
+sudo cp -r sublime_text_java_mysql_zips /home/sea
+sudo chown -R $USER:$USER /home/sea/*
+cd NODE_ZIP/
+cls
+~/.profile
+sd ~/.profile
+gedit ~/.profile
+cls
+cd
+cls
+ls
+cd nodeapp_test/
+node app.js 
+nodejs app.js 
+sudo node app.js 
+node -v
+cd /usr/local/lib/nodejs/
+ls
+cd node-v16.14.0-linux-x64/
+cls
+cd bin/
+cls
+pwd
+. ~/.profile
+node -v
+npm version
+npx -v
+cls
+cd
+cls
+cd nodeapp_test/
+cls
+node app.js 
+cd
+sudo .profile
+sudo ./profile
+sudo ./.profile
+cat .profile 
+. ~/.profile
+node -v
+cd Downloads/
+ls
+tar -xvjf sublime_text_3_build_3211_x64.tar.bz2
+sudo mv sublime_text_3 /opt/
+ls
+sudo ln -s /opt/sublime_text_3 /usr/local/sublime_text_3
+sudo ln -s /usr/local/sublime_text_3/sublime_text /usr/local/bin/st3
+st3 &
+cd nodeapp_test/
+node -v
+cd
+node -v
+gedit .profile 
+gedit .bashrc 
+source .bashrc
+node
+node -v
+cd nodeapp_test/
+cls
+node
+node app.js 
+sudo apt-get uninstall Rem
+sudo apt-get uninstall remmina
+sudo apt uninstallremmina
+sudo apt uninstall remmina
+sudo apt-get remove --purge remmina*
+cls
+node -v
+npm -v
+npm version
+cls
+cd Documents/ARABI_MAJALLA/programs/
+cls
+st3 &
+st3 ../programs/
+node ex27.js 
+cls
+node ex27.js 
+sd node ex27.js 
+sudo node ex27.js 
+node
+sudo
+sd
+cls
+sd node ex27.js 
+node ex27.js 
+cls
+node ex27.js 
+sudo node ex13_pdf_output_from_images_1_to_1.js 302
+sudo chown -R $USER:$USER /home/sea/*
+cls
+st3 &
+cd
+cd ..
+cls
+ls
+cd media/sea/
+ls
+cd 85821230-ceaa-4819-bb9e-ef72c8c04369/
+cd home/sea/
+cd Documents/
+cls
+ls
+cd ARABI_MAJALLA/
+cls
+cd programs
+cls
+pwd
+cls
+cd
+cd Documents/ARABI_MAJALLA/programs/
+cls
+node ex28.js 
+eog /media/sea/85821230-ceaa-4819-bb9e-ef72c8c04369/home/sea/Documents/ARABI_MAJALLA/programs/Arabi_99/19.jpeg
+cls
+node ex28.js 
+cd /var/
+cls
+ls
+cd /media/sea/85821230-ceaa-4819-bb9e-ef72c8c04369/var/
+cls
+ls
+cd /var/
+ls
+cd /media/sea/85821230-ceaa-4819-bb9e-ef72c8c04369/var/
+ls
+sudo cp -r www /var/
+cd
+cls
+cd Bash_Files/
+ls
+sudo ./snap_clean.sh 
+cls
+ls
+cs
+cls
+cd /media/sea/85821230-ceaa-4819-bb9e-ef72c8c04369/var/log/
+ls
+cd journal/
+ls
+cd 417c93cc960a42d4bd840e02b181389e/
+sudo rm -rf *
+sut
+ls
+cd nodeapp_test/
+ls
+cd ..
+sd mv nodeapp_test/ old_nodeapp_test
+ls
+cd /media/sea/2b8c80c9-2d6f-4953-8230-19f3e33def93/home/sea/
+sudo cp -r nodeapp_test/ /home/sea/
+cd
+cd nodeapp_test/
+node app.js 
+sudo chown -R $USER:$USER /home/sea/*
+node app.js 
+cat kill_port_3000_listner.sh 
+sudo kill -9  $(lsof -t -i :3014)
+cls
+node app.js 
+cd 
+cd /media/sea/data/
+ls
+sd rm -rf nodeapp_test/
+cls
+ls
+sudo cp -r /home/sea/nodeapp_test/ .
+cls
+ls
+sd rm -rf nodeapp_test/
+cd
+cd Documents/ARABI_MAJALLA/programs/
+cls
+ls
+cls
+node test.js 
+st3
+cls
+ls
+cd kids/
+cls
+ls
+cd majid/
+ls
+evince majid_87.pdf 
+cd
+cd nodeapp_test/
+cls
+node app.js 
+node test.js 
+gesit
+cls
+gesit
+sudo chown -R $USER:$USER /var/www/
+sudo chown -R $USER:$USER /home/*
+st3
+sudo chown -R $USER:$USER /home/sea/*
+cls
+cd
+cd nodeapp_test/
+node app.js 
+cls
+cat kill_port_3000_listner.sh 
+sd kill -9  $(lsof -t -i :3014)
+st3 ../node
+st3 ../nodeapp_test
+cd
+cd /media/sea/4ce47eee-86ec-47c7-8166-9cc35cd324a0/
+ls
+cd home/sea/
+cls
+ls
+ls -a
+cd .npm/
+ls
+cd _logs/
+ls
+cd
+cd /media/sea/4ce47eee-86ec-47c7-8166-9cc35cd324a0/
+sl
+cls
+ls
+cd home/sea/
+ls
+sd cp .config/ /home/sea/
+sd cp -r .config/ /home/sea/
+st3
+sd cp -r .config/ /home/sea/
+cd .config/
+ls
+cd sublime-text-3/
+ls
+sudo cp -r * /home/sea/.config/sublime-text-3/
+cd Packages/
+ls
+cls
+cd
+sudo apt-get remove --purge remmina*
+cd /media/sea/4ce47eee-86ec-47c7-8166-9cc35cd324a0/
+cls
+ls
+cd home/sea/.config/sublime-text-3/Packages
+ls
+cd User/
+ls
+sudo ls
+cd ..
+sudo ls
+cd ..
+su root
+su sudo
+su root
+cd Documents/ARABI_MAJALLA/programs/
+cls
+cd
+cd Downloads
+ls
+tar -xvjf sublime_text_3_build_3211_x64.tar.bz2
+sudo mv sublime_text_3 /opt/
+sudo ln -s /opt/sublime_text_3 /usr/local/sublime_text_3
+sudo ln -s /usr/local/sublime_text_3/sublime_text /usr/local/bin/st3
+st3
+cls
+sut
+st3
+sut
+sd reboot
+node app.js 
+st3 
+cls
+node app.js 
+st3
+node app.js 
+git --version
+cls
+git config --global user.name “ahmed sek”
+git config --global user.email “ahmed.sek@yahoo.com”
+git init
+git remote
+git remote -v
+git add .
+git add -A .
+git commit -m "json db json files"
+git status
+git config --global user.name "ahmedsekgit"
+git config --global user.email "ahmed.sek@yahoo.com"
+git init
+git status
+git add -A .
+sudo git push -u origin master
+sudo git push -u origin main
+sudo apt-get update
+cd nodeapp_test/
+cls
+st3 ../nodeapp_test
+sudo apt-get update
+sudo apt-get install git
+cd
+cls
+cat token_git.txt 
+sudo apt-get update
+sudo apt-get upgrade
+cd Documents/ARABI_MAJALLA/programs/
+cls
+ls
+node test.js 
+cls
+st3
+sudo apt-get install ffmpeg
+sut
+node test.js 
+cd json_node/
+pwd
+cd
+cd Documents/ARABI_MAJALLA/programs/
+cls
+node dir_unwanted_files_clean.js 
+cls
+node dir_unwanted_files_clean.js 
+node test.js 
+cd Documents/ARABI_MAJALLA/programs/
+cls
+node test.js 
+st3
+sd reboot
+node ex12_nodemailer_attachement.js 161 & 
+node ex12_nodemailer_attachement.js 162 & 
+node ex12_nodemailer_attachement.js 163 & 
+node ex12_nodemailer_attachement.js 164 & 
+node ex12_nodemailer_attachement.js 165 & 
+node ex12_nodemailer_attachement.js 166 & 
+node ex12_nodemailer_attachement.js 167 & 
+node ex12_nodemailer_attachement.js 168 & 
+node ex12_nodemailer_attachement.js 169 & 
+node ex12_nodemailer_attachement.js 170 & 
+node ex12_nodemailer_attachement.js 171 & 
+node ex12_nodemailer_attachement.js 172 & 
+node ex12_nodemailer_attachement.js 173 & 
+node ex12_nodemailer_attachement.js 174 & 
+node ex12_nodemailer_attachement.js 175 & 
+node ex12_nodemailer_attachement.js 176 & 
+node ex12_nodemailer_attachement.js 177 & 
+node ex12_nodemailer_attachement.js 178 & 
+node ex12_nodemailer_attachement.js 179 & 
+node ex12_nodemailer_attachement.js 180 & 
+node ex12_nodemailer_attachement.js 181 & 
+node ex12_nodemailer_attachement.js 182 & 
+node ex12_nodemailer_attachement.js 183 & 
+node ex12_nodemailer_attachement.js 184 & 
+node ex12_nodemailer_attachement.js 185 & 
+node ex12_nodemailer_attachement.js 186 & 
+node ex12_nodemailer_attachement.js 187 & 
+node ex12_nodemailer_attachement.js 188 & 
+node ex12_nodemailer_attachement.js 189 & 
+node ex12_nodemailer_attachement.js 190 & 
+cls
+node ex12_nodemailer_attachement.js 161 & 
+node ex12_nodemailer_attachement.js 162 & 
+node ex12_nodemailer_attachement.js 163 & 
+node ex12_nodemailer_attachement.js 164 & 
+node ex12_nodemailer_attachement.js 165 & 
+node ex12_nodemailer_attachement.js 166 & 
+node ex12_nodemailer_attachement.js 167 & 
+node ex12_nodemailer_attachement.js 168 & 
+node ex12_nodemailer_attachement.js 169 & 
+node ex12_nodemailer_attachement.js 170 & 
+node ex12_nodemailer_attachement.js 171 & 
+node ex12_nodemailer_attachement.js 172 & 
+node ex12_nodemailer_attachement.js 173 & 
+node ex12_nodemailer_attachement.js 174 & 
+node ex12_nodemailer_attachement.js 175 & 
+node ex12_nodemailer_attachement.js 176 & 
+node ex12_nodemailer_attachement.js 177 & 
+node ex12_nodemailer_attachement.js 178 & 
+node ex12_nodemailer_attachement.js 179 & 
+node ex12_nodemailer_attachement.js 180 & 
+node ex12_nodemailer_attachement.js 181 & 
+node ex12_nodemailer_attachement.js 182 & 
+node ex12_nodemailer_attachement.js 183 & 
+node ex12_nodemailer_attachement.js 184 & 
+node ex12_nodemailer_attachement.js 185 & 
+node ex12_nodemailer_attachement.js 186 & 
+node ex12_nodemailer_attachement.js 187 & 
+node ex12_nodemailer_attachement.js 188 & 
+node ex12_nodemailer_attachement.js 189 & 
+node ex12_nodemailer_attachement.js 190 & 
+node ex12_nodemailer_attachement.js 161 & 
+node ex12_nodemailer_attachement.js 162 & 
+node ex12_nodemailer_attachement.js 163 & 
+node ex12_nodemailer_attachement.js 164 & 
+node ex12_nodemailer_attachement.js 165 & 
+node ex12_nodemailer_attachement.js 166 & 
+node ex12_nodemailer_attachement.js 167 & 
+node ex12_nodemailer_attachement.js 168 & 
+node ex12_nodemailer_attachement.js 169 & 
+node ex12_nodemailer_attachement.js 170 & 
+node ex12_nodemailer_attachement.js 171 & 
+node ex12_nodemailer_attachement.js 172 & 
+node ex12_nodemailer_attachement.js 173 & 
+node ex12_nodemailer_attachement.js 174 & 
+node ex12_nodemailer_attachement.js 175 & 
+node ex12_nodemailer_attachement.js 176 & 
+node ex12_nodemailer_attachement.js 177 & 
+node ex12_nodemailer_attachement.js 178 & 
+node ex12_nodemailer_attachement.js 179 & 
+node ex12_nodemailer_attachement.js 180 & 
+node ex12_nodemailer_attachement.js 181 & 
+node ex12_nodemailer_attachement.js 182 & 
+node ex12_nodemailer_attachement.js 183 & 
+node ex12_nodemailer_attachement.js 184 & 
+node ex12_nodemailer_attachement.js 185 & 
+node ex12_nodemailer_attachement.js 186 & 
+node ex12_nodemailer_attachement.js 187 & 
+node ex12_nodemailer_attachement.js 188 & 
+node ex12_nodemailer_attachement.js 189 & 
+node ex12_nodemailer_attachement.js 190 & 
+node ex12_nodemailer_attachement.js 161 & 
+node ex12_nodemailer_attachement.js 162 & 
+node ex12_nodemailer_attachement.js 163 & 
+node ex12_nodemailer_attachement.js 164 & 
+node ex12_nodemailer_attachement.js 165 & 
+node ex12_nodemailer_attachement.js 166 & 
+node ex12_nodemailer_attachement.js 167 & 
+node ex12_nodemailer_attachement.js 168 & 
+node ex12_nodemailer_attachement.js 169 & 
+node ex12_nodemailer_attachement.js 170 & 
+node ex12_nodemailer_attachement.js 171 & 
+node ex12_nodemailer_attachement.js 172 & 
+node ex12_nodemailer_attachement.js 173 & 
+node ex12_nodemailer_attachement.js 174 & 
+node ex12_nodemailer_attachement.js 175 & 
+node ex12_nodemailer_attachement.js 176 & 
+node ex12_nodemailer_attachement.js 177 & 
+node ex12_nodemailer_attachement.js 178 & 
+node ex12_nodemailer_attachement.js 179 & 
+node ex12_nodemailer_attachement.js 180 & 
+node ex12_nodemailer_attachement.js 181 & 
+node ex12_nodemailer_attachement.js 182 & 
+node ex12_nodemailer_attachement.js 183 & 
+node ex12_nodemailer_attachement.js 184 & 
+node ex12_nodemailer_attachement.js 185 & 
+node ex12_nodemailer_attachement.js 186 & 
+node ex12_nodemailer_attachement.js 187 & 
+node ex12_nodemailer_attachement.js 188 & 
+node ex12_nodemailer_attachement.js 189 & 
+node ex12_nodemailer_attachement.js 190 & 
+node ex12_nodemailer_attachement.js 161 & 
+node ex12_nodemailer_attachement.js 162 & 
+node ex12_nodemailer_attachement.js 163 & 
+node ex12_nodemailer_attachement.js 164 & 
+node ex12_nodemailer_attachement.js 165 & 
+node ex12_nodemailer_attachement.js 166 & 
+node ex12_nodemailer_attachement.js 167 & 
+node ex12_nodemailer_attachement.js 168 & 
+node ex12_nodemailer_attachement.js 169 & 
+node ex12_nodemailer_attachement.js 170 & 
+node ex12_nodemailer_attachement.js 171 & 
+node ex12_nodemailer_attachement.js 172 & 
+node ex12_nodemailer_attachement.js 173 & 
+node ex12_nodemailer_attachement.js 174 & 
+node ex12_nodemailer_attachement.js 175 & 
+node ex12_nodemailer_attachement.js 176 & 
+node ex12_nodemailer_attachement.js 177 & 
+node ex12_nodemailer_attachement.js 178 & 
+node ex12_nodemailer_attachement.js 179 & 
+node ex12_nodemailer_attachement.js 180 & 
+node ex12_nodemailer_attachement.js 181 & 
+node ex12_nodemailer_attachement.js 182 & 
+node ex12_nodemailer_attachement.js 183 & 
+node ex12_nodemailer_attachement.js 184 & 
+node ex12_nodemailer_attachement.js 185 & 
+node ex12_nodemailer_attachement.js 186 & 
+node ex12_nodemailer_attachement.js 187 & 
+node ex12_nodemailer_attachement.js 188 & 
+node ex12_nodemailer_attachement.js 189 & 
+node ex12_nodemailer_attachement.js 190 & 
+node ex12_nodemailer_attachement.js 161 & 
+node ex12_nodemailer_attachement.js 162 & 
+node ex12_nodemailer_attachement.js 163 & 
+node ex12_nodemailer_attachement.js 164 & 
+node ex12_nodemailer_attachement.js 165 & 
+node ex12_nodemailer_attachement.js 166 & 
+node ex12_nodemailer_attachement.js 167 & 
+node ex12_nodemailer_attachement.js 168 & 
+node ex12_nodemailer_attachement.js 169 & 
+node ex12_nodemailer_attachement.js 170 & 
+node ex12_nodemailer_attachement.js 171 & 
+node ex12_nodemailer_attachement.js 172 & 
+node ex12_nodemailer_attachement.js 173 & 
+node ex12_nodemailer_attachement.js 174 & 
+node ex12_nodemailer_attachement.js 175 & 
+node ex12_nodemailer_attachement.js 176 & 
+node ex12_nodemailer_attachement.js 177 & 
+node ex12_nodemailer_attachement.js 178 & 
+node ex12_nodemailer_attachement.js 179 & 
+node ex12_nodemailer_attachement.js 180 & 
+node ex12_nodemailer_attachement.js 181 & 
+node ex12_nodemailer_attachement.js 182 & 
+node ex12_nodemailer_attachement.js 183 & 
+node ex12_nodemailer_attachement.js 184 & 
+node ex12_nodemailer_attachement.js 185 & 
+node ex12_nodemailer_attachement.js 186 & 
+node ex12_nodemailer_attachement.js 187 & 
+node ex12_nodemailer_attachement.js 188 & 
+node ex12_nodemailer_attachement.js 189 & 
+node ex12_nodemailer_attachement.js 190 & 
+node test.js 
+cls
+node test.js 
+sudo chown -R $USER:$USER /home/sea/*
+cls
+st3
+cd Documents/ARABI_MAJALLA/programs/
+sd npm install popups
+sudo npm install popups
+npm install popups
+st3
+node test.js 
+npm i --save message-box
+cls
+node ex8_sample_code_generate_cmds_exec.js 
+cls
+ps -ax | grep    *smtp*
+ps -ax | grep smpt
+ps -ax | grep nodemailer
+kill -9 $(pgrep -f nodemailer)
+ps -ax | grep nodemailer
+kill -9 $(pgrep -f nodemailer)
+ps -ax | grep nodemailer
+node dir_unwanted_files_clean.js 
+cls
+cd
+cd programs/
+cls
+cd Crawling/
+ls
+cd Example
+cd Example12
+st3 ../Example12
+ls
+node ex12.4.js 
+sut
+cd 
+cd nodeapp_test/
+npm install popups
+cd
+cd json_node/
+cl
+scls
+cls
+npm install popups
+cd 
+cd Documents/ARABI_MAJALLA/programs/
+cls
+node ex12_nodemailer_attachement.js 150 & 
+node ex12_nodemailer_attachement.js 151 & 
+node ex12_nodemailer_attachement.js 152 & 
+node ex12_nodemailer_attachement.js 153 & 
+node ex12_nodemailer_attachement.js 154 & 
+node ex12_nodemailer_attachement.js 155 & 
+node ex12_nodemailer_attachement.js 156 & 
+node ex12_nodemailer_attachement.js 157 & 
+node ex12_nodemailer_attachement.js 158 & 
+node ex12_nodemailer_attachement.js 159 & 
+node ex12_nodemailer_attachement.js 160 & 
+node ex12_nodemailer_attachement.js 161 & 
+node ex12_nodemailer_attachement.js 162 & 
+node ex12_nodemailer_attachement.js 163 & 
+node ex12_nodemailer_attachement.js 164 & 
+node ex12_nodemailer_attachement.js 165 & 
+node ex12_nodemailer_attachement.js 166 & 
+node ex12_nodemailer_attachement.js 167 & 
+node ex12_nodemailer_attachement.js 168 & 
+node ex12_nodemailer_attachement.js 169 &
+node ex8_sample_code_generate_cmds_exec.js 
+cls
+node ex12_nodemailer_attachement.js 170 & 
+node ex12_nodemailer_attachement.js 171 & 
+node ex12_nodemailer_attachement.js 172 & 
+node ex12_nodemailer_attachement.js 173 & 
+node ex12_nodemailer_attachement.js 174 & 
+node ex12_nodemailer_attachement.js 175 & 
+node ex12_nodemailer_attachement.js 176 & 
+node ex12_nodemailer_attachement.js 177 & 
+node ex12_nodemailer_attachement.js 178 & 
+node ex12_nodemailer_attachement.js 179 & 
+node ex12_nodemailer_attachement.js 180 & 
+node ex12_nodemailer_attachement.js 181 & 
+node ex12_nodemailer_attachement.js 182 & 
+node ex12_nodemailer_attachement.js 183 & 
+node ex12_nodemailer_attachement.js 184 & 
+node ex12_nodemailer_attachement.js 185 & 
+node ex12_nodemailer_attachement.js 186 & 
+node ex12_nodemailer_attachement.js 187 & 
+node ex12_nodemailer_attachement.js 188 & 
+node ex12_nodemailer_attachement.js 189 & 
+node ex12_nodemailer_attachement.js 190 & 
+node ex12_nodemailer_attachement.js 191 & 
+node ex12_nodemailer_attachement.js 192 & 
+node ex12_nodemailer_attachement.js 193 & 
+node ex12_nodemailer_attachement.js 194 & 
+node ex12_nodemailer_attachement.js 195 & 
+node ex12_nodemailer_attachement.js 196 & 
+node ex12_nodemailer_attachement.js 197 & 
+node ex12_nodemailer_attachement.js 198 & 
+node ex12_nodemailer_attachement.js 199 & 
+node ex12_nodemailer_attachement.js 200 & 
+node ex12_nodemailer_attachement.js 170 & 
+node ex12_nodemailer_attachement.js 171 & 
+node ex12_nodemailer_attachement.js 172 & 
+node ex12_nodemailer_attachement.js 173 & 
+node ex12_nodemailer_attachement.js 174 & 
+node ex12_nodemailer_attachement.js 175 & 
+node ex12_nodemailer_attachement.js 176 & 
+node ex12_nodemailer_attachement.js 177 & 
+node ex12_nodemailer_attachement.js 178 & 
+node ex12_nodemailer_attachement.js 179 & 
+node ex12_nodemailer_attachement.js 180 & 
+node ex12_nodemailer_attachement.js 181 & 
+node ex12_nodemailer_attachement.js 182 & 
+node ex12_nodemailer_attachement.js 183 & 
+node ex12_nodemailer_attachement.js 184 & 
+node ex12_nodemailer_attachement.js 185 & 
+node ex12_nodemailer_attachement.js 186 & 
+node ex12_nodemailer_attachement.js 187 & 
+node ex12_nodemailer_attachement.js 188 & 
+node ex12_nodemailer_attachement.js 189 & 
+node ex12_nodemailer_attachement.js 190 & 
+node ex12_nodemailer_attachement.js 191 & 
+node ex12_nodemailer_attachement.js 192 & 
+node ex12_nodemailer_attachement.js 193 & 
+node ex12_nodemailer_attachement.js 194 & 
+node ex12_nodemailer_attachement.js 195 & 
+node ex12_nodemailer_attachement.js 196 & 
+node ex12_nodemailer_attachement.js 197 & 
+node ex12_nodemailer_attachement.js 198 & 
+node ex12_nodemailer_attachement.js 199 & 
+node ex12_nodemailer_attachement.js 200 & 
+cd Documents/ARABI_MAJALLA/programs/
+cls
+st3
+st3 ../programs/
+sd npm install open-term
+node test.js 
+node  ex12_nodemailer_attachement.js 153 154 155
+node  ex12_nodemailer_attachement.js 166
+node  ex12_nodemailer_attachement.js 172
+node  ex12_nodemailer_attachement.js 163
+node  ex12_nodemailer_attachement.js 157
+node  ex12_nodemailer_attachement.js 154 
+cd Documents/ARABI_MAJALLA/programs/
+cls
+node  ex12_nodemailer_attachement.js 153
+ls
+lscls
+cls
+node  ex12_nodemailer_attachement.js 153
+cd node_modules/
+cls
+cd 
+
+cls
+st3 ../nodeapp_test
+node app.js 
+sudo git push -u origin main
+git remote set-url origin https://github.com/ahmedsekgit/solar_neon.git/
+sudo git push -u origin main
+cd
+cd json_node/
+c
+cls
+ls
+cd work_on_files/
+ls
+cd cpp_q_r/
+ls
+cd..
+cka
+ks
+cks
+ks
+cks
+ls
+cd ..
+cls
+ls
+sd rm -rf *_q_r
+cls
+ls
+cd load-more/
+ls
+cd ..
+cd javascript_links/
+ñs
+ls
+cls
+ls
+cd ..
+cls
+ls
+cd ..
+cls
+ls
+cd public/
+ls
+cd ..
+cd data_files/
+ls
+cls
+ls
+cd ..
+cls
+ls
+cd db_bkps/
+ls
+cd CSVs/
+ls
+cd ..
+cd json/
+ls
+cls
+cd ..
+ls
+cd Bash_Files/
+ls
+cd Bash_Files/
+ls
+cd ..
+cd ../base/
+cls
+ls
+sd rm -rf *.sql
+cls
+ls
+cd bkp/
+ls
+cd bkp1/
+ls
+cd controllers/
+ls
+cls
+cd ../../..
+ls
+cd ..
+cls
+ls
+sd rm -rf base/
+cls
+ls
+cd Example5
+ls
+sd rm -rf *_q_r
+ls
+cls
+ls
+cd ..
+cls
+ls
+mv kill_port_3000_listner.sh stop_port_3000_listner.sh 
+ls
+cat stop_port_3000_listner.sh 
+ls
+cls
+ls
+cd db_bkps/
+ls
+sd rm -rf *
+cls
+ls
+cd ..
+ls
+cd db_
+cd db_json/
+ls
+cls
+ls
+cd ..
+ls
+sd rm -rf work_on_files/
+sd rm -rf Bash_Files/
+sd rm -rf db_bkps/
+cls
+ls
+cd export/
+ls
+cd ..
+cks
+sd rm -rf export/
+cls
+ls
+sd rm -rf data_files/
+cls
+ls
+cls
+ls
+cd Example5/
+ls
+cd ../Example12/
+cls
+ls
+cd bkp/
+ls
+cd ..
+sd rm -rf bkp/
+cls
+ls
+cd Example12/
+ls
+cd ..
+cls
+ls
+cd Example12/
+ls
+cd node_modules/
+ls
+cd fs/
+ls
+cd ..
+ls
+sd rm -rf *
+ls
+cd ..
+cls
+ls
+cd node_modules/
+ls
+cd ..
+sd rm -rf Example12
+cls
+ls
+cd Example5/
+ls
+cd node_modules/
+ls
+cd ..
+cls
+ls
+cd ..
+ls
+sd cp -r /home/sea/nodeapp_test/Example12/Example12/ .
+ls
+cd Example
+cd Example12/
+cls
+ls
+cd bkp/
+ls
+cd ..
+ls
+echo "# json_node" >> README.md
+ls
+cat README.md 
+sd git init
+git add README.md
+git commit -m "README.md"
+git branch -M main
+git remote add origin https://github.com/ahmedsekgit/json_node.git
+git push -u origin main
+cls
+ls
+ls -a
+sd rm -rf .git/
+cls
+ls
+git init
+git add README.md
+git commit -m "README.md"
+git branch -M main
+git remote add origin https://github.com/ahmedsekgit/json_node.git
+git push -u origin main
+git remote -v
+git remote set-url origin git@github.com:ahmedsekgit/json_node.git
+git push -u origin main
+git remote -v
+git push -u origin main
+git remote add origin https://github.com/ahmedsekgit/json_node.git
+git push -u origin main
+git remote set-url origin https://github.com/ahmedsekgit/json_node.git
+git push -u origin main
+git add -A .
+sd git add -A .
+git commit -m "json_node"
+git branch -M main
+git push -u origin main
+cd Documents/ARABI_MAJALLA/programs/
+cls
+st3
+node test.js 
+cls
+ls
+cls
+node test.js 
+node ./month.mjs "2022-02-01"
+node test.js 
+cls
+node test.js 
+npm install
+cl
+scls
+cls
+node test.js 
+cls
+node ./openTerminal.mjs 
+npm install open-terminal
+node ./openTerminal.mjs 
+npm install -g open-terminal
+sd npm install -g open-terminal
+cls
+cd Documents/ARABI_MAJALLA/programs/
+cls
+st3
+node test.js 
+cls
+sudo chown -
+sudo chown -R sea:sea /home/sea/*
+sudo chown -R sea:sea /home/sea/.bash*
+sudo chown -R sea:sea /home/sea/.*
+st3 .bash_history 
+ST3
+st3
+cd 
+cd Documents/ARABI_MAJALLA/programs/
+cl
+scls
+cls
+node test.js 
+st3
+sd node ./month.mjs 2012-7-4
+sd node ./month.mjs 2012-5-65
+sd node ./month.mjs 2012-5-6
+cd json_node/
+cd ..
+cd NODE_ZIP/
+gedit *.txt &
+node -v
+npm -v
+npx -v
+npm version
+cls
+dc
+cd
+cd json_node/
+node app.js 
+sudo cp -r /media/sea/7752286c-513b-432a-a18f-5226ba9ae7de/var/www/ /var/
+cat .bash_aliases 
+cat .bash_history 
+sd cat .bash_history 
+sudo chown -R sea:sea /home/sea/.*
+cd Documents/ARABI_MAJALLA/programs/
+cls
+npm install --save text-from-image
+cls
+node ex39.js 
+cls
+node ex39.js 
+npm install tesseract.js
+npm fund
+cls
+node ex39.js 
+npm install textract
+node ex39.js 
+npm install textract
+npm install jsonexport
+cls
+node ex39.js 
+cls
+node ex39.js 
+audo mkdir -p /usr/local/lib/nodejs
+wsudo mkdir -p /usr/local/lib/nodejs
+sd mkdir -p /usr/local/lib/nodejs
+sudo tar -xJvf node-v16.14.0-linux-x64.tar.xz -C /usr/local/lib/nodejs
+node -v
+npm -v
+npx -v
+cd
+cls
+cd json_node/
+cls
+node app.js 
+cd Documents/ARABI_MAJALLA/programs/
+st3
+cd
+cd NODE_ZIP/
+cls
+gedit *.txt
+sut
+gedit node_zip_install.txt 
+cd
+cls
+cd Downloads/
+ls
+tar -xvjf sublime_text_3_build_3211_x64.tar.bz2
+sudo mv sublime_text_3 /opt/
+sudo ln -s /opt/sublime_text_3 /usr/local/sublime_text_3
+sudo ln -s /usr/local/sublime_text_3/sublime_text /usr/local/bin/st3
+st3
+cd
+sudo du -hs / [^.]*
+cd programs/
+cls
+ls
+cd Crawling/Example12/
+cls
+st3 ../Example12
+node ex12.generic.js 
+cls
+node ex12.generic.js 
+sd cp -r bkp/majala/__Documents__ARABI_MAJALLA__programs1.txt /home/sea/json_node
+cd /home/sea/json_node/
+cls
+ls
+============================================================
+path : __home__sea__Documents__ARABI_MAJALLA__programs
+============================================================
+id: 1
+============================================================
+file: CMD_CMD_CMD_CMD_.json
+============================================================
+content: node ex12_nodemailer_attachement.js 170 & 
+node ex12_nodemailer_attachement.js 171 & 
+node ex12_nodemailer_attachement.js 172 & 
+node ex12_nodemailer_attachement.js 173 & 
+node ex12_nodemailer_attachement.js 174 & 
+node ex12_nodemailer_attachement.js 175 & 
+node ex12_nodemailer_attachement.js 176 & 
+node ex12_nodemailer_attachement.js 177 & 
+node ex12_nodemailer_attachement.js 178 & 
+node ex12_nodemailer_attachement.js 179 & 
+node ex12_nodemailer_attachement.js 180 & 
+node ex12_nodemailer_attachement.js 181 & 
+node ex12_nodemailer_attachement.js 182 & 
+node ex12_nodemailer_attachement.js 183 & 
+node ex12_nodemailer_attachement.js 184 & 
+node ex12_nodemailer_attachement.js 185 & 
+node ex12_nodemailer_attachement.js 186 & 
+node ex12_nodemailer_attachement.js 187 & 
+node ex12_nodemailer_attachement.js 188 & 
+node ex12_nodemailer_attachement.js 189 & 
+node ex12_nodemailer_attachement.js 190 & 
+node ex12_nodemailer_attachement.js 191 & 
+node ex12_nodemailer_attachement.js 192 & 
+node ex12_nodemailer_attachement.js 193 & 
+node ex12_nodemailer_attachement.js 194 & 
+node ex12_nodemailer_attachement.js 195 & 
+node ex12_nodemailer_attachement.js 196 & 
+node ex12_nodemailer_attachement.js 197 & 
+node ex12_nodemailer_attachement.js 198 & 
+node ex12_nodemailer_attachement.js 199 & 
+node ex12_nodemailer_attachement.js 200 & 
+============================================================
+path : __home__sea__Documents__ARABI_MAJALLA__programs
+============================================================
+id: 2
+============================================================
+file: REST_REST_REST_REST_.json
+============================================================
+content:  node  ex12_nodemailer_attachement.js 1 & 
+============================================================
+path : __home__sea__Documents__ARABI_MAJALLA__programs
+============================================================
+id: 3
+============================================================
+file: cheerio_sync-request_1.js
+============================================================
+content: var cheerio = require('cheerio');
+var request = require('sync-request');
+var fs = require('fs');
+var js = require('./js_arr_objs.js');
+var jsf = require('./js_files.js');
+var ofile = fs.openSync('out.html','w');
+const arr_urls= [
+];
+var url = arr_urls[1];
+var html = request('GET', url).getBody().toString();
+var StrData = html;
+var str_included = '<!DOCTYPE html><html lang=';
+node test.js 
+node ex12_nodemailer_attachement.js 301 & 
+node ex12_nodemailer_attachement.js 302 & 
+node ex12_nodemailer_attachement.js 303 & 
+node ex12_nodemailer_attachement.js 304 & 
+node ex12_nodemailer_attachement.js 305 & 
+node ex12_nodemailer_attachement.js 306 & 
+node ex12_nodemailer_attachement.js 307 & 
+node ex12_nodemailer_attachement.js 308 & 
+node ex12_nodemailer_attachement.js 309 & 
+node ex12_nodemailer_attachement.js 310 & 
+node ex12_nodemailer_attachement.js 311 & 
+node ex12_nodemailer_attachement.js 312 & 
+node ex12_nodemailer_attachement.js 313 & 
+node ex12_nodemailer_attachement.js 314 & 
+node ex12_nodemailer_attachement.js 315 & 
+node ex12_nodemailer_attachement.js 316 & 
+node ex12_nodemailer_attachement.js 317 & 
+node ex12_nodemailer_attachement.js 318 & 
+node ex12_nodemailer_attachement.js 319 & 
+node ex12_nodemailer_attachement.js 320 & 
+node ex12_nodemailer_attachement.js 319 & 
+node ex12_nodemailer_attachement.js 320 & 
+node ex12_nodemailer_attachement.js 321 & 
+node ex12_nodemailer_attachement.js 322 & 
+node ex12_nodemailer_attachement.js 323 & 
+node ex12_nodemailer_attachement.js 324 & 
+node ex12_nodemailer_attachement.js 325 & 
+node ex12_nodemailer_attachement.js 326 & 
+node ex12_nodemailer_attachement.js 327 & 
+node ex12_nodemailer_attachement.js 328 & 
+node ex12_nodemailer_attachement.js 329 & 
+node ex12_nodemailer_attachement.js 330 & 
+node ex12_nodemailer_attachement.js 331 & 
+node ex12_nodemailer_attachement.js 332 & 
+node ex12_nodemailer_attachement.js 333 & 
+
+node ex12_nodemailer_attachement.js 335 & 
+node ex12_nodemailer_attachement.js 336 & 
+node ex12_nodemailer_attachement.js 337 & 
+node ex12_nodemailer_attachement.js 338 & 
+node ex12_nodemailer_attachement.js 339 & 
+node ex12_nodemailer_attachement.js 340 & 
+node ex12_nodemailer_attachement.js 341 & 
+node ex12_nodemailer_attachement.js 342 & 
+node ex12_nodemailer_attachement.js 343 & 
+node ex12_nodemailer_attachement.js 344 & 
+node ex12_nodemailer_attachement.js 345 & 
+node ex12_nodemailer_attachement.js 346 & 
+node ex12_nodemailer_attachement.js 347 & 
+node ex12_nodemailer_attachement.js 348 & 
+node ex12_nodemailer_attachement.js 349 & 
+node ex12_nodemailer_attachement.js 350 & 
+sudo ln -s /usr/local/lib/nodejs/ /usr/local/nodejs
+sudo ln -s /usr/local/nodejs/node-v16.14.0-linux-x64/bin/node /usr/local/bin/node
+sudo ln -s /usr/local/nodejs/node-v16.14.0-linux-x64/bin/npm /usr/local/bin/npm
+sudo ln -s /usr/local/nodejs/node-v16.14.0-linux-x64/bin/npx /usr/local/bin/npx
+cls
+sd npm install -g nodejs-dashboard
+node test.js 
+cd Documents/ARABI_MAJALLA/programs/
+cls
+nodejs-dashboard -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 221
+nodejs-dashboard  ex12_nodemailer_attachement.js 221
+nodejs-dashboard --port=8003 -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 221
+nodejs-dashboard --port=8005 -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 225
+nodejs-dashboard --port=8026 -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 259
+cls
+nodejs-dashboard -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 225
+nodejs-dashboard --port=8004 -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 222
+51;31;3Mnodejs-dashboard --port=8006 -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 227
+nodejs-dashboard --port=8008 -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 230
+cls
+nodejs-dashboard -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 228
+nodejs-dashboard --port=8006 -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 227
+nodejs-dashboard --port=8011 -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 233
+cls
+nodejs-dashboard -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 227
+nodejs-dashboard --port=8005 -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 225
+51;58;1M51;58;1Mnodejs-dashboard --port=8009 -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 231
+nodejs-dashboard --port=8010 -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 232
+cls
+nodejs-dashboard -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 232
+nodejs-dashboard --port=8008 -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 230
+nodejs-dashboard --port=8013 -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 238
+nodejs-dashboard --port=8032 -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 273
+cls
+nodejs-dashboard -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 233
+nodejs-dashboard --port=8010 -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 232
+nodejs-dashboard --port=8015 -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 244
+cls
+nodejs-dashboard -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 237
+nodejs-dashboard --port=8011 -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 233
+nodejs-dashboard --port=8017 -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 248
+cd Documents/ARABI_MAJALLA/programs/
+nodejs-dashboard --port=8011 -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 233
+nodejs-dashboard --port=8013 -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 237
+nodejs-dashboard --port=8015 -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 240
+nodejs-dashboard --port=8016 -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 244
+nodejs-dashboard --port=8021 -- node -r nodejs-dashboard ex12_nodemailer_attachement.js 251
+cd 
+cd Documents/ARABI_MAJALLA/programs/
+sd npm install -g node-html-parser
+sd npm install  node-html-parser
+npm audit
+cls
+node test.js 
+st3
+cls
+node test.js 
+cls
+& 
+sd npm i search-engine
+sd npm i search-array
+cd Documents/ARABI_MAJALLA/programs/
+cls
+node test.js 
+st3
+ls -l
+du -a
+du -hs .[^.]*
+cd
+cls
+du -hs .[^.]*
+cd json_node/
+node app.js 
+nodejs-dashboard -- node -r nodejs-dashboard app.js 
+sd npm i search-array
+cd
+cd json_node/
+cls
+node app.js 
+gedit &
+sd kill -9  $(lsof -t -i :3014)
+node app.js 
+node ex12_nodemailer_attachement.js 257
+node ex12_nodemailer_attachement.js 271
+node ex12_nodemailer_attachement.js 248
+node ex12_nodemailer_attachement.js 247
+cd
+cd nodeapp_test/
+cks
+sd npm install readline
+cls
+cd

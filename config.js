@@ -60,7 +60,7 @@ const config = {
 	{
 		host: '127.0.0.1',
 		host_adr: 'http://localhost:',
-		port: '3014'
+		port: '3012'
 	},
 	redis: 
 	{

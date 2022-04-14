@@ -84,7 +84,47 @@
                     Welcome to 
                     <%= title %>
                     </p>
-                    
+
+
+<!-- This div will be populated with error messages -->
+<div id="example_form_error"></div>
+
+<!-- Here is your form -->
+<div id="example_form_enter">
+    <form id="contact_modal_form" method="post" action="" onsubmit="return ref_search();">
+            <label for="search_link_term">Enter a word:
+            </label> 
+          <input style= "background-color: black; color: white;" class='textbox' id='search_link_term' name='search_link_term' type='text' size='25' required />
+            <div class="form-group" >
+                <label for="pwd">Nombre de rendus maximal:</label>
+                <select name="limit_link_sql" id="limit_link_sql" class="">
+                    <option value=100>100</option>
+                    <option value=1000>1000</option>
+                    <option value=10000>10000</option>
+                </select>
+              </div>
+          <button class='contact_modal_button' type='submit'>Send</button>
+    </form>
+</div>
+
+<!-- This div will be populated with success messages -->
+<div id="example_form_success"></div>
+
+<!-- This div contains a section that is hidden initially, but displayed when the form is submitted successfully -->
+<div id="example_form_confirmation" style="display: none">
+    <p>
+        Additional static div displayed on success.
+        <br>
+        <br>
+        <a href="index.php">Try Again</a>
+    </p>
+</div>
+
+<br>
+
+<!-- Below is the jQuery function that process form submission and receives back results -->
+
+                   
 <div class="container">
   <br>
   <div id="myCarousel" class="carousel slide" data-ride="carousel">

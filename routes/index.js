@@ -1,5 +1,9 @@
 var express = require('express');
 var router = express.Router();
+var config = require('./../config');
+
+var searchController = require('../controllers/search-controller');
+var db = require('../database');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -8,6 +12,8 @@ router.get('/', function(req, res, next) {
         title: 'Express'
     });
 });
+router.post('/ref_search', searchController.ref_search);
+
 router.get('/ajax', function(req, res) {
 
 

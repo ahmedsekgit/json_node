@@ -34,7 +34,94 @@ function filterColumn(i) {
     ).draw();
 
 }
+function ref_search() {
+   
+        var form = $(this);
 
+
+            var search_term = $("#search_link_term").val();
+            /*var search_keyword=$("#search_link_keyword").val();*/
+            var limit_sql = $("#limit_link_sql").val();
+            var search_keyword = '';
+             var test = $('#site_address_port').val() + '/ref_search';
+             console.log(test);
+            if (typeof(search_term.trim()) !== undefined) {
+                $.ajax({
+                    type: 'POST',
+                    data: {
+                        'search_term': search_term,
+                        'search_keyword': search_keyword,
+                        'limit_sql': limit_sql,
+                    },
+                    datatype: 'json',
+                    url: $('#site_address_port').val() + '/ref_search',
+                    success: function(data) {
+                        console.log("data");
+                        console.dir(data);
+                        if(data.error == true) 
+                        {
+                            var error = $("#example_form_error");
+                            error.css("color", "red");
+                            error.html("Not " + data.msg + ". Please enter a different name.");
+                      
+                         } 
+                         else 
+                         {
+                        
+                         // $("#example_form_enter").hide();
+                         $("#example_form_enter").show();
+                         $("#example_form_error").hide();
+                         $("#example_form_confirmation").show();
+                        
+                         var success = $("#example_form_success");
+                         success.css("background-color", "black");
+                         success.css("color", "white");
+                         success.html("Success! You submitted the name " + data.name + ".");
+                         success.html(" " + data.str_commands + " ");
+                         }
+                    }
+                }); /*end ajax*/
+
+                return false;
+            } /*end if*/
+        return;    
+        $("#contact_modal_form").submit(function(event) {
+            
+            $.ajax({
+                type: form.attr('method'),
+                url: form.attr('action'),
+                data: form.serialize(),
+                dataType: 'json',
+                success: function(data) {
+                        console.log("data");
+                        console.dir(data);
+                        if(data.error == true) 
+                        {
+                            var error = $("#example_form_error");
+                            error.css("color", "red");
+                            error.html("Not " + data.msg + ". Please enter a different name.");
+                      
+                         } 
+                         else 
+                         {
+                        
+                         // $("#example_form_enter").hide();
+                         $("#example_form_enter").show();
+                         $("#example_form_error").hide();
+                         $("#example_form_confirmation").show();
+                        
+                         var success = $("#example_form_success");
+                         success.css("background-color", "black");
+                         success.css("color", "white");
+                         success.html("Success! You submitted the name " + data.name + ".");
+                         success.html(" " + data.str_commands + " ");
+                         }
+                }
+            });
+            event.preventDefault();
+        });
+    
+}/*function ref_search()*/
 $(document).ready(function() {
     console.log("ready!");
 
@@ -67,7 +154,34 @@ $(document).ready(function() {
     $("#date").datepicker();
     $("#table-container").resizable();
 
+    var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
 
+    $( "#tags_porcelaine" ).autocomplete({
+      source: availableTags
+    });
 
     // Multiple select
     $("#searchterm").autocomplete({

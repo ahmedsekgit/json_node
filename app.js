@@ -19,7 +19,7 @@ var corsOptions = {
   origin: "http://localhost:3016"
 };
 
-app.set('port', process.env.PORT || 3014);
+app.set('port', process.env.PORT || 3012);
 
 http.createServer(app).listen(app.get('port'),
   function(){

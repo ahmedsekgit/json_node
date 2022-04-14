@@ -2,10 +2,152 @@ var searchModel = require('../models/search-model');
 var fs = require('fs');
 var path = require('path');
 var chalk = require('chalk');
+const readline = require('readline');
+let string_decoder = require('string_decoder');
+var lineReader = require('line-reader');
 const log = console.log;
 
+var filename = __dirname+"/../hist.txt";
+
+function filtrage(filtred)
+{
+    return (filtred !== NULL && filtred !== FALSE && filtred.trim() !== "");
+}
+
+function getFileLinesSync(filename)
+{
+var arr_return =[];
+try {
+    // read contents of the file
+    const data = fs.readFileSync(filename, 'UTF-8');
+
+    // split the contents by new line
+    const lines = data.split(/\r?\n/);
+
+    // print all lines
+    lines.forEach((line) => {
+        arr_return.push(line);
+    });
+} catch (err) {
+    console.error(err);
+}
+    return arr_return;
+}
+
+ function json_success(name, la_limite) 
+{
+
+    name = name.trim();
+    name = name.toLowerCase();
+    var arr_return = [];
+        arr_return['error'] = false;
+        arr_return['name'] = name;
+    
+    var Arr = [];
+    var lines = [];
+
+    lines = getFileLinesSync(filename);
+
+    var lines_unique = lines.filter((v, i, a) => a.indexOf(v) === i); 
+  
+    var results = [];
+
+    var index, value;
+    for (index = 0; index < lines_unique.length; ++index) 
+    {
+        value = lines_unique[index];
+        if (value.includes(name)) 
+        {
+            results.push(value);
+        }
+    }
+
+    var str_commands = "";
+
+    if(typeof results == 'undefined' || results.length <= 0) 
+    { 
+        str_commands =  'No matches found.'; 
+    }
+    else 
+    { 
+     
+        var arrTemp = [];
+        for (var i_res=0; i_res < results.length; i_res++) 
+        { 
+            if(i_res <= la_limite)
+            {
+                arrTemp.push(results[i_res]);
+            }
+        }
+        results = [];
+        results = arrTemp;
+
+        
+        var arrRender = [];
+        str_commands = "<table class=\"table  table-active\" cellpadding=\"3\" cellspacing=\"0\" border=\"0\" style=\"width: 67%; margin: 0 auto 2em auto;\"><thead><tr><th scope=\"col\"> Line</th><th scope=\"col\">Copy</th></tr></thead>";
+        str_commands += "<tbody>";
+
+        results.forEach((command, key_line) => 
+        {
+            var td1 = "<p><pre><code id=\"text__"+key_line+"\">"+command+"</pre></code></p>";
+            var td2 = "<button type=\"button\" class=\"btn btn-success btn-sm\" onclick=\"copyToClipboard('#text__"+key_line+"')\">Copy</button>";
+
+            td1.replace('\n', '<br>');
+            td1.replace('#', '<br>#');
+            td1.replace('$', '<br>$');
+            
+            str_commands += "<tr id=\"filter_global\" class=\"table-active\"></tr>" ;
+            str_commands += "<tr>"+td1+"</tr>" ;
+            str_commands += "<tr>"+td2+"</tr>" ;
+            str_commands += "<tr></tr>" ;
+            
+        });
+        str_commands += "</tbody></table>" ;
+        
+    }
+    arr_return['str_commands'] = str_commands;
+
+    return arr_return;
+
+    //$return['exec'] = implode('', $return['exec']);
+    //return json_encode($return, JSON_PRETTY_PRINT);
+    //return json_encode($return);
+    
+}
+
+// Return Error Function
+function json_error(msg) {
+    var arr_return = [];
+    arr_return['error'] = true;
+    arr_return['msg'] = msg;
+    return arr_return;
+    //return json_encode(arr_return);
+}
 
 module.exports = {
+    ref_search: function(req, res) 
+    {
+        log("ref_search search-controller" );
+        const ref_search_inputData = 
+        {
+            search_term: req.body.search_term,
+            search_keyword: req.body.search_keyword,
+            rendu_nbr: req.body.limit_sql
+        };
+        
+        var termo = ref_search_inputData.search_term;
+        var limito = ref_search_inputData.rendu_nbr;
+        if(termo == 'Adam') 
+        {
+            var data_to_send=  Object.assign({}, json_success(termo));
+        } 
+        else 
+        {
+            var data_to_send=  Object.assign({}, json_success(termo, limito));
+        }
+
+        res.send(data_to_send);
+    },
     display_search_Data: function(req, res) {
         res.render('crud_search')
     },

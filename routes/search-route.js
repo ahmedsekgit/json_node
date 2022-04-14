@@ -10,6 +10,7 @@ router.post('/search_term_key', searchController.search_term_Data);
 // to search post
 //router.post('/search/:id', searchController.search_term_Data);
 
+
 router.post('/query_search', function(req, res) {
     var obj = {};
     console.log('body: ' + JSON.stringify(req.body));

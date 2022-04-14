@@ -8,14 +8,6 @@
     "reg_date": "2021-10-29T15:22:52.000Z"
   },
   {
-    "id": 2,
-    "keyword": null,
-    "link": null,
-    "title": " \"https://cdn.socket.io",
-    "description": "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js\"></script>\n",
-    "reg_date": "2021-10-29T15:22:52.000Z"
-  },
-  {
     "id": 3,
     "keyword": null,
     "link": "                                                ",
@@ -696,38 +688,6 @@
     "reg_date": "2021-10-29T15:22:52.000Z"
   },
   {
-    "id": 94,
-    "keyword": null,
-    "link": "test1",
-    "title": "test1",
-    "description": " test1  vtest1 test1 test1test1",
-    "reg_date": "2021-10-29T15:22:52.000Z"
-  },
-  {
-    "id": 96,
-    "keyword": null,
-    "link": "test2                                                                                                                                                ",
-    "title": "test2                                                                                                                                                ",
-    "description": " test2\r\n                    \r\n                    \r\n                    \r\n                    \r\n                    \r\n                    ",
-    "reg_date": "2021-10-29T20:26:14.000Z"
-  },
-  {
-    "id": 97,
-    "keyword": null,
-    "link": "test4",
-    "title": "test4",
-    "description": " test4",
-    "reg_date": "2021-10-29T15:22:52.000Z"
-  },
-  {
-    "id": 98,
-    "keyword": null,
-    "link": "test de link 1",
-    "title": "test de title1",
-    "description": "test de desc  1 ",
-    "reg_date": "2021-10-29T15:22:52.000Z"
-  },
-  {
     "id": 99,
     "keyword": null,
     "link": "",
@@ -834,9 +794,9 @@
   {
     "id": 112,
     "keyword": null,
-    "link": null,
-    "title": "!!! github token access !!!",
-    "description": "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",
+    "link": "                        ",
+    "title": "!!! github token access !!!                        ",
+    "description": " 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\r\n                    ",
     "reg_date": "2021-10-29T15:22:52.000Z"
   },
   {
@@ -2778,17 +2738,9 @@
   {
     "id": 366,
     "keyword": null,
-    "link": "link348",
-    "title": "title348",
-    "description": "\r\n    Learn how DigitalOcean delivers 200% ROI for your business\r\n\r\n    ProductsPricingDocsdropdownSign indropdown\r\n\r\nTutorials\r\nQuestions\r\nTech Talks\r\nGet Involveddropdwn\r\nsearch community\r\n/\r\nSign Up\r\n\r\n    CONTENTS\r\n    Introduction\r\n    Conditions préalables\r\n    Installation de Git avec les paquets par défaut\r\n    Installation de Git à partir de la source\r\n    Configuration de Git\r\n    Conclusion\r\n\r\nRelated\r\nComment déployer et gérer votre DNS en utilisant DNSControl sous Debian 10\r\nTutorial\r\nComment installer et configurer Elasticsearch sur Ubuntu 20.04\r\nTutorial\r\n// Tutorial //\r\nComment installer Git sur Ubuntu 20.04\r\nPublished on July 16, 2020\r\n\r\n    Git\r\n    Open Source\r\n    Ubuntu\r\n\r\nDefault avatar\r\nBy Lisa Tagliaferri\r\nDeveloper and author at DigitalOcean.\r\nFrançais\r\nComment installer Git sur Ubuntu 20.04\r\nIntroduction\r\n\r\nLes systèmes de contrôle version comme Git sont essentiels aux meilleures pratiques de développement logiciel moderne. Le versionnage vous permet de garder une trace de votre logiciel au niveau de la source. Vous pouvez suivre les modifications, revenir aux étapes précédentes et créer des versions alternatives de fichiers et de répertoires.\r\n\r\nLes fichiers de nombreux projets sont conservés dans un référentiel Git, et des sites comme GitHub, GitLab et Bitbucket facilitent le partage et la collaboration dans le cadre de projets de développement de logiciels.\r\n\r\nDans ce guide, nous passerons en revue la façon d’installer et de configurer Git sur un serveur Ubuntu 20.04. Nous aborderons la manière d’installer le logiciel de deux manières différentes : via le gestionnaire de paquets intégré et via la source. Chacune de ces approches a ses propres avantages en fonction de vos besoins spécifiques.\r\nConditions préalables\r\n\r\nVous aurez besoin d’un serveur Ubuntu 20.04 avec un compte superutilisateur non root.\r\n\r\nPour configurer cela, vous pouvez notre guide de configuration initiale du serveur pour Ubuntu 20.04.\r\n\r\nUne fois votre serveur et votre utilisateur configurés, vous êtes prêt à commencer.\r\nInstallation de Git avec les paquets par défaut\r\n\r\nL’option d’installer avec les paquets par défaut est meilleure si vous souhaitez être rapidement opérationnel avec Git, si vous préférez une version stable largement utilisée ou si vous ne cherchez pas les plus récentes fonctionnalités disponibles. Si vous recherchez la version la plus récente, vous devriez passer à la section sur l’installation à partir de la source.\r\n\r\nGit est probablement déjà installé dans votre serveur Ubuntu 20.04. Vous pouvez confirmer que c’est le cas sur votre serveur avec la commande suivante :\r\n\r\n    git --version\r\n\r\nSi vous recevez une sortie semblable à ce qui suit, cela signifie que Git est déjà installé.\r\n\r\nOutput\r\ngit version 2.25.1\r\n\r\nSi c’est le cas pour vous, alors vous pouvez passer à la configuration de Git, ou vous pouvez lire la section suivante sur Comment installer à partir de la source si vous avez besoin d’une version plus à jour.\r\n\r\nCependant, si vous n’avez pas obtenu de numéro de version de Git, vous pouvez l’installer avec le gestionnaire de paquets par défaut Ubuntu APT.\r\n\r\nTout d’abord, utilisez les outils de gestion de paquets apt pour mettre à jour votre index de paquets local.\r\n\r\n    sudo apt update\r\n\r\nUne fois la mise à jour terminée, vous pouvez installer Git :\r\n\r\n    sudo apt install git\r\n\r\nVous pouvez confirmer que vous avez correctement installé Git en exécutant la commande suivante et en vérifiant que vous recevez la sortie appropriée.\r\n\r\n    git --version\r\n\r\nOutput\r\ngit version 2.25.1\r\n\r\nUne fois Git correctement installé, vous pouvez passer à la section Configuration de Git de ce tutoriel pour terminer votre installation.\r\nInstallation de Git à partir de la source\r\n\r\nSi vous cherchez une méthode plus flexible pour installer Git, vous pouvez vouloir compiler le logiciel à partir de la source, que nous allons passer en revue dans cette section. Cela prend plus de temps et ne sera pas maintenu par votre gestionnaire de paquets, mais cela vous permettra de télécharger la dernière version et vous donnera un certain contrôle sur les options que vous incluez si vous souhaitez les personnaliser.\r\n\r\nVérifiez la version de Git actuellement installée sur le serveur :\r\n\r\n    git --version\r\n\r\nSi Git est installé, vous recevrez une sortie semblable à ce qui suit :\r\n\r\nOutput\r\ngit version 2.25.1\r\n\r\nAvant de commencer, vous devez installer le logiciel dont Git dépend. Tout cela est disponible dans les référentiels par défaut, afin que nous puissions mettre à jour notre index local de paquets et ensuite installer les paquets correspondants.\r\n\r\n    sudo apt update\r\n    sudo apt install libz-dev libssl-dev libcurl4-gnutls-dev libexpat1-dev gettext cmake gcc\r\n\r\nUne fois que vous avez installé les dépendances nécessaires, créez un répertoire temporaire et déplacez-vous dans celui-ci. C’est là que nous téléchargerons notre tarball Git.\r\n\r\n    mkdir tmp\r\n    cd /tmp\r\n\r\nDepuis le site web du projet Git, nous pouvons naviguer vers la liste des tarballs disponible à l’adresse https://mirrors.edge.kernel.org/pub/software/scm/git/ et télécharger la version souhaitée. Au moment où nous écrivons ces lignes, la version la plus récente est la 2.26.2, nous la téléchargerons donc à des fins de démonstration. Nous utiliserons curl et sortirons le fichier que nous téléchargerons sur git.tar.gz\r\n\r\n    curl -o git.tar.gz https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.26.2.tar.gz\r\n\r\nDécompressez le fichier tarball compressé :\r\n\r\n    tar -zxf git.tar.gz\r\n\r\nEnsuite, déplacez-vous dans le nouveau répertoire Git :\r\n\r\n    cd git-*\r\n\r\nMaintenant, vous pouvez créer le paquet et l’installer en tapant ces deux commandes :\r\n\r\n    make prefix=/usr/local all\r\n    sudo make prefix=/usr/local install\r\n\r\nMaintenant, remplacez le processus shell pour que la version de Git que nous venons d’installer soit utilisée :\r\n\r\n     exec bash\r\n\r\nUne fois cela terminé, vous pouvez vous assurer que votre installation a réussi en vérifiant la version.\r\n\r\n    git --version\r\n\r\nOutput\r\ngit version 2.26.2\r\n\r\nUne fois Git correctement installé, vous pouvez maintenant terminer votre installation.\r\nConfiguration de Git\r\n\r\nUne fois que vous êtes satisfait de votre version Git, vous devriez configurer Git de manière à ce que les messages de validation générés contiennent vos informations correctes et vous aident à construire votre projet logiciel.\r\n\r\nCette configuration peut être réalisé en utilisant la commande git config. Plus précisément, nous devons fournir notre nom et notre adresse e-mail car Git intègre ces informations dans chaque commit que nous faisons. Nous pouvons continuer et ajouter ces informations en tapant :\r\n\r\n    git config --global user.name \"Your Name\"\r\n    git config --global user.email \"youremail@domain.com\"\r\n\r\nNous pouvons afficher tous les éléments de configuration qui ont été définis en tapant :\r\n\r\n    git config --list\r\n\r\nOutput\r\nuser.name=Your Name\r\nuser.email=youremail@domain.com\r\n...\r\n\r\nLes informations que vous saisissez sont stockées dans votre fichier de configuration Git, que vous pouvez éventuellement modifier manuellement avec un éditeur de texte de votre choix comme celui-ci (nous utiliserons nano) :\r\n\r\n    nano ~/.gitconfig\r\n\r\n~/.gitconfig contents\r\n\r\n[user]\r\n  name = Your Name\r\n  email = youremail@domain.com\r\n\r\nAppuyez sur CTRL et X, puis sur Y, ensuite sur ENTER pour quitter l’éditeur de texte.\r\n\r\nIl existe de nombreuses autres options que vous pouvez définir, mais ce sont les deux essentielles. Si vous sautez cette étape, vous verrez probablement des avertissements lorsque vous vous committez à Git. Cela vous donne plus de travail, car vous devrez alors réviser les engagements que vous avez faits avec les informations corrigées.\r\nConclusion\r\n\r\nVous devriez maintenant avoir Git installé et prêt à être utilisé sur votre système.\r\n\r\nPour en savoir plus sur la façon d’utiliser Git, consultez ces articles et ces séries :\r\n\r\n    Comment utiliser efficacement Git\r\n    Comment utiliser les branches Git\r\n    Une introduction à l’open source\r\n\r\nWant to learn more? Join the DigitalOcean Community!\r\n\r\nJoin our DigitalOcean community of over a million developers for free! Get help and share knowledge in our Questions & Answers section, find tutorials and tools that will help you grow as a developer and scale your project or business, and subscribe to topics of interest.\r\nSign up\r\nAbout the authors\r\nDefault avatar\r\nLisa Tagliaferri\r\n\r\nauthor\r\nDeveloper and author at DigitalOcean.\r\nStill looking for an answer?\r\nAsk a question\r\nSearch for more help\r\nWas this helpful?\r\nLeave a comment\r\nLogin to Comment\r\nCreative Commons\r\nThis work is licensed under a Creative Commons Attribution-NonCommercial- ShareAlike 4.0 International License.\r\nSign up for Infrastructure as a Newsletter\r\n\r\nGet our roundup of sysadmin tutorials and open source happenings delivered to your inbox once you sign up and again every two weeks.\r\nEnter your email address(required)\r\nGet our biweekly newsletter\r\n\r\nSign up for Infrastructure as a Newsletter.\r\nHollie's Hub for Good\r\n\r\nWorking on improving health and education, reducing inequality, and spurring economic growth? We'd like to help.\r\nBecome a contributor\r\n\r\nYou get paid; we donate to tech nonprofits.\r\nFeatured on Community\r\nKubernetes Course\r\nLearn Python 3\r\nMachine Learning in Python\r\nGetting started with Go\r\nIntro to Kubernetes\r\nDigitalOcean Products\r\nVirtual Machines\r\nManaged Databases\r\nManaged Kubernetes\r\nBlock Storage\r\nObject Storage\r\nMarketplace\r\nVPC\r\nLoad Balancers\r\nWelcome to the developer cloud\r\n\r\nDigitalOcean makes it simple to launch in the cloud and scale up as you grow – whether you’re running one virtual machine or ten thousand.\r\nLearn More\r\nDigitalOcean Cloud Control Panel\r\n\r\n\r\n© 2022 DigitalOcean, LLC. All rights reserved.\r\nCompany\r\n\r\n    About\r\n    Leadership\r\n    Blog\r\n    Careers\r\n    Partners\r\n    Referral Program\r\n    Press\r\n    Legal\r\n    Security & Trust Center\r\n\r\nProducts\r\n\r\n    Pricing\r\n    Products Overview\r\n    Droplets\r\n    Kubernetes\r\n    Managed Databases\r\n    Spaces\r\n    Marketplace\r\n    Load Balancers\r\n    Block Storage\r\n    API Documentation\r\n    Documentation\r\n    Release Notes\r\n\r\nCommunity\r\n\r\n    Tutorials\r\n    Q&A\r\n    Tools and Integrations\r\n    Tags\r\n    Write for DigitalOcean\r\n    Presentation Grants\r\n    Hatch Startup Program\r\n    Shop Swag\r\n    Research Program\r\n    Open Source\r\n    Code of Conduct\r\n\r\nContact\r\n\r\n    Get Support\r\n    Trouble Signing In?\r\n    Sales\r\n    Report Abuse\r\n    System Status\r\n    Share your ideas\r\n\r\n                ",
-    "reg_date": "2022-04-09T13:38:27.955Z"
-  },
-  {
-    "id": 367,
-    "keyword": null,
-    "link": "test delete 1",
-    "title": "test delete 1",
-    "description": "\r\n                    fwefwefwefwewefwfwefwfwfwfwefwfw",
-    "reg_date": "2022-04-09T13:54:15.540Z"
+    "link": "https://superuser.com/questions/342448/du-command-does-not-parse-hidden-directories                                                                               ",
+    "title": "ubuntu get only hidden files folders with size                                                                        ",
+    "description": "\r\n This command shows you the summarized size of hidden directories using a regular expression                  \r\n\r\n du -hs .[^.]*\r\n\r\nsudo du -hs / [^.]* | sort -nr | head -10\r\n\r\nin current directory\r\nsudo du -hs .[^.]* | sort -nr | head -10\r\n\r\n                    \r\n                    \r\n                    ",
+    "reg_date": "2022-04-13T12:52:27.922Z"
   }
 ]
