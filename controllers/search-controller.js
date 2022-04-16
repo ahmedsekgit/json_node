@@ -82,27 +82,25 @@ try {
         results = [];
         results = arrTemp;
 
-        
         var arrRender = [];
-        str_commands = "<table class=\"table  table-active\" cellpadding=\"3\" cellspacing=\"0\" border=\"0\" style=\"width: 67%; margin: 0 auto 2em auto;\"><thead><tr><th scope=\"col\"> Line</th><th scope=\"col\">Copy</th></tr></thead>";
-        str_commands += "<tbody>";
+        str_commands = "<div class=\"row\">";
+        str_commands += "<div class=\"col-sm-3 col-md-6\" style=\"background-color:lavender;\">";
 
         results.forEach((command, key_line) => 
         {
-            var td1 = "<p><pre><code id=\"text__"+key_line+"\">"+command+"</pre></code></p>";
-            var td2 = "<button type=\"button\" class=\"btn btn-success btn-sm\" onclick=\"copyToClipboard('#text__"+key_line+"')\">Copy</button>";
-
-            td1.replace('\n', '<br>');
-            td1.replace('#', '<br>#');
-            td1.replace('$', '<br>$');
+            var td1 = "<div class=\"col-lg-44 col-md-44\" style=\"background-color:black; text-color:blue; font-size: 16px; text-align:center; border:1px solid black;\"><p><pre>";
+                td1 += "<code id=\"text__"+key_line+"\">"+command+"</code>;";
+                td1 +="";
+            var td2 = "";
+                td2 += "<button type=\"button\" class=\"btn btn-success btn-sm\" onclick=\"copyToClipboard('#text__"+key_line+"')\">Copy</button>";
+                td2 +="</pre></p></div>";  
             
-            str_commands += "<tr id=\"filter_global\" class=\"table-active\"></tr>" ;
-            str_commands += "<tr>"+td1+"</tr>" ;
-            str_commands += "<tr>"+td2+"</tr>" ;
-            str_commands += "<tr></tr>" ;
+            str_commands += ""+td1+"" ;
+            str_commands += ""+td2+"" ;
+            
             
         });
-        str_commands += "</tbody></table>" ;
+        str_commands += "</div>" ;
         
     }
     arr_return['str_commands'] = str_commands;

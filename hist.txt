@@ -1,13 +1,3 @@
-cls
-sd node ex19.js 
-sd node ex21.js 
-cls
-sd node ex21.js 21
-sd npm install buffertools
-cls
-sd npm install buffertools
-cls
-sd node ex21.js 21
 npm install buffertools
 sd npm install pdftk
 npm install pdftk
@@ -1998,3 +1988,13 @@ cks
 sd npm install readline
 cls
 cd
+st3
+cd json_node/
+cls
+node app.js 
+sd npm install string_decoder
+node app.js 
+sd npm install line-reader
+node app.js 
+sd du -sh /home/sea/*
+sd du -sh /home/sea/* | sort -nr | head -10

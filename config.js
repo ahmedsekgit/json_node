@@ -1,3 +1,24 @@
+const arr_json_paths =
+[
+"./db_json/bkp_db_test_general_test.json",				//0
+"./db_json/bkp_db_cpp_general_cpp.json",				//1           
+"./db_json/bkp_db_jquery_general_jquery.json",			//2
+"./db_json/bkp_db_sql_general_sql.json",				//3
+"./db_json/bkp_db_css_general_css.json",				//4             
+"./db_json/bkp_db_node_general_node.json",				//5      
+"./db_json/bkp_db_test_general_test.json",				//6
+"./db_json/bkp_db_express_general_express.json",		//7        
+"./db_json/bkp_db_php_general_php.json",				//8        
+"./db_json/bkp_db_test_general_test_JSON_BKP.json",		//9
+"./db_json/bkp_db_html_general_html.json",				//10              
+"./db_json/bkp_db_python_general_python.json",			//11  
+"./db_json/bkp_db_tryit_general_tryit.json",			//12
+"./db_json/bkp_db_java_general_java.json",				//13              
+"./db_json/bkp_db_react_general_react.json",			//14
+"./db_json/bkp_db_javascript_general_javascript.json",	//15  
+"./db_json/bkp_db_shell_general_shell.json"				//16
+];
+
 const arr_databases =
 [
 "db_test",		//0
@@ -38,7 +59,7 @@ const arr_tables =
 
 const config = {
 	JSON: 1,
-	JSON_PATH: "./db_json/bkp_db_test_general_test.json",
+	JSON_PATH: arr_json_paths[12],
 	HOST: "localhost",
 	HOST: "localhost",
 	USER: "root",
@@ -47,6 +68,7 @@ const config = {
   	dialect: "mysql",
   	arr_tables : arr_tables,
   	arr_databases :arr_databases,
+  	arr_json_paths :arr_json_paths,
 	database: 
 	{
 		host:	  'localhost', 	// database host

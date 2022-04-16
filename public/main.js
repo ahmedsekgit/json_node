@@ -44,7 +44,7 @@ function ref_search() {
             var limit_sql = $("#limit_link_sql").val();
             var search_keyword = '';
              var test = $('#site_address_port').val() + '/ref_search';
-             console.log(test);
+
             if (typeof(search_term.trim()) !== undefined) {
                 $.ajax({
                     type: 'POST',
@@ -56,8 +56,7 @@ function ref_search() {
                     datatype: 'json',
                     url: $('#site_address_port').val() + '/ref_search',
                     success: function(data) {
-                        console.log("data");
-                        console.dir(data);
+                     
                         if(data.error == true) 
                         {
                             var error = $("#example_form_error");
@@ -84,48 +83,15 @@ function ref_search() {
 
                 return false;
             } /*end if*/
-        return;    
-        $("#contact_modal_form").submit(function(event) {
-            
-            $.ajax({
-                type: form.attr('method'),
-                url: form.attr('action'),
-                data: form.serialize(),
-                dataType: 'json',
-                success: function(data) {
-                        console.log("data");
-                        console.dir(data);
-                        if(data.error == true) 
-                        {
-                            var error = $("#example_form_error");
-                            error.css("color", "red");
-                            error.html("Not " + data.msg + ". Please enter a different name.");
-                      
-                         } 
-                         else 
-                         {
-                        
-                         // $("#example_form_enter").hide();
-                         $("#example_form_enter").show();
-                         $("#example_form_error").hide();
-                         $("#example_form_confirmation").show();
-                        
-                         var success = $("#example_form_success");
-                         success.css("background-color", "black");
-                         success.css("color", "white");
-                         success.html("Success! You submitted the name " + data.name + ".");
-                         success.html(" " + data.str_commands + " ");
-                         }
-                }
-            });
-            event.preventDefault();
-        });
+
     
 }/*function ref_search()*/
 $(document).ready(function() {
     console.log("ready!");
 
-
+    $("#search_link_term").on('keyup click', function() {
+        ref_search();
+    });
     //    //autocomplete
     // $(".auto").autocomplete({
     // 	source: "keyword_search.php",

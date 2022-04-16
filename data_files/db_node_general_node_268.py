@@ -1,0 +1,13 @@
+==============================
+ JavaScript Time  
+==============================
+// these are the most useful ones IMO var time = new Date(); time.getDate(); // returns value 1-31 for day of the month time.getDay(); //returns value 0-6 for day of the week time.getFullYear(); //returns a 4 digit value for the current year time.getHours(); //returns value 0-23 for the current hour time.getMinutes(); //returns value 0-59 for the current minute of the hour time.getSeconds(); //returns value 0-59 for current second of the minute time.getMilliseconds(); //returns value 0-999 for current ms of the second time.getTime(); //returns date as ms since Jan 1, 1970 time.toDateString(); //returns a string (e.g. "Fri May 9 2020") time.toLocaleString(); //returns date and time (e.g. "9/12/2015, 6:08:25 PM") time.toLocaleTimeString(); //returns time (e.g. "6:08:25 PM") time.toLocaleDateString(); //returns date (e.g. "9/12/2015")
+var today = new Date(); var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds(); 
+setTimeout(function(){  	//code goes here }, 2000); //Time before execution
+var d= new Date(); d.getFullYear();	//Get the year as a four digit number (yyyy) d.getMonth();	//Get the month as a number (0-11) d.getDate();	//Get the day as a number (1-31) d.getHours();	//Get the hour (0-23) d.getMinutes();	//Get the minute (0-59) d.getSeconds();	 //Get the second (0-59) d.getMilliseconds()	//Get the millisecond (0-999) d.getTime();	//Get the time (milliseconds since January 1, 1970) d.getDay();  //Get the weekday as a number (0-6) d.Date.now();	//Get the time. ECMAScript 5. d.setDate()	//Set the day as a number (1-31) d.setFullYear()	//Set the year (optionally month and day) d.setHours()	//Set the hour (0-23) d.setMilliseconds()	//Set the milliseconds (0-999) d.setMinutes()	//Set the minutes (0-59) d.setMonth()	//Set the month (0-11) d.setSeconds()	//Set the seconds (0-59) d.setTime()	//Set the time (milliseconds since January 1, 1970)
+<html>    <head>       <title>JavaScript setHours Method</title>    </head>    <body>       <script>          var dt = new Date();          dt.setHours( dt.getHours() + 2 );          document.write( dt );       </script>    </body> </html>
+var d= new Date();  d.getFullYear();//Get the year as a four digit number (yyyy)  d.getMonth();//Get the month as a number (0-11)  d.getDate();//Get the day as a number (1-31)  d.getHours();//Get the hour (0-23)  d.getMinutes();//Get the minute (0-59)  d.getSeconds();//Get the second (0-59)  d.getMilliseconds();//Get the millisecond (0-999)  d.getTime();//Get the time (milliseconds since January 1, 1970)
+  
+==============================
+268 at  2021-10-29T15:22:52.000Z
+==============================

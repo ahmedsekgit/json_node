@@ -322,10 +322,19 @@ module.exports = {
           if(typeof arrData != 'undefined')
             {
               arrData.href_to_file = "#";
+              var arrRendered = arrData;
+
+                    arrRendered.title = arrRendered.title.replace(/code-examples/gi, "");
+                    arrRendered.title = arrRendered.title.replace(/frameworks  nodejs/gi, "");
+                    arrRendered.title = arrRendered.title.trim();
+                    arrRendered.description = beautify(arrRendered.description, {
+                        format: 'html'
+                    });
+                
               //objRendered = reformat_record_to_file(arrData,app_homedir);
                      res.render('link-form', 
                         {
-                            showData: arrData
+                            showData: arrRendered
                         });
             }
             else
@@ -371,49 +380,80 @@ module.exports = {
             search_keyword: req.body.search_keyword,
             rendu_nbr: req.body.limit_sql
         };
-        linkModel.search_term_Data(inputData, function(data) {
-            log(chalk.yellow(" records found search_term_Data link controller"));
+        /*work with json file*/
+        let bool_json = config.JSON;
+        if(bool_json)
+        {
+            let arrData = json_read_model.search_term_Data(inputData) ;
+            let data_array = arrData["data"];
             var data_ids = [];
-            var data_temp = [];
-            var data_to_send = [{
-                selected_link_ids: '',
-                keywords_link_vals: data['keywords_vals']
-            }];
+            for (var i = 0; i < data_array.length; i++) 
+            {
+                let item = data_array[i];
+                data_ids.push(item.id);
 
-            data.forEach((item, index) => {
-                if (item.best_match > 0) {
-                    let data_array = [];
-                    data_array.push(item.id);
-                    data_ids.push(item.id);
-                    data_array.push(item.reg_date);
-                    data_array.push(item.title);
-                    /*CSS/JS/JSON/HTML/XML*/
-                    const beautify = require('beautify');
-                    item.description = beautify(item.description, {
-                        format: 'js'
-                    });
-                    /* load the library and ALL languages
-                    hljs = require('highlight.js');
-                    item.description = hljs.highlightAuto(item.description).value;
-                    */
-                    data_array.push(item.description);
-                    data_array.push(item.link);
-
-                    data_temp.push(data_array.join('\n\n'));
-
-                }
-
-            }) /*end data foreach*/
-
-
-            if (typeof data_ids != 'undefined' && data_ids.length > 0) {
+            }
+            
+            var data_to_send = 
+                    [{
+                        selected_link_ids: '',
+                        keywords_link_vals: arrData['keywords_vals']
+                    }];
+            if (typeof data_ids != 'undefined' && data_ids.length > 0) 
+            {
                 // the array is defined and has no elements
                 data_to_send[0].selected_link_ids = data_ids.join(',');
             }
-
-            res.json(data_to_send);
-            //res.send(JSON.stringify(data_to_send));
-        }); /*linkModel.search_term_Data*/
+        
+                res.json(data_to_send);
+        }
+        else
+         
+        {
+            linkModel.search_term_Data(inputData, function(data) {
+                    log(chalk.yellow(" records found search_term_Data link controller"));
+                    var data_ids = [];
+                    var data_temp = [];
+                    var data_to_send = [{
+                        selected_link_ids: '',
+                        keywords_link_vals: data['keywords_vals']
+                    }];
+        
+                    data.forEach((item, index) => {
+                        if (item.best_match > 0) {
+                            let data_array = [];
+                            data_array.push(item.id);
+                            data_ids.push(item.id);
+                            data_array.push(item.reg_date);
+                            data_array.push(item.title);
+                            /*CSS/JS/JSON/HTML/XML*/
+                            const beautify = require('beautify');
+                            item.description = beautify(item.description, {
+                                format: 'js'
+                            });
+                            /* load the library and ALL languages
+                            hljs = require('highlight.js');
+                            item.description = hljs.highlightAuto(item.description).value;
+                            */
+                            data_array.push(item.description);
+                            data_array.push(item.link);
+        
+                            data_temp.push(data_array.join('\n\n'));
+        
+                        }
+        
+                    }) /*end data foreach*/
+        
+        
+                    if (typeof data_ids != 'undefined' && data_ids.length > 0) {
+                        // the array is defined and has no elements
+                        data_to_send[0].selected_link_ids = data_ids.join(',');
+                    }
+        
+                    res.json(data_to_send);
+                    //res.send(JSON.stringify(data_to_send));
+                }); /*linkModel.search_term_Data*/
+        }/*else json*/
     },
     /*search_term_Data*/
 
@@ -431,9 +471,9 @@ module.exports = {
                     arrRendered[key].title = arrRendered[key].title.replace(/code-examples/gi, "");
                     arrRendered[key].title = arrRendered[key].title.replace(/frameworks  nodejs/gi, "");
                     arrRendered[key].title = arrRendered[key].title.trim();
-                    arrRendered[key].description = beautify(arrRendered[key].description, {
+                    /*arrRendered[key].description = beautify(arrRendered[key].description, {
                         format: 'js'
-                    });
+                    });*/
                 }
                 res.render('links-list', 
                 {

@@ -1,0 +1,8 @@
+==============================
+ Message reply react native  
+==============================
+//ChatFooter.js         <View style={{height: 50, flexDirection: 'row'}}>           <View style={{height:50, width: 5, backgroundColor: 'red'}}></View>           <View style={{flexDirection: 'column'}}>               <Text style={{color: 'red', paddingLeft: 10, paddingTop: 5}}>{replyTo}</Text>               <Text style={{color: 'gray', paddingLeft: 10, paddingTop: 5}}>{replyMsg}</Text>           </View>           <View style={{flex: 1,justifyContent: 'center',alignItems:'flex-end', paddingRight: 10}}>               <TouchableOpacity onPress={dismiss}>                   <Icon name="x" type="feather" color="#0084ff" />               </TouchableOpacity>           </View>       </View>   //MessageReply.js   render() {     const {replyTo, replyMsg} = this.props.currentMessage;     return (       <View style={[styles.container, this.props.containerStyle]}>         <View style={{ padding: 5}}>           <View style={{backgroundColor: '#005CB5', borderRadius: 15}}>             <View style={{flexDirection: 'row',}}>               <View style={{height:50, width: 10, backgroundColor: '#00468A', borderTopLeftRadius: 15, borderBottomLeftRadius: 15}} />                 <View style={{flexDirection: 'column'}}>                   <Text style={{color: 'white', paddingHorizontal: 10, paddingTop: 5, fontWeight: '700'}}>{replyTo}</Text>                   <Text style={{color: 'white', paddingHorizontal: 10, paddingTop: 5}}>{replyMsg}</Text>                 </View>             </View>           </View>         </View>       </View>     );   }
+  
+==============================
+318 at  2021-10-29T15:22:52.000Z
+==============================

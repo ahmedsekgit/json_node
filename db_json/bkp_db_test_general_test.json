@@ -2742,5 +2742,13 @@
     "title": "ubuntu get only hidden files folders with size                                                                        ",
     "description": "\r\n This command shows you the summarized size of hidden directories using a regular expression                  \r\n\r\n du -hs .[^.]*\r\n\r\nsudo du -hs / [^.]* | sort -nr | head -10\r\n\r\nin current directory\r\nsudo du -hs .[^.]* | sort -nr | head -10\r\n\r\n                    \r\n                    \r\n                    ",
     "reg_date": "2022-04-13T12:52:27.922Z"
+  },
+  {
+    "id": 367,
+    "keyword": null,
+    "link": " https://www.tecmint.com/split-large-tar-into-multiple-files-of-certain-size/                          ",
+    "title": "split join large gz zip file on ubuntu                        ",
+    "description": "example folder Arabi_1_.tar.gz\r\nSPLIT\r\nsplit -b 20M Arabi_1_.tar.gz \"Arabi_1_.tar.gz.part\"\r\n&&\r\nJOIN\r\ncat Arabi_1_.tar.gz.parta* >backup.tar.gz.joined\r\nexample\r\nsplit -b 20M Arabi_1_.tar.gz \"Arabi_1_.tar.gz.part\"\r\nsplit -b 20M Arabi_21_.tar.gz \"Arabi_21_.tar.gz.part\"&\r\nsplit -b 20M Arabi_378_.tar.gz \"Arabi_378_.tar.gz.part\"&\r\nsplit -b 20M Arabi_375_.tar.gz \"Arabi_375_.tar.gz.part\"&\r\nsplit -b 20M Arabi_376_.tar.gz \"Arabi_376_.tar.gz.part\"&\r\nsplit -b 20M Arabi_333_.tar.gz \"Arabi_333_.tar.gz.part\"&\r\nsplit -b 20M Arabi_329_.tar.gz \"Arabi_329_.tar.gz.part\"&\r\nsplit -b 20M Arabi_328_.tar.gz \"Arabi_328_.tar.gz.part\"&\r\nsplit -b 20M Arabi_332_.tar.gz \"Arabi_332_.tar.gz.part\"&\r\nsplit -b 20M Arabi_327_.tar.gz \"Arabi_327_.tar.gz.part\"&\r\nsplit -b 20M Arabi_326_.tar.gz \"Arabi_326_.tar.gz.part\"&\r\nsplit -b 20M Arabi_56_.tar.gz \"Arabi_56_.tar.gz.part\"&\r\n                    \r\n                    ",
+    "reg_date": "2022-04-15T15:55:31.594Z"
   }
 ]

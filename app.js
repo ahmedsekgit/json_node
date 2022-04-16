@@ -20,13 +20,16 @@ var corsOptions = {
 };
 
 app.set('port', process.env.PORT || 3012);
-
+/*
 http.createServer(app).listen(app.get('port'),
   function(){
-    console.log("Express server listening on port " + app.get('port'));
+    console.log("Express server listening on port (file app.js)" + app.get('port'));
 });
-
-
+*/
+var server = app.listen(app.get('port'),
+  function(){
+    console.log("Express server listening on port (file app.js)" + app.get('port'));
+});
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -142,5 +145,6 @@ app.use(function(err, req, res) {
         }
     };
     app.locals.app_homedir = __dirname;
+    app.locals.server = server;
 
 module.exports = app;

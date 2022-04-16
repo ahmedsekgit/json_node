@@ -2,6 +2,8 @@ var readModel = require('../models/read-model');
 var json_read_model = require('../models/json_read_model');
 var fs = require('fs');
 var path = require('path');
+const JsonSearch = require('search-array').default;
+
 var chalk = require('chalk');
 var config = require('./../config');
 var path = require('path');
